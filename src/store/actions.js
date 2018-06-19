@@ -13,7 +13,7 @@ export default {
   },
 
   async getDisclaimer({ commit }) {
-    const url = `http://www.mocky.io/v2/5b28f6862f00008900f55f77`;
+    const url = `http://localhost:3000/disclaimer`;
     // const url = `http://www.blabla.com/api.php?language=${this.state.language}`;
 
     const response = await axios.get(url);
@@ -24,7 +24,7 @@ export default {
   },
 
   async getLanguages({ commit }) {
-    const url = `http://www.mocky.io/v2/5b28f6862f00008900f55f77`;
+    const url = `http://localhost:3000/languages`;
     // const url = `http://www.blabla.com/api.php?language=${this.state.language}`;
 
     const response = await axios.get(url);

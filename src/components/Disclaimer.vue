@@ -4,35 +4,37 @@
     <span class="bullets">&bull; &bull; &bull; </span>
     <div class="text-wrapper">
       <p class="text">
-        Подумай о своём желании/
-  идее/цели.
+        {{ getDisclamerPart(0) }}
       </p>
       <p class="text">
-        Неважно где ты сейчас: только
-        мысль появилась в твоей голове
-        или ты уже на пол пути к финалу.
+        {{ getDisclamerPart(1) }}
       </p>
       <p class="text">
-        Ты можешь себе задать несколько
-        вопросов из этой колоды и сделать
-        шаг навстречу результату.
+        {{ getDisclamerPart(2) }}
       </p>
-      <p class="text">Удачи!</p>
-      <em class="text">Катерина Костюкова
-        Профессиональный сертифициро-
-        ванный коуч (PCC)</em>
+      <p class="text">
+        {{ getDisclamerPart(3) }}        
+      </p>
+      <em class="text">
+        {{ getDisclamerPart(4) }}        
+      </em>
     </div>
-<div class="logo">
+    <div class="logo">
       <img class="logo-img" src="../assets/logo-disclaimer.png" alt="Тренинг центр - Исток">
     </div>
   </div>
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: 'Disclaimer',
-  props: {
-    msg: String
+  store,
+  methods: {
+    getDisclamerPart: function (i) {
+      return this.$store.state.disclaimer[i];
+    }
   }
 }
 </script>
