@@ -94,7 +94,7 @@ export default {
   width: 2000px;
   height: 1000px;
   background-color: #1F236D;
-  transform: rotate(-10deg);
+  transform: rotate(-10deg) translateX(-20%);
 }
 
 .logo {

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="question-wrapper">
-      <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ msg }}</p>
+      <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ hello() }}</p>
     </div>
     <div class="logo">
       <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -10,10 +10,17 @@
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: 'Card',
   props: {
     msg: String
+  },
+  methods: {
+    hello: function () {
+      return store.state.questions[0];
+    } 
   }
 }
 </script>
@@ -45,7 +52,7 @@ export default {
   width: 2000px;
   height: 1000px;
   background-color: #1F236D;
-  transform: rotate(-10deg);
+  transform: rotate(-10deg) translateX(-20%);
 }
 
 .question-wrapper {
