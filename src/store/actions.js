@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
   async getQuestions({ commit }) {
-    const url = `http://www.mocky.io/v2/5b28f6862f00008900f55f77`;
+    const url = `http://localhost:3000/questions`;
     // const url = `http://www.blabla.com/api.php?language=${this.state.language}`;
 
     const response = await axios.get(url);

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="question-wrapper">
-      <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ hello() }}</p>
+      <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ currentQuestion }} </p>
     </div>
     <div class="logo">
       <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -14,13 +14,69 @@ import store from '../store'
 
 export default {
   name: 'Card',
-  props: {
-    msg: String
+  data: function () {
+    return {
+      currentQuestion: 'Loading...',
+      currentHistoryIndex: 0,
+    }
   },
   methods: {
-    hello: function () {
-      return store.state.questions[0];
-    } 
+    setInit: function () {
+        let max = this.$store.state.questions.length - 1;
+        let randomQuestionIndex = this.getRandomInt(0, max);
+        this.pushToHistory(randomQuestionIndex);
+        this.currentHistoryIndex++;
+        this.$data.currentQuestion = this.$store.state.questions[randomQuestionIndex];
+    },
+    setNextQuestion: function () {
+      this.$data.currentQuestion = this.getNextQuestion();
+    },
+    setPrevQuestion: function () {
+      this.$data.currentQuestion = this.getPrevQuestion();
+    },
+    getRandomInt: function (min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+    getNextQuestion: function () {
+      // if (this.currentHistoryIndex == this.getHistory.length - 1) {
+        let max = this.$store.state.questions.length - 1;
+        let randomQuestionIndex = this.getRandomInt(0, max);
+        this.pushToHistory(randomQuestionIndex);
+        this.currentHistoryIndex++;
+        return this.$store.state.questions[randomQuestionIndex];
+      // } else {
+      //   let history = this.getHistory();
+      //   this.currentHistoryIndex++;
+      //   let nextQuestionIndex = history[this.currentHistoryIndex];        
+      //   return this.$store.state.questions[nextQuestionIndex];
+      // }
+    },
+    getPrevQuestion: function () {
+      let history = this.getHistory();
+      if (this.currentHistoryIndex !== 0) {
+        let prevIndex = history[history.length - 2];
+        this.currentHistoryIndex = prevIndex;
+        return this.$store.state.questions[prevIndex];
+      }
+    },
+    pushToHistory: function (index) {
+      this.$store.commit('pushHistory', index);
+    },
+    getHistory: function () {
+      return this.$store.state.history;
+    }
+  },
+  mounted: function () {
+    setTimeout(() => {
+      this.setInit();
+    }, 350);
+    this.setNextQuestion();
+    // setTimeout(() => {
+    //   this.setNextQuestion();
+    // }, 550);    
+    // setTimeout(() => {
+    //   this.setPrevQuestion();
+    // }, 700);
   }
 }
 </script>

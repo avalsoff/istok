@@ -1,6 +1,6 @@
 export default {
-  language(state, language) {
-    state.language = language; 
+  languages(state, languages) {
+    state.languages = languages; 
   },
   questions(state, questions) {
     state.questions = questions;
@@ -11,7 +11,7 @@ export default {
   todos(state, todos) {
     state.todos = todos;
   },
-  history(state, history) {
-    state.history = history;
-  },
+  pushHistory(state, item) {
+    state.history.push(item);
+  }
 }

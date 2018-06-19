@@ -1,7 +1,7 @@
 export default {
-  language: '',
-  questions: ['1', '2'],
-  disclaimer: [],
+  languages: ['Loading...'],
+  questions: ['Loading...'],
+  disclaimer: ['Loading...'],
   todos: [],
   history: []
 }

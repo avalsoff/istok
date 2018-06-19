@@ -3,24 +3,11 @@
     <h1 class="greet">Добро пожаловать!</h1>
     <p class="choose">Выберите язык:</p>
     <ul class="languages">
-      <li class="language">
+      <li 
+        class="language"
+        v-for="language in languages">
         <button class="language-btn">
-          Русский
-        </button>
-      </li>
-      <li class="language">
-        <button class="language-btn">
-          English
-        </button>
-      </li>
-      <li class="language">
-        <button class="language-btn">
-          Japan
-        </button>
-      </li>
-      <li class="language">
-        <button class="language-btn">
-          Korean
+          {{ language.name }}
         </button>
       </li>
     </ul>
@@ -31,10 +18,20 @@
 </template>
 
 <script>
+import store from '../store'
+
 export default {
   name: 'Start',
-  props: {
-    msg: String
+  data: function () {
+    return {
+      languages: []
+    }
+  },
+  store,
+  mounted: function () {
+    setTimeout(() => {
+      this.languages = this.$store.state.languages;
+    }, 350)
   }
 }
 </script>
