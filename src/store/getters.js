@@ -1,6 +1,6 @@
 export default {
   languages(state) {
-    return state.languages    
+    return state.languages
   },
   questions(state) {
     return state.questions

@@ -1,22 +1,22 @@
 <template>
   <div class="start">
-    <h1 class="greet">Добро пожаловать!</h1>
-    <p class="choose">Выберите язык:</p>
-    <ul class="languages">
-      <li 
-        class="language"
-        v-for="language in languages">
-        <!-- <button class="language-btn">
-          {{ language.name }}
-        </button> -->
-        <router-link 
-          class="language-btn"
-          to="/disclaimer"
-          @click.native = "saveLanguage" >
-          {{ language.name || 'Loading...'}}
-        </router-link>
-      </li>
-    </ul>
+    <div class="start-wrapper">
+      <h1 class="greet">Добро <br> пожаловать!</h1>
+      <p class="choose">Выберите язык:</p>
+      <ul class="languages">
+        <li 
+          class="language"
+          v-for="language in languages">
+          <!-- <button class="language-btn">
+            {{ language.name }}
+          </button> -->
+          <a class="language-btn"
+            v-on:click="() => saveLanguageAndGo(language.id)">
+            {{ language.name || 'Loading...'}}
+          </a>
+        </li>
+      </ul>
+    </div>
     <div class="logo">
       <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
     </div>
@@ -40,8 +40,10 @@ export default {
     }, 500)
   },
   methods: {
-    saveLanguage: function () {
-
+    saveLanguageAndGo: function (langId) {      
+      store.dispatch('getDisclaimer', langId);
+      store.dispatch('getQuestions', langId);
+      this.$router.push('disclaimer');
     }
   }
 }
@@ -63,6 +65,7 @@ export default {
   max-width: 700px;
   padding: 0;
   list-style-type: none;
+  text-align: center;
 }
 
 .language {
@@ -70,6 +73,7 @@ export default {
 }
 
 .language-btn {
+  cursor: pointer;
   display: block;
   text-decoration: none;
   width: 100%;
@@ -85,12 +89,14 @@ export default {
 .choose {
   text-align: center;
   font-size: 28px;
+  color: #1F236D;
 }
 
 .start {
   position: relative;
   overflow: hidden;
   height: 100vh;
+  /* vh */
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
@@ -135,6 +141,7 @@ export default {
 
 @media only screen and (max-width: 460px) {
   .greet {
+    margin-top: 10%;
     font-size: 35px;
   }
 

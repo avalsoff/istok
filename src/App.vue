@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/start">Home</router-link> |
       <router-link to="/disclaimer">Disclaimer</router-link> |
       <router-link to="/card">Card</router-link>
     </div>
@@ -49,9 +49,14 @@ import store from './store';
 
 export default {
   mounted: function () {
-    store.dispatch('getLanguages');
-    store.dispatch('getQuestions');
-    store.dispatch('getDisclaimer');
+    if (localStorage.getItem('LANGUAGE')) {
+      store.dispatch('getDisclaimer');
+      store.dispatch('getQuestions');
+      this.$router.push('disclaimer');
+    } else {
+      store.dispatch('getLanguages');
+      this.$router.push('start');
+    }
   }
 }
 </script>

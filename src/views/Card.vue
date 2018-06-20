@@ -114,6 +114,7 @@ export default {
   position: relative;
   overflow: hidden;
   height: 100vh;
+  /* vh */
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
@@ -133,6 +134,7 @@ export default {
 .question-wrapper {
   position: relative;
   height: 78vh;
+  /* vh */
 }
 
 .question {
@@ -194,16 +196,16 @@ export default {
     top: 55%;
   }
   .question {
-    font-size: 25px;
-    line-height: 35px;
+    font-size: 30px;
+    line-height: 40px;
+    padding: 0 25px;
   }
   .bullets {
     font-size: 35px;
-    line-height: 30px;
+    line-height: 35px;
   }
   .logo {
-    width: 240px;
+    width: 260px;
   }
 }
-
 </style>

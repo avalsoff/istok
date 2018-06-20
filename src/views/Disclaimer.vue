@@ -1,4 +1,6 @@
 <template>
+<v-touch 
+  @swipeleft="goToCard">
   <div class="card">
     <span class="hashtag">#50вопросов_исток</span>
     <span class="bullets">&bull; &bull; &bull; </span>
@@ -15,7 +17,7 @@
       <p class="text">
         {{ getDisclamerPart(3) }}        
       </p>
-      <em class="text">
+      <em class="text em">
         {{ getDisclamerPart(4) }}        
       </em>
     </div>
@@ -23,6 +25,7 @@
       <img class="logo-img" src="../assets/logo-disclaimer.png" alt="Тренинг центр - Исток">
     </div>
   </div>
+</v-touch>
 </template>
 
 <script>
@@ -34,6 +37,9 @@ export default {
   methods: {
     getDisclamerPart: function (i) {
       return this.$store.state.disclaimer[i];
+    },
+    goToCard: function () {
+      this.$router.push('card');
     }
   }
 }
@@ -54,6 +60,7 @@ export default {
   font-family: 'Geometria Light', Arial, Helvetica, sans-serif;
   overflow: hidden;
   height: 100vh;
+  /* vh */
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
@@ -68,13 +75,14 @@ export default {
   font-size: 32px;
   line-height: 58px;
   padding: 0 50px;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 .text-wrapper {
   position: relative;
   padding: 0 100px;
   height: 78vh;
+  /* vh */
 }
 
 .text {
@@ -106,7 +114,7 @@ export default {
   height: auto;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 700px) {
   .hashtag {
     font-size: 30px;
     line-height: 35px;
@@ -115,12 +123,12 @@ export default {
   }
 
   .text-wrapper {
-    padding: 0 40 0 50px;
+    padding: 0 10px 0 30px;
   }
 
   .text {
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 25px;
+    line-height: 26px;
     width: 100%;
     /* border: 1px solid #000; */
   }
@@ -133,9 +141,15 @@ export default {
   .logo {
     width: 300px;
   }
+
+  .text.em {
+    display: block;
+    margin-top: 30px;
+    text-indent: 0;
+  }
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 400px) {
   .hashtag {
     font-size: 24px;
     line-height: 30px;
@@ -144,11 +158,11 @@ export default {
   }
 
   .text-wrapper {
-    padding: 0 30px 0 40px;
+    padding: 0 15px 0 25px;
   }
 
   .text {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 20px;
     width: 100%;
     /* border: 1px solid #000; */
@@ -159,8 +173,7 @@ export default {
     line-height: 40px;
   }
   .logo {
-    width: 240px;
+    width: 250px;
   }
 }
-
 </style>

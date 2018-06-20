@@ -24,7 +24,7 @@ export default new Router({
       component: Card
     },
     {
-      path: '/',
+      path: '/start',
       name: 'Start',
       component: Start
     }
