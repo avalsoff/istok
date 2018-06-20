@@ -1,16 +1,23 @@
 <template>
-  <div class="card">
-    <div class="question-wrapper">
-      <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ currentQuestion }} </p>
+  <v-touch 
+    @swipeleft="setNextQuestion"
+    @swiperight="setPrevQuestion">
+    <div class="card">
+      <div class="question-wrapper">
+        <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ currentQuestion }} </p>
+      </div>
+      <div class="logo">
+        <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
+      </div>
     </div>
-    <div class="logo">
-      <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
-    </div>
-  </div>
+  </v-touch>
 </template>
 
 <script>
-import store from '../store'
+import Vue from 'vue';
+import VueTouch from 'vue-touch';
+
+Vue.use(VueTouch);
 
 export default {
   name: 'Card',
@@ -40,14 +47,22 @@ export default {
       let history = this.getHistory();
 
       if (this.currentHistoryIndex == history.length - 1) {
-        console.log('true');
         let max = this.$store.state.questions.length - 1;
-        let randomQuestionIndex = this.getRandomInt(0, max);
+        
+        if (history.length === this.$store.state.questions.length) {
+          let questionIndex = history[this.currentHistoryIndex];
+          return this.$store.state.questions[questionIndex];
+        }
+
+        let randomQuestionIndex;
+        do {
+          randomQuestionIndex = this.getRandomInt(0, max);
+        } while (history.includes(randomQuestionIndex));
+
         this.pushToHistory(randomQuestionIndex);
         this.currentHistoryIndex++;
         return this.$store.state.questions[randomQuestionIndex];
       } else {        
-        console.log('false');
         this.currentHistoryIndex++;
         return this.$store.state.questions[history[this.currentHistoryIndex]];
       }
