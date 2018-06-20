@@ -37,18 +37,20 @@ export default {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     getNextQuestion: function () {
-      // if (this.currentHistoryIndex == this.getHistory.length - 1) {
+      let history = this.getHistory();
+
+      if (this.currentHistoryIndex == history.length - 1) {
+        console.log('true');
         let max = this.$store.state.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
         this.currentHistoryIndex++;
         return this.$store.state.questions[randomQuestionIndex];
-      // } else {
-      //   let history = this.getHistory();
-      //   this.currentHistoryIndex++;
-      //   let nextQuestionIndex = history[this.currentHistoryIndex];        
-      //   return this.$store.state.questions[nextQuestionIndex];
-      // }
+      } else {        
+        console.log('false');
+        this.currentHistoryIndex++;
+        return this.$store.state.questions[history[this.currentHistoryIndex]];
+      }
     },
     getPrevQuestion: function () {
       let history = this.getHistory();
@@ -70,7 +72,11 @@ export default {
       this.setInit();
       this.setNextQuestion();
       this.setNextQuestion();
+      this.setNextQuestion();
+      this.setNextQuestion();
       this.setPrevQuestion();
+      this.setNextQuestion();
+      this.setNextQuestion();
     }, 350);
     // setTimeout(() => {
     //   this.setNextQuestion();
