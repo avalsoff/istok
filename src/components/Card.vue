@@ -25,7 +25,6 @@ export default {
         let max = this.$store.state.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
-        this.currentHistoryIndex++;
         this.$data.currentQuestion = this.$store.state.questions[randomQuestionIndex];
     },
     setNextQuestion: function () {
@@ -54,10 +53,10 @@ export default {
     getPrevQuestion: function () {
       let history = this.getHistory();
       if (this.currentHistoryIndex !== 0) {
-        let prevIndex = history[history.length - 2];
-        this.currentHistoryIndex = prevIndex;
-        return this.$store.state.questions[prevIndex];
+        this.currentHistoryIndex--;
       }
+      let questionIndex = history[this.currentHistoryIndex];
+      return this.$store.state.questions[questionIndex];
     },
     pushToHistory: function (index) {
       this.$store.commit('pushHistory', index);
@@ -69,8 +68,10 @@ export default {
   mounted: function () {
     setTimeout(() => {
       this.setInit();
+      this.setNextQuestion();
+      this.setNextQuestion();
+      this.setPrevQuestion();
     }, 350);
-    this.setNextQuestion();
     // setTimeout(() => {
     //   this.setNextQuestion();
     // }, 550);    
