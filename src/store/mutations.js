@@ -13,5 +13,8 @@ export default {
   },
   pushHistory(state, item) {
     state.history.push(item);
+  },
+  clearHistory(state) {
+    state.history = [];
   }
 }

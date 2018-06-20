@@ -51,7 +51,7 @@ export default {
 
 .card {
   position: relative;
-  font-family: 'Geometria Light';
+  font-family: 'Geometria Light', Arial, Helvetica, sans-serif;
   overflow: hidden;
   height: 100vh;
   margin-left: auto;
@@ -73,15 +73,16 @@ export default {
 
 .text-wrapper {
   position: relative;
-  padding: 0 120px;
+  padding: 0 100px;
   height: 78vh;
 }
 
 .text {
   margin-top: 0;
+  margin-bottom: 10px;
   margin-right: auto;
   margin-left: auto;
-  font-size: 32px;
+  font-size: 28px;
   line-height: 48px;
   width: 100%;
   max-width: 800px;
@@ -105,11 +106,28 @@ export default {
   height: auto;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
+  .hashtag {
+    font-size: 30px;
+    line-height: 35px;
+    padding: 0 50px;
+    margin-bottom: 10px;
+  }
+
+  .text-wrapper {
+    padding: 0 40 0 50px;
+  }
+
+  .text {
+    font-size: 30px;
+    line-height: 40px;
+    width: 100%;
+    /* border: 1px solid #000; */
+  }
 
   .bullets {
     font-size: 45px;
-    line-height: 50px;
+    line-height: 60px;
   }
 
   .logo {
@@ -117,10 +135,28 @@ export default {
   }
 }
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 420px) {
+  .hashtag {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 0 50px;
+    margin-bottom: 0;
+  }
+
+  .text-wrapper {
+    padding: 0 30px 0 40px;
+  }
+
+  .text {
+    font-size: 18px;
+    line-height: 20px;
+    width: 100%;
+    /* border: 1px solid #000; */
+  }
+
   .bullets {
     font-size: 35px;
-    line-height: 20px;
+    line-height: 40px;
   }
   .logo {
     width: 240px;

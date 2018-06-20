@@ -47,13 +47,13 @@ export default {
       let history = this.getHistory();
 
       if (this.currentHistoryIndex == history.length - 1) {
-        let max = this.$store.state.questions.length - 1;
         
         if (history.length === this.$store.state.questions.length) {
           let questionIndex = history[this.currentHistoryIndex];
           return this.$store.state.questions[questionIndex];
         }
 
+        let max = this.$store.state.questions.length - 1;
         let randomQuestionIndex;
         do {
           randomQuestionIndex = this.getRandomInt(0, max);
@@ -85,13 +85,6 @@ export default {
   mounted: function () {
     setTimeout(() => {
       this.setInit();
-      this.setNextQuestion();
-      this.setNextQuestion();
-      this.setNextQuestion();
-      this.setNextQuestion();
-      this.setPrevQuestion();
-      this.setNextQuestion();
-      this.setNextQuestion();
     }, 350);
     // setTimeout(() => {
     //   this.setNextQuestion();
@@ -99,6 +92,10 @@ export default {
     // setTimeout(() => {
     //   this.setPrevQuestion();
     // }, 700);
+  },
+  beforeDestroy: function () {
+    this.currentHistoryIndex = 0;
+    this.$store.commit('clearHistory');
   }
 }
 </script>
@@ -202,7 +199,7 @@ export default {
   }
   .bullets {
     font-size: 35px;
-    line-height: 20px;
+    line-height: 30px;
   }
   .logo {
     width: 240px;

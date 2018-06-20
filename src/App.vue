@@ -1,33 +1,19 @@
 <template>
   <div id="app">
-    <!-- <Start/> -->
-    <Card/>
-    <!-- <Disclaimer/> -->
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/disclaimer">Disclaimer</router-link> |
+      <router-link to="/card">Card</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-import Card from './components/Card.vue'
-import Start from './components/Start.vue'
-import Disclaimer from './components/Disclaimer.vue'
-import store from './store'
-
-export default {
-  name: 'app',
-  components: {
-    Start,
-    Disclaimer,
-    Card,
-  },
-  mounted: function () {
-    store.dispatch('getLanguages');
-    store.dispatch('getQuestions');
-    store.dispatch('getDisclaimer');
-  }
-}
-</script>
-
 <style>
+#nav {
+  position: absolute; 
+}
+
 html {
   box-sizing: border-box;
 }
@@ -57,3 +43,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 </style>
+
+<script>
+import store from './store';
+
+export default {
+  mounted: function () {
+    store.dispatch('getLanguages');
+    store.dispatch('getQuestions');
+    store.dispatch('getDisclaimer');
+  }
+}
+</script>

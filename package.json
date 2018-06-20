@@ -1,5 +1,5 @@
 {
-  "name": "istok",
+  "name": "istok-router",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
     "vue-touch": "^2.0.0-beta.4",
     "vuex": "^3.0.1"
   },

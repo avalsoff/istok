@@ -6,9 +6,15 @@
       <li 
         class="language"
         v-for="language in languages">
-        <button class="language-btn">
+        <!-- <button class="language-btn">
           {{ language.name }}
-        </button>
+        </button> -->
+        <router-link 
+          class="language-btn"
+          to="/disclaimer"
+          @click.native = "saveLanguage" >
+          {{ language.name || 'Loading...'}}
+        </router-link>
       </li>
     </ul>
     <div class="logo">
@@ -31,7 +37,12 @@ export default {
   mounted: function () {
     setTimeout(() => {
       this.languages = this.$store.state.languages;
-    }, 350)
+    }, 500)
+  },
+  methods: {
+    saveLanguage: function () {
+
+    }
   }
 }
 </script>
@@ -59,6 +70,8 @@ export default {
 }
 
 .language-btn {
+  display: block;
+  text-decoration: none;
   width: 100%;
   padding: 20px;
   margin-top: 8px;
@@ -86,12 +99,12 @@ export default {
 
 .start::after {
   content: "";
-  top: 60%;
+  top: 55%;
   position: absolute;
   width: 2000px;
   height: 1000px;
   background-color: #1F236D;
-  transform: rotate(-10deg) translateX(-20%);
+  transform: rotate(-10deg) translateX(-40%);
 }
 
 .logo {
