@@ -4,7 +4,12 @@
     @swiperight="setPrevQuestion">
     <div class="card">
       <div class="question-wrapper">
-        <p class="question"> <span class="bullets"> &bull; &bull; &bull; </span> {{ currentQuestion }} </p>
+        <p class="question"
+           :key="value"> 
+          <span class="bullets">
+            &bull; &bull; &bull;
+          </span>
+          {{ currentQuestion }} </p>
       </div>
       <div class="logo">
         <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">

@@ -40,18 +40,19 @@ body {
 </style>
 
 <script>
-import store from './store';
+// import store from './store';
 
 export default {
   mounted: function () {
-    if (localStorage.getItem('LANGUAGE')) {
-      store.dispatch('getDisclaimer');
-      store.dispatch('getQuestions');
-      this.$router.push('disclaimer');
-    } else {
-      store.dispatch('getLanguages');
-      this.$router.push('start');
-    }
+    this.$router.push('todo');
+    // if (localStorage.getItem('LANGUAGE')) {
+    //   store.dispatch('getDisclaimer');
+    //   store.dispatch('getQuestions');
+    //   this.$router.push('disclaimer');
+    // } else {
+    //   store.dispatch('getLanguages');
+    //   this.$router.push('start');
+    // }
   }
 }
 </script>

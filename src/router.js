@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Disclaimer from './views/Disclaimer.vue'
 import Card from './views/Card.vue'
 import Start from './views/Start.vue'
+import Todo from './views/Todo.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/start',
       name: 'Start',
       component: Start
+    },
+    {
+      path: '/todo',
+      name: 'Todo',
+      component: Todo
     }
 
   ]

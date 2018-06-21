@@ -6,6 +6,7 @@
       <ul class="languages">
         <li 
           class="language"
+          v-bind:key="language.id"
           v-for="language in languages">
           <!-- <button class="language-btn">
             {{ language.name }}
