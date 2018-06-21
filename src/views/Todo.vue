@@ -3,6 +3,7 @@
 <div class="wrapper">
   <header class="header">
     <h1 class="heading">Todos</h1>
+    <a @click="toCards" class="to-cards"></a>
     <input class="new-todo"
       autofocus autocomplete="off"
       placeholder="Что должно быть сделано?"
@@ -16,14 +17,14 @@
         class="todo"
         :key="todo.id"
         :class="{ completed: todo.completed, editing: todo == editedTodo }">
-        <div class="view">
+        <div @click="toggleTodoCotrols(todo)" class="view">
           <label class="checkbox-label">
             <input class="toggle" type="checkbox" v-model="todo.completed">
             <span class="toggle-checkbox"></span>
           </label>
           <label class="label-edit">{{ todo.title }}</label>
-          <button class="edit-btn" @click="editTodo(todo)"></button>
-          <button class="destroy" @click="removeTodo(todo)"></button>
+          <button v-show="todo == selectedTodo" class="edit-btn" @click="editTodo(todo)"></button>
+          <button v-show="todo == selectedTodo" class="destroy" @click="removeTodo(todo)"></button>
         </div>
         <input class="edit" type="text"
           v-show="todo == editedTodo"
@@ -57,6 +58,24 @@
 import store from '../store';
 // Full spec-compliant TodoMVC with localStorage persistence
 // and hash-based routing in ~120 effective lines of JavaScript.
+
+
+// localStorage persistence
+var STORAGE_KEY = 'todos-vuejs-2.0'
+var todoStorage = {
+  fetch: function () {
+    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    todos.forEach(function (todo, index) {
+      todo.id = index
+    })
+    todoStorage.uid = todos.length
+    return todos
+  },
+  save: function (todos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }
+}
+
 export default {
   name: 'Todo',
   store,
@@ -65,6 +84,7 @@ export default {
       todos: todoStorage.fetch(),
       newTodo: '',
       editedTodo: null,
+      selectedTodo: null,
       visibility: 'all'
     }
   },
@@ -114,7 +134,7 @@ export default {
       if (!value) {
         return
       }
-      this.todos.push({
+      this.todos.unshift({
         id: todoStorage.uid++,
         title: value,
         completed: false
@@ -129,6 +149,14 @@ export default {
     editTodo: function (todo) {
       this.beforeEditCache = todo.title
       this.editedTodo = todo
+    },
+
+    toggleTodoCotrols: function (todo) {
+      if (!this.selectedTodo) {
+        this.selectedTodo = todo;
+      } else {
+        this.selectedTodo = null;
+      }
     },
 
     doneEdit: function (todo) {
@@ -149,6 +177,10 @@ export default {
 
     removeCompleted: function () {
       this.todos = filters.active(this.todos)
+    },
+
+    toCards: function () {
+      this.$router.push('card');
     }
   },
 
@@ -161,22 +193,6 @@ export default {
         el.focus()
       }
     }
-  }
-}
-
-// localStorage persistence
-var STORAGE_KEY = 'todos-vuejs-2.0'
-var todoStorage = {
-  fetch: function () {
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    todos.forEach(function (todo, index) {
-      todo.id = index
-    })
-    todoStorage.uid = todos.length
-    return todos
-  },
-  save: function (todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }
 }
 
@@ -276,7 +292,7 @@ var filters = {
   position: absolute;
   top: 0;
   left: 44px;
-  flex-grow: 1;
+  max-width: 100%;
   padding: 8px 10px 6px 10px;
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
@@ -313,22 +329,49 @@ var filters = {
   top: 50%;
   transform: translateY(-50%);
   right: 0;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: none;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000;
+  border-radius: 50%;  
+  background-color: #fff;
+  background-size: 25px;
   background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .edit-btn {
-  right: 45px;
+  right: 55px;
   background-image: url("../assets/pencil.svg");
-  background-size: contain;
 }
 
 .destroy {
   background-image: url("../assets/delete.svg");
+}
+
+.editing .label-edit {
+  overflow: hidden;
+  word-break: keep-all;
+}
+
+.completed .view {
+  opacity: .6;
+  text-decoration: line-through;
+}
+
+.to-cards {
+  position: absolute;
+  top: 17px;
+  right: 16px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/points.svg");
   background-size: contain;
+}
+
+.header {
+  padding-top: .1px;
+
 }
 
 </style>

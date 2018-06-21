@@ -3,13 +3,15 @@
     @swipeleft="setNextQuestion"
     @swiperight="setPrevQuestion">
     <div class="card">
+      <a @click="toTodos" class="to-todos"></a>
       <div class="question-wrapper">
-        <p class="question"
-           :key="value"> 
+        <p class="question"> 
           <span class="bullets">
             &bull; &bull; &bull;
           </span>
-          {{ currentQuestion }} </p>
+          {{ currentQuestion }} 
+        <button class="toggle-answer">Показать ответ</button>
+        </p>
       </div>
       <div class="logo">
         <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -54,13 +56,14 @@ export default {
     },
     getNextQuestion: function () {
       let history = this.getHistory();
+        
+      if (this.currentHistoryIndex == 4) {
+        let questionIndex = history[this.currentHistoryIndex];
+        return this.questions[questionIndex];
+        return null;
+      }
 
       if (this.currentHistoryIndex == history.length - 1) {
-        
-        if (history.length === this.questions.length) {
-          let questionIndex = history[this.currentHistoryIndex];
-          return this.questions[questionIndex];
-        }
 
         let max = this.questions.length - 1;
         let randomQuestionIndex;
@@ -89,6 +92,9 @@ export default {
     },
     getHistory: function () {
       return this.$store.state.history;
+    },
+    toTodos: function () {
+      this.$router.push('todo');
     }
   },
   mounted: function () {
@@ -178,6 +184,25 @@ export default {
 .logo-img {
   width: 100%;
   height: auto;
+}
+
+.to-todos {
+  z-index: 99;
+  position: absolute;
+  top: 17px;
+  right: 16px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/list.svg");
+  background-size: contain;
+}
+
+.toggle-answer {
+  position: relative;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media only screen and (max-width: 700px) {
