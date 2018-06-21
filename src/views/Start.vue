@@ -25,20 +25,24 @@
 
 <script>
 import store from '../store'
+import { mapState } from 'vuex';
 
 export default {
   name: 'Start',
-  data: function () {
-    return {
-      languages: []
-    }
-  },
+  // data: function () {
+  //   return {
+  //     languages: []
+  //   }
+  // },
   store,
-  mounted: function () {
-    setTimeout(() => {
-      this.languages = this.$store.state.languages;
-    }, 500)
-  },
+  // mounted: function () {
+  //   setTimeout(() => {
+  //     this.languages = this.$store.state.languages;
+  //   }, 500)
+  // },
+  computed: mapState({
+    languages: state => state.languages
+  }),
   methods: {
     saveLanguageAndGo: function (langId) {      
       store.dispatch('getDisclaimer', langId);

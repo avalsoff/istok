@@ -16,6 +16,7 @@
 <script>
 import Vue from 'vue';
 import VueTouch from 'vue-touch';
+import { mapState } from 'vuex';
 
 Vue.use(VueTouch);
 
@@ -27,12 +28,15 @@ export default {
       currentHistoryIndex: 0,
     }
   },
+  computed: mapState([
+    'questions',
+  ]),
   methods: {
     setInit: function () {
-        let max = this.$store.state.questions.length - 1;
+        let max = this.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
-        this.$data.currentQuestion = this.$store.state.questions[randomQuestionIndex];
+        this.$data.currentQuestion = this.questions[randomQuestionIndex];
     },
     setNextQuestion: function () {
       this.$data.currentQuestion = this.getNextQuestion();
@@ -48,12 +52,12 @@ export default {
 
       if (this.currentHistoryIndex == history.length - 1) {
         
-        if (history.length === this.$store.state.questions.length) {
+        if (history.length === this.questions.length) {
           let questionIndex = history[this.currentHistoryIndex];
-          return this.$store.state.questions[questionIndex];
+          return this.questions[questionIndex];
         }
 
-        let max = this.$store.state.questions.length - 1;
+        let max = this.questions.length - 1;
         let randomQuestionIndex;
         do {
           randomQuestionIndex = this.getRandomInt(0, max);
@@ -61,10 +65,10 @@ export default {
 
         this.pushToHistory(randomQuestionIndex);
         this.currentHistoryIndex++;
-        return this.$store.state.questions[randomQuestionIndex];
+        return this.questions[randomQuestionIndex];
       } else {        
         this.currentHistoryIndex++;
-        return this.$store.state.questions[history[this.currentHistoryIndex]];
+        return this.questions[history[this.currentHistoryIndex]];
       }
     },
     getPrevQuestion: function () {
@@ -73,7 +77,7 @@ export default {
         this.currentHistoryIndex--;
       }
       let questionIndex = history[this.currentHistoryIndex];
-      return this.$store.state.questions[questionIndex];
+      return this.questions[questionIndex];
     },
     pushToHistory: function (index) {
       this.$store.commit('pushHistory', index);
@@ -83,9 +87,9 @@ export default {
     }
   },
   mounted: function () {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setInit();
-    }, 350);
+    // }, 350);
     // setTimeout(() => {
     //   this.setNextQuestion();
     // }, 550);    

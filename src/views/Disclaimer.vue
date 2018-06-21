@@ -6,19 +6,19 @@
     <span class="bullets">&bull; &bull; &bull; </span>
     <div class="text-wrapper">
       <p class="text">
-        {{ getDisclamerPart(0) }}
+        {{ disclaimer[0] }}
       </p>
       <p class="text">
-        {{ getDisclamerPart(1) }}
+        {{ disclaimer[1] }}
       </p>
       <p class="text">
-        {{ getDisclamerPart(2) }}
+        {{ disclaimer[2] }}
       </p>
       <p class="text">
-        {{ getDisclamerPart(3) }}        
+        {{ disclaimer[3] }}        
       </p>
       <em class="text em">
-        {{ getDisclamerPart(4) }}        
+        {{ disclaimer[4] }}        
       </em>
     </div>
     <div class="logo">
@@ -29,15 +29,19 @@
 </template>
 
 <script>
-import store from '../store'
+import store from '../store';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Disclaimer',
   store,
+  computed: mapState({
+    disclaimer: state => state.disclaimer
+  }),
   methods: {
-    getDisclamerPart: function (i) {
-      return this.$store.state.disclaimer[i];
-    },
+    // getDisclamerPart: function (i) {
+    //   return this.$store.state.disclaimer[i];
+    // },
     goToCard: function () {
       this.$router.push('card');
     }
