@@ -2,7 +2,7 @@
 <section class="todoapp">
 <div class="wrapper">
   <header class="header">
-    <h1 class="heading">Todos</h1>
+    <h1 class="heading">Список задач</h1>
     <a @click="toCards" class="to-cards"></a>
     <input class="new-todo"
       autofocus autocomplete="off"

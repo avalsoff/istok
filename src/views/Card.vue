@@ -9,8 +9,15 @@
           <span class="bullets">
             &bull; &bull; &bull;
           </span>
-          {{ currentQuestion }} 
-        <button class="toggle-answer">Показать ответ</button>
+            {{ currentQuestion }} 
+          <button @click="showAnswer = !showAnswer" class="toggle-answer">Ответ</button>
+          <span v-show="showAnswer" class="edit-wrapper">
+            <label @click="editingAnswer = !editingAnswer" class="label-edit">
+              {{ currentAnswer }}
+            </label>
+            <input v-show="editingAnswer" @blur="editingAnswer = !editingAnswer" class="edit" type="text"
+              v-model="currentAnswer">
+          </span>
         </p>
       </div>
       <div class="logo">
@@ -27,14 +34,38 @@ import { mapState } from 'vuex';
 
 Vue.use(VueTouch);
 
+var STORAGE_KEY = 'q-history'
+var todoStorage = {
+  fetch: function () {
+    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    return state;
+  },
+  save: function (state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  }
+}
+
 export default {
   name: 'Card',
   data: function () {
     return {
+      state: todoStorage.fetch(),
       currentQuestion: 'Loading...',
       currentHistoryIndex: 0,
+      currentAnswer: 'Кликните, чтобы ответить',
+      showAnswer: false,
+      editingAnswer: false
+    }
+  },  
+  watch: {
+    state: {
+      handler: function (state) {
+        todoStorage.save(state)
+      },
+      deep: true
     }
   },
+
   computed: mapState([
     'questions',
   ]),
@@ -60,7 +91,6 @@ export default {
       if (this.currentHistoryIndex == 4) {
         let questionIndex = history[this.currentHistoryIndex];
         return this.questions[questionIndex];
-        return null;
       }
 
       if (this.currentHistoryIndex == history.length - 1) {
@@ -203,6 +233,36 @@ export default {
   display: block;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.edit-wrapper {
+  margin-top: 10px;
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.edit {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  border-top: 1px solid #000;
+  padding: 8px 10px 6px 10px;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.label-edit {
+  border: 1px solid #000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: block;
+  width: 100%;
+  font-size: 25px;
+  line-height: 35px;
+  word-break: break-all;
 }
 
 @media only screen and (max-width: 700px) {
