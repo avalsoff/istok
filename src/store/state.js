@@ -3,14 +3,6 @@ export default {
     {
       id: "ru",
       name: "Русский"
-    },
-    {
-      id: "en",
-      name: "English"
-    },
-    {
-      id: "fr",
-      name: "France"
     }
   ],
   questions: [

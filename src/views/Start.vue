@@ -45,10 +45,9 @@ export default {
     languages: state => state.languages
   }),
   methods: {
-    saveLanguageAndGo: function (langId) {      
-      store.dispatch('getDisclaimer', langId);
-      store.dispatch('getQuestions', langId);
-      this.$router.push('disclaimer');
+    saveLanguageAndGo: function (langId) {
+      localStorage.setItem('Lan-gua-ge', langId);
+      this.$router.push('login');
     }
   }
 }

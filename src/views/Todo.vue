@@ -8,7 +8,8 @@
       autofocus autocomplete="off"
       placeholder="Что должно быть сделано?"
       v-model="newTodo"
-      @keyup.enter="addTodo">
+      @keyup.enter="addTodo"
+      @blur="addTodo">
   </header>
   <section class="main" v-show="todos.length" v-cloak>
     <!-- <input class="toggle-all" type="checkbox" v-model="allDone"> -->
@@ -292,7 +293,7 @@ var filters = {
   position: absolute;
   top: 0;
   left: 44px;
-  max-width: 100%;
+  width: 85%;
   padding: 8px 10px 6px 10px;
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;

@@ -4,6 +4,7 @@
     @swiperight="setPrevQuestion">
     <div class="card">
       <a @click="toTodos" class="to-todos"></a>
+      <a @click="reload" class="reload"></a>
       <div class="question-wrapper">
         <p class="question"> 
           <span class="bullets">
@@ -15,7 +16,13 @@
             <label @click="editAnswer" class="label-edit">
               {{ currentAnswer }}
             </label>
-            <input ref="input" v-show="editingAnswer" @blur="doneEditAnswer" class="edit" type="text"
+            <input
+              class="edit" 
+              type="text"
+              ref="input" 
+              v-show="editingAnswer" 
+              @blur="doneEditAnswer"
+              @keyup.enter="doneEditAnswer"
               v-model="currentAnswer">
           </span>
         </p>
@@ -59,7 +66,6 @@ export default {
   watch: {
     state: {
       handler: function (state) {
-        console.log(state.currentHistoryIndex, state.history, state.answers);
         stateStorage.save(state)
       },
       deep: true
@@ -148,6 +154,10 @@ export default {
     },
     toTodos: function () {
       this.$router.push('todo');
+    },
+    reload: function () {
+      localStorage.clear();
+      location.reload();
     }
   },
   mounted: function () {
@@ -248,6 +258,19 @@ export default {
   background-size: contain;
 }
 
+.reload {
+  z-index: 99;
+  position: absolute;
+  top: 17px;
+  left: 16px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url("../assets/rotate-option.svg");
+  background-size: contain;
+
+}
+
 .toggle-answer {
   position: relative;
   display: block;
@@ -257,6 +280,11 @@ export default {
   font-size: 18px;
   border: none;
   background: none;
+  background: #1F236D;
+  color: white;
+  padding: 10px 15px;
+  margin: 20px 0;
+  border-radius: 15px;
 }
 
 .edit-wrapper {
@@ -286,7 +314,7 @@ export default {
   width: 100%;
   font-size: 20px;
   line-height: 35px;
-  word-break: break-all;
+  /* word-break: break-all; */
 }
 
 @media only screen and (max-width: 700px) {
