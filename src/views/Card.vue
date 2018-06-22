@@ -10,12 +10,12 @@
             &bull; &bull; &bull;
           </span>
             {{ currentQuestion }} 
-          <button @click="showAnswer = !showAnswer" class="toggle-answer">Ответ</button>
+          <button @click="showAnswer = !showAnswer" class="toggle-answer">{{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}</button>
           <span v-show="showAnswer" class="edit-wrapper">
-            <label @click="editingAnswer = !editingAnswer" class="label-edit">
+            <label @click="editAnswer" class="label-edit">
               {{ currentAnswer }}
             </label>
-            <input v-show="editingAnswer" @blur="editingAnswer = !editingAnswer" class="edit" type="text"
+            <input ref="input" v-show="editingAnswer" @blur="doneEditAnswer" class="edit" type="text"
               v-model="currentAnswer">
           </span>
         </p>
@@ -35,9 +35,9 @@ import { mapState } from 'vuex';
 Vue.use(VueTouch);
 
 var STORAGE_KEY = 'q-history'
-var todoStorage = {
+var stateStorage = {
   fetch: function () {
-    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"history":[],"answers":[],"currentHistoryIndex":0}');
     return state;
   },
   save: function (state) {
@@ -49,9 +49,8 @@ export default {
   name: 'Card',
   data: function () {
     return {
-      state: todoStorage.fetch(),
+      state: stateStorage.fetch(),
       currentQuestion: 'Loading...',
-      currentHistoryIndex: 0,
       currentAnswer: 'Кликните, чтобы ответить',
       showAnswer: false,
       editingAnswer: false
@@ -60,7 +59,8 @@ export default {
   watch: {
     state: {
       handler: function (state) {
-        todoStorage.save(state)
+        console.log(state.currentHistoryIndex, state.history, state.answers);
+        stateStorage.save(state)
       },
       deep: true
     }
@@ -75,12 +75,33 @@ export default {
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
         this.$data.currentQuestion = this.questions[randomQuestionIndex];
+        this.setAnswer();
     },
     setNextQuestion: function () {
       this.$data.currentQuestion = this.getNextQuestion();
+      this.setAnswer();
     },
     setPrevQuestion: function () {
       this.$data.currentQuestion = this.getPrevQuestion();
+      this.setAnswer();
+    },
+    setAnswer: function () {
+      this.$data.currentAnswer = this.getAnswer();
+    },
+    getAnswer: function () {
+      return (this.state.answers[this.state.currentHistoryIndex] || 'Нажмите, чтобы ответить');
+      // return (this.state.answers[this.state.currentHistoryIndex] || 'К');
+    },
+    doneEditAnswer: function () {
+      this.editingAnswer = false;
+      this.state.answers[this.state.currentHistoryIndex] = this.currentAnswer;
+    },
+    editAnswer: function () {
+      this.editingAnswer = true;
+      setTimeout(() => {
+        this.$refs.input.focus();
+        this.$refs.input.value = '';
+      }, 0);
     },
     getRandomInt: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -88,12 +109,12 @@ export default {
     getNextQuestion: function () {
       let history = this.getHistory();
         
-      if (this.currentHistoryIndex == 4) {
-        let questionIndex = history[this.currentHistoryIndex];
+      if (this.state.currentHistoryIndex == 4) {
+        let questionIndex = history[this.state.currentHistoryIndex];
         return this.questions[questionIndex];
       }
 
-      if (this.currentHistoryIndex == history.length - 1) {
+      if (this.state.currentHistoryIndex == history.length - 1) {
 
         let max = this.questions.length - 1;
         let randomQuestionIndex;
@@ -102,46 +123,45 @@ export default {
         } while (history.includes(randomQuestionIndex));
 
         this.pushToHistory(randomQuestionIndex);
-        this.currentHistoryIndex++;
+        this.state.currentHistoryIndex++;
         return this.questions[randomQuestionIndex];
       } else {        
-        this.currentHistoryIndex++;
-        return this.questions[history[this.currentHistoryIndex]];
+        this.state.currentHistoryIndex++;
+        return this.questions[history[this.state.currentHistoryIndex]];
       }
     },
     getPrevQuestion: function () {
       let history = this.getHistory();
-      if (this.currentHistoryIndex !== 0) {
-        this.currentHistoryIndex--;
+      if (this.state.currentHistoryIndex !== 0) {
+        this.state.currentHistoryIndex--;
       }
-      let questionIndex = history[this.currentHistoryIndex];
+      let questionIndex = history[this.state.currentHistoryIndex];
       return this.questions[questionIndex];
     },
     pushToHistory: function (index) {
-      this.$store.commit('pushHistory', index);
+      // this.$store.commit('pushHistory', index);
+      this.state.history.push(index);
     },
     getHistory: function () {
-      return this.$store.state.history;
+      // return this.$store.state.history;
+      return this.state.history;
     },
     toTodos: function () {
       this.$router.push('todo');
     }
   },
   mounted: function () {
-    // setTimeout(() => {
+    if (this.state.history.length == 0) {
       this.setInit();
-    // }, 350);
-    // setTimeout(() => {
-    //   this.setNextQuestion();
-    // }, 550);    
-    // setTimeout(() => {
-    //   this.setPrevQuestion();
-    // }, 700);
-  },
-  beforeDestroy: function () {
-    this.currentHistoryIndex = 0;
-    this.$store.commit('clearHistory');
+    } else {
+      this.setNextQuestion();
+      this.setPrevQuestion();
+    }
   }
+  // beforeDestroy: function () {
+  //   this.state.currentHistoryIndex = 0;
+  //   this.$store.commit('clearHistory');
+  // }
 }
 </script>
 
@@ -233,6 +253,10 @@ export default {
   display: block;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 10px;
+  font-size: 18px;
+  border: none;
+  background: none;
 }
 
 .edit-wrapper {
@@ -248,19 +272,19 @@ export default {
   left: 0;
   top: 0;
   width: 100%;
-  border-top: 1px solid #000;
+  /* border-top: 1px solid #000; */
   padding: 8px 10px 6px 10px;
   font-size: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .label-edit {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   display: block;
   width: 100%;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 35px;
   word-break: break-all;
 }
