@@ -2,20 +2,24 @@
   <v-touch 
     @swipeleft="setNextQuestion"
     @swiperight="setPrevQuestion"
-    :swipe-options="{direction: 'horizontal'}"
-    >
+    :swipe-options="{direction: 'horizontal'}">
     <div class="card">
       <a @click="toTodos" class="to-todos"></a>
       <a @click="reload" class="reload"></a>
       <div class="question-wrapper">
-        <p class="question"> 
+        <p v-if="!showAddMoreView" class="question"> 
           <span class="bullets">
             &bull; &bull; &bull;
           </span>
             {{ currentQuestion }} 
-          <button @click="showAnswer = !showAnswer" class="toggle-answer">{{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}</button>
+          <button @click="showAnswer = !showAnswer" class="toggle-answer">
+            {{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}
+          </button>
           <span v-show="showAnswer" class="edit-wrapper">
-            <label @click="editAnswer" @tap="editAnswer" class="label-edit">
+            <label 
+              @click="editAnswer" 
+              @tap="editAnswer" 
+              class="label-edit">
               {{ currentAnswer }}
             </label>
             <input
@@ -28,6 +32,13 @@
               v-model="currentAnswer">
           </span>
         </p>
+        <div v-else  class="question-wrapper">
+          <p class="question">Вопросы закончились. Добавить еще 5 вопросов?
+            <button @click="increaseMaxQuestions" class="toggle-answer">
+              Добавить
+            </button>
+          </p>
+        </div>
       </div>
       <div class="logo">
         <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -46,7 +57,7 @@ Vue.use(VueTouch);
 var STORAGE_KEY = 'q-history'
 var stateStorage = {
   fetch: function () {
-    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"history":[],"answers":[],"currentHistoryIndex":0}');
+    var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"history":[],"answers":[],"currentHistoryIndex":0,"maxQuestions":5}');
     return state;
   },
   save: function (state) {
@@ -63,12 +74,14 @@ export default {
       currentQuestion: 'Loading...',
       currentAnswer: 'Кликните, чтобы ответить',
       showAnswer: false,
-      editingAnswer: false
+      editingAnswer: false,
+      showAddMoreView: false
     }
   },  
   watch: {
     state: {
       handler: function (state) {
+        console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
         stateStorage.save(state)
       },
       deep: true
@@ -79,12 +92,18 @@ export default {
     'questions',
   ]),
   methods: {
-    setInit: function () {
+    setInit: function () {      
+      if (this.state.history.length == 0) {
         let max = this.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
         this.$data.currentQuestion = this.questions[randomQuestionIndex];
         this.setAnswer();
+      } else {
+        let questionIndex = this.state.history[this.state.currentHistoryIndex];
+        this.$data.currentQuestion = this.questions[questionIndex];
+        this.setAnswer();
+      }
     },
     setNextQuestion: function () {
       this.$data.currentQuestion = this.getNextQuestion();
@@ -120,7 +139,8 @@ export default {
     getNextQuestion: function () {
       let history = this.getHistory();
         
-      if (this.state.currentHistoryIndex == 4) {
+      if (this.state.currentHistoryIndex == this.state.maxQuestions - 1) {
+        this.showAddMoreView = true;
         let questionIndex = history[this.state.currentHistoryIndex];
         return this.questions[questionIndex];
       }
@@ -142,12 +162,20 @@ export default {
       }
     },
     getPrevQuestion: function () {
+      if (this.showAddMoreView) {
+        this.showAddMoreView = false;
+        let questionIndex = this.state.history[this.state.currentHistoryIndex];
+        return this.questions[questionIndex];
+      }
+
       let history = this.getHistory();
       if (this.state.currentHistoryIndex !== 0) {
         this.state.currentHistoryIndex--;
+        let questionIndex = history[this.state.currentHistoryIndex];
+        return this.questions[questionIndex];
+      } else {
+        this.$router.push("disclaimer");
       }
-      let questionIndex = history[this.state.currentHistoryIndex];
-      return this.questions[questionIndex];
     },
     pushToHistory: function (index) {
       // this.$store.commit('pushHistory', index);
@@ -163,15 +191,19 @@ export default {
     reload: function () {
       localStorage.clear();
       location.reload();
+    },
+    increaseMaxQuestions: function () {
+      if (this.state.maxQuestions == Math.floor(this.questions.length / 5) * 5) {
+        console.log("Cant't add more questions!");
+        return;
+      }
+      this.state.maxQuestions += 5;
+      this.showAddMoreView = false;
+      this.setNextQuestion();
     }
   },
   mounted: function () {
-    if (this.state.history.length == 0) {
       this.setInit();
-    } else {
-      this.setNextQuestion();
-      this.setPrevQuestion();
-    }
   }
   // beforeDestroy: function () {
   //   this.state.currentHistoryIndex = 0;
