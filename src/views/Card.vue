@@ -12,14 +12,15 @@
             &bull; &bull; &bull;
           </span>
             {{ currentQuestion }} 
-          <button @click="showAnswer = !showAnswer" class="toggle-answer">
+          <!-- <button @click="showAnswer = !showAnswer" class="toggle-answer">
             {{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}
-          </button>
-          <span v-show="showAnswer" class="edit-wrapper">
+          </button> -->
+          <!-- <span v-show="showAnswer" class="edit-wrapper"> -->
+          <span class="edit-wrapper">
             <label 
               @click="editAnswer" 
               @tap="editAnswer" 
-              class="label-edit">
+              v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
               {{ currentAnswer }}
             </label>
             <input
@@ -75,7 +76,8 @@ export default {
       currentAnswer: 'Кликните, чтобы ответить',
       showAnswer: false,
       editingAnswer: false,
-      showAddMoreView: false
+      showAddMoreView: false,
+      isAnswered: false
     }
   },  
   watch: {
@@ -115,14 +117,16 @@ export default {
     },
     setAnswer: function () {
       this.$data.currentAnswer = this.getAnswer();
+      this.setIsAnswered();
     },
     getAnswer: function () {
-      return (this.state.answers[this.state.currentHistoryIndex] || 'Нажмите, чтобы ответить');
+      return (this.state.answers[this.state.currentHistoryIndex] || 'Ответить');
       // return (this.state.answers[this.state.currentHistoryIndex] || 'К');
     },
     doneEditAnswer: function () {
       this.editingAnswer = false;
       this.state.answers[this.state.currentHistoryIndex] = this.currentAnswer;
+      this.setIsAnswered();
     },
     editAnswer: function () {
       this.editingAnswer = true;
@@ -200,6 +204,13 @@ export default {
       this.state.maxQuestions += 5;
       this.showAddMoreView = false;
       this.setNextQuestion();
+    },
+    setIsAnswered: function () {
+      if (this.currentAnswer == 'Ответить') {
+        this.isAnswered = false;
+      } else {
+        this.isAnswered = true;
+      }
     }
   },
   mounted: function () {
@@ -306,6 +317,20 @@ export default {
   background-image: url("../assets/rotate-option.svg");
   background-size: contain;
 
+}
+
+.not-answered {
+  position: relative;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  font-size: 18px;
+  border: none;
+  background: none;
+  background: #1F236D;
+  color: white;
+  padding: 10px 15px;
+  margin: 20px 0;
+  border-radius: 15px;
 }
 
 .toggle-answer {
