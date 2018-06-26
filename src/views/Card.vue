@@ -7,39 +7,37 @@
       <a @click="toTodos" class="to-todos"></a>
       <a @click="reload" class="reload"></a>
       <div class="question-wrapper">
-        <p v-if="!showAddMoreView" class="question"> 
+        <div v-if="!showAddMoreView" class="question">
           <span class="bullets">
             &bull; &bull; &bull;
           </span>
-            {{ currentQuestion }} 
-          <!-- <button @click="showAnswer = !showAnswer" class="toggle-answer">
-            {{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}
-          </button> -->
-          <!-- <span v-show="showAnswer" class="edit-wrapper"> -->
-          <span class="edit-wrapper">
-            <label 
-              @click="editAnswer" 
-              @tap="editAnswer" 
-              v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
-              {{ currentAnswer }}
-            </label>
-            <input
-              class="edit" 
-              type="text"
-              ref="input" 
-              v-show="editingAnswer" 
-              @blur="doneEditAnswer"
-              @keyup.enter="doneEditAnswer"
-              v-model="currentAnswer">
-          </span>
-        </p>
-        <div v-else  class="question-wrapper">
-          <p class="question">Вопросы закончились. Добавить еще 5 вопросов?
-            <button @click="increaseMaxQuestions" class="toggle-answer">
-              Добавить
-            </button>
-          </p>
+          <transition name="fade" mode="in-out">
+            <div class="data-wrapper" key="currentQuestion">
+                {{ currentQuestion }} 
+              <span class="edit-wrapper">
+                <label 
+                  @click="editAnswer" 
+                  @tap="editAnswer" 
+                  v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
+                  {{ currentAnswer }}
+                </label>
+                <input
+                  class="edit" 
+                  type="text"
+                  ref="input" 
+                  v-show="editingAnswer" 
+                  @blur="doneEditAnswer"
+                  @keyup.enter="doneEditAnswer"
+                  v-model="currentAnswer">
+              </span>
+            </div>
+          </transition>
         </div>
+        <p v-else class="question">Вопросы закончились. Добавить еще 5 вопросов?
+          <button @click="increaseMaxQuestions" class="toggle-answer">
+            Добавить
+          </button>
+        </p>
       </div>
       <div class="logo">
         <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -99,24 +97,24 @@ export default {
         let max = this.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
         this.pushToHistory(randomQuestionIndex);
-        this.$data.currentQuestion = this.questions[randomQuestionIndex];
+        this.currentQuestion = this.questions[randomQuestionIndex];
         this.setAnswer();
       } else {
         let questionIndex = this.state.history[this.state.currentHistoryIndex];
-        this.$data.currentQuestion = this.questions[questionIndex];
+        this.currentQuestion = this.questions[questionIndex];
         this.setAnswer();
       }
     },
     setNextQuestion: function () {
-      this.$data.currentQuestion = this.getNextQuestion();
+      this.currentQuestion = this.getNextQuestion();
       this.setAnswer();
     },
     setPrevQuestion: function () {
-      this.$data.currentQuestion = this.getPrevQuestion();
+      this.currentQuestion = this.getPrevQuestion();
       this.setAnswer();
     },
     setAnswer: function () {
-      this.$data.currentAnswer = this.getAnswer();
+      this.currentAnswer = this.getAnswer();
       this.setIsAnswered();
     },
     getAnswer: function () {
@@ -213,6 +211,12 @@ export default {
       }
     }
   },
+  beforeUpdate: function () {
+
+  },
+  updated: function () {
+
+  },
   mounted: function () {
       this.setInit();
   }
@@ -225,6 +229,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
 .bullets {
   display: block;
   line-height: 70px;
@@ -322,14 +333,12 @@ export default {
 .not-answered {
   position: relative;
   transform: translateX(-50%);
-  margin-top: 10px;
   font-size: 18px;
   border: none;
   background: none;
   background: #1F236D;
   color: white;
   padding: 10px 15px;
-  margin: 20px 0;
   border-radius: 15px;
 }
 
@@ -348,6 +357,7 @@ export default {
   padding: 10px 15px;
   margin: 20px 0;
   border-radius: 15px;
+  font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
 }
 
 .edit-wrapper {
