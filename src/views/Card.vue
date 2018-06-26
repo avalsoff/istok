@@ -340,6 +340,7 @@ export default {
   transform: translateX(-50%);
   margin-top: 10px;
   font-size: 18px;
+  font-weight: bold;
   border: none;
   background: none;
   background: #1F236D;
