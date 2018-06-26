@@ -260,8 +260,9 @@ var filters = {
 
 .toggle {
   margin: 0;
-  position: relative;
-  appearance: none;
+  position: absolute;
+  top: -10000vw;
+  left: -10000vw;
 }
 
 .toggle:checked + .toggle-checkbox::after,

@@ -67,7 +67,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   padding: 10px 20px;
 }
 

@@ -1,7 +1,9 @@
 <template>
   <v-touch 
     @swipeleft="setNextQuestion"
-    @swiperight="setPrevQuestion">
+    @swiperight="setPrevQuestion"
+    :swipe-options="{direction: 'horizontal'}"
+    >
     <div class="card">
       <a @click="toTodos" class="to-todos"></a>
       <a @click="reload" class="reload"></a>
@@ -13,7 +15,7 @@
             {{ currentQuestion }} 
           <button @click="showAnswer = !showAnswer" class="toggle-answer">{{ (!showAnswer ? 'Показать ответ' : 'Скрыть ответ') }}</button>
           <span v-show="showAnswer" class="edit-wrapper">
-            <label @click="editAnswer" class="label-edit">
+            <label @click="editAnswer" @tap="editAnswer" class="label-edit">
               {{ currentAnswer }}
             </label>
             <input
@@ -56,6 +58,7 @@ export default {
   name: 'Card',
   data: function () {
     return {
+      answer: null,
       state: stateStorage.fetch(),
       currentQuestion: 'Loading...',
       currentAnswer: 'Кликните, чтобы ответить',
@@ -104,10 +107,12 @@ export default {
     },
     editAnswer: function () {
       this.editingAnswer = true;
-      setTimeout(() => {
+      this.$nextTick(() => {
+
+        
         this.$refs.input.focus();
         this.$refs.input.value = '';
-      }, 0);
+      });
     },
     getRandomInt: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
