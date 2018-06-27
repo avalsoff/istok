@@ -5,7 +5,9 @@
     :swipe-options="{direction: 'horizontal'}">
     <div class="card">
       <a @click="toTodos" class="to-todos"></a>
-      <a @click="reload" class="reload"></a>
+      <!-- <a @click="reload" class="reload"></a> -->
+      <a @click="showMenu = !showMenu" class="reload"></a>
+      <app-menu v-on:close="showMenu = false" v-if="showMenu"></app-menu>
       <div class="question-wrapper">
         
         <transition name="fade">
@@ -52,6 +54,7 @@
 <script>
 import Vue from 'vue';
 import VueTouch from 'vue-touch';
+import Menu from '../components/Menu';
 import { mapState } from 'vuex';
 
 Vue.use(VueTouch);
@@ -69,6 +72,9 @@ var stateStorage = {
 
 export default {
   name: 'Card',
+  components: {
+    'app-menu': Menu
+  },
   data() {
     return {
       answer: null,
@@ -79,7 +85,8 @@ export default {
       editingAnswer: false,
       showAddMoreView: false,
       isAnswered: false,
-      slideDirection: 'slide-left'
+      slideDirection: 'slide-left',
+      showMenu: false,
     }
   },
   watch: {
@@ -250,7 +257,6 @@ export default {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
-
 
 .bullets {
   display: block;
