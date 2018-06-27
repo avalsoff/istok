@@ -7,37 +7,40 @@
       <a @click="toTodos" class="to-todos"></a>
       <a @click="reload" class="reload"></a>
       <div class="question-wrapper">
-        <div v-if="!showAddMoreView" class="question">
-          <span class="bullets">
-            &bull; &bull; &bull;
-          </span>
-          <transition name="fade" mode="in-out">
-            <div class="data-wrapper" key="currentQuestion">
-                {{ currentQuestion }} 
-              <span class="edit-wrapper">
-                <label 
-                  @click="editAnswer" 
-                  @tap="editAnswer" 
-                  v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
-                  {{ currentAnswer }}
-                </label>
-                <input
-                  class="edit" 
-                  type="text"
-                  ref="input" 
-                  v-show="editingAnswer" 
-                  @blur="doneEditAnswer"
-                  @keyup.enter="doneEditAnswer"
-                  v-model="currentAnswer">
-              </span>
-            </div>
-          </transition>
-        </div>
-        <p v-else class="question">Вопросы закончились. Добавить еще 5 вопросов?
-          <button @click="increaseMaxQuestions" class="toggle-answer">
-            Добавить
-          </button>
-        </p>
+        
+        <transition name="fade">
+          <div v-if="!showAddMoreView" class="question">
+            <transition v-bind:name="slideDirection" mode="out-in">
+              <div class="data-wrapper" v-bind:key="state.currentHistoryIndex">
+                <span class="bullets">
+                  &bull; &bull; &bull;
+                </span>
+                  {{ currentQuestion }} 
+                <span class="edit-wrapper">
+                  <label 
+                    @click="editAnswer" 
+                    @tap="editAnswer" 
+                    v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
+                    {{ currentAnswer }}
+                  </label>
+                  <input
+                    class="edit" 
+                    type="text"
+                    ref="input" 
+                    v-show="editingAnswer" 
+                    @blur="doneEditAnswer"
+                    @keyup.enter="doneEditAnswer"
+                    v-model="currentAnswer">
+                </span>
+              </div>
+            </transition>
+          </div>
+          <p v-if="showAddMoreView" class="question">Вопросы закончились. Добавить еще 5 вопросов?
+            <button @click="increaseMaxQuestions" class="toggle-answer">
+              Добавить
+            </button>
+          </p>
+        </transition>
       </div>
       <div class="logo">
         <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
@@ -75,19 +78,19 @@ export default {
       showAnswer: false,
       editingAnswer: false,
       showAddMoreView: false,
-      isAnswered: false
+      isAnswered: false,
+      slideDirection: 'slide-left'
     }
-  },  
+  },
   watch: {
     state: {
       handler: function (state) {
-        console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
+        // console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
         stateStorage.save(state)
       },
       deep: true
     }
   },
-
   computed: mapState([
     'questions',
   ]),
@@ -106,10 +109,12 @@ export default {
       }
     },
     setNextQuestion: function () {
+      this.slideDirection = 'slide-left';
       this.currentQuestion = this.getNextQuestion();
       this.setAnswer();
     },
     setPrevQuestion: function () {
+      this.slideDirection = 'slide-right';
       this.currentQuestion = this.getPrevQuestion();
       this.setAnswer();
     },
@@ -196,7 +201,7 @@ export default {
     },
     increaseMaxQuestions: function () {
       if (this.state.maxQuestions == Math.floor(this.questions.length / 5) * 5) {
-        console.log("Cant't add more questions!");
+        // console.log("Cant't add more questions!");
         return;
       }
       this.state.maxQuestions += 5;
@@ -211,13 +216,7 @@ export default {
       }
     }
   },
-  beforeUpdate: function () {
-
-  },
-  updated: function () {
-
-  },
-  mounted: function () {
+  created: function () {
       this.setInit();
   }
   // beforeDestroy: function () {
@@ -229,12 +228,29 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.slide-left-enter-active, .slide-left-leave-active,
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: transform .15s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+.slide-left-enter {
+  transform: translateX(100%);
+}
+.slide-left-leave-to {  
+  transform: translateX(-100%);
+}
+.slide-right-enter {
+  transform: translateX(-100%);
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
 
 .bullets {
   display: block;
