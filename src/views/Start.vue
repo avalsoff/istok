@@ -30,13 +30,13 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Start',
-  // data: function () {
+  // data() {
   //   return {
   //     languages: []
   //   }
   // },
   store,
-  // mounted: function () {
+  // mounted() {
   //   setTimeout(() => {
   //     this.languages = this.$store.state.languages;
   //   }, 500)
@@ -45,7 +45,7 @@ export default {
     languages: state => state.languages
   }),
   methods: {
-    saveLanguageAndGo: function (langId) {
+    saveLanguageAndGo(langId) {
       localStorage.setItem('Lan-gua-ge', langId);
       this.$router.push('login');
     }

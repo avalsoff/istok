@@ -30,7 +30,7 @@
                     v-show="editingAnswer" 
                     @blur="doneEditAnswer"
                     @keyup.enter="doneEditAnswer"
-                    v-model="currentAnswer">
+                    v-model.lazy="currentAnswer">
                 </span>
               </div>
             </transition>
@@ -58,18 +58,18 @@ Vue.use(VueTouch);
 
 var STORAGE_KEY = 'q-history'
 var stateStorage = {
-  fetch: function () {
+  fetch() {
     var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"history":[],"answers":[],"currentHistoryIndex":0,"maxQuestions":5}');
     return state;
   },
-  save: function (state) {
+  save(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
   }
 }
 
 export default {
   name: 'Card',
-  data: function () {
+  data() {
     return {
       answer: null,
       state: stateStorage.fetch(),
@@ -84,7 +84,7 @@ export default {
   },
   watch: {
     state: {
-      handler: function (state) {
+      handler(state) {
         // console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
         stateStorage.save(state)
       },
@@ -95,7 +95,7 @@ export default {
     'questions',
   ]),
   methods: {
-    setInit: function () {      
+    setInit() {      
       if (this.state.history.length == 0) {
         let max = this.questions.length - 1;
         let randomQuestionIndex = this.getRandomInt(0, max);
@@ -108,30 +108,30 @@ export default {
         this.setAnswer();
       }
     },
-    setNextQuestion: function () {
+    setNextQuestion() {
       this.slideDirection = 'slide-left';
       this.currentQuestion = this.getNextQuestion();
       this.setAnswer();
     },
-    setPrevQuestion: function () {
+    setPrevQuestion() {
       this.slideDirection = 'slide-right';
       this.currentQuestion = this.getPrevQuestion();
       this.setAnswer();
     },
-    setAnswer: function () {
+    setAnswer() {
       this.currentAnswer = this.getAnswer();
       this.setIsAnswered();
     },
-    getAnswer: function () {
+    getAnswer() {
       return (this.state.answers[this.state.currentHistoryIndex] || 'Ответить');
       // return (this.state.answers[this.state.currentHistoryIndex] || 'К');
     },
-    doneEditAnswer: function () {
+    doneEditAnswer() {
       this.editingAnswer = false;
       this.state.answers[this.state.currentHistoryIndex] = this.currentAnswer;
       this.setIsAnswered();
     },
-    editAnswer: function () {
+    editAnswer() {
       this.editingAnswer = true;
       this.$nextTick(() => {
 
@@ -140,10 +140,10 @@ export default {
         this.$refs.input.value = '';
       });
     },
-    getRandomInt: function (min, max) {
+    getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    getNextQuestion: function () {
+    getNextQuestion() {
       let history = this.getHistory();
         
       if (this.state.currentHistoryIndex == this.state.maxQuestions - 1) {
@@ -168,7 +168,7 @@ export default {
         return this.questions[history[this.state.currentHistoryIndex]];
       }
     },
-    getPrevQuestion: function () {
+    getPrevQuestion() {
       if (this.showAddMoreView) {
         this.showAddMoreView = false;
         let questionIndex = this.state.history[this.state.currentHistoryIndex];
@@ -184,22 +184,22 @@ export default {
         this.$router.push("disclaimer");
       }
     },
-    pushToHistory: function (index) {
+    pushToHistory(index) {
       // this.$store.commit('pushHistory', index);
       this.state.history.push(index);
     },
-    getHistory: function () {
+    getHistory() {
       // return this.$store.state.history;
       return this.state.history;
     },
-    toTodos: function () {
+    toTodos() {
       this.$router.push('todo');
     },
-    reload: function () {
+    reload() {
       localStorage.clear();
       location.reload();
     },
-    increaseMaxQuestions: function () {
+    increaseMaxQuestions() {
       if (this.state.maxQuestions == Math.floor(this.questions.length / 5) * 5) {
         // console.log("Cant't add more questions!");
         return;
@@ -208,7 +208,7 @@ export default {
       this.showAddMoreView = false;
       this.setNextQuestion();
     },
-    setIsAnswered: function () {
+    setIsAnswered() {
       if (this.currentAnswer == 'Ответить') {
         this.isAnswered = false;
       } else {
@@ -216,10 +216,10 @@ export default {
       }
     }
   },
-  created: function () {
+  created() {
       this.setInit();
   }
-  // beforeDestroy: function () {
+  // beforeDestroy() {
   //   this.state.currentHistoryIndex = 0;
   //   this.$store.commit('clearHistory');
   // }
@@ -245,7 +245,7 @@ export default {
   transform: translateX(100%);
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity .4s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
@@ -341,7 +341,7 @@ export default {
   display: block;
   width: 40px;
   height: 40px;
-  background-image: url("../assets/rotate-option.svg");
+  background-image: url("../assets/settings.svg");
   background-size: contain;
 
 }

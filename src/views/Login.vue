@@ -43,15 +43,15 @@
 
 export default {
   name: 'Login',
-  // data: function () {
+  // data() {
 
   // },
   methods: {
-    goToDisclamer: function () {
+    goToDisclamer() {
       this.$router.push('disclaimer');
     }
   },
-  mounted: function () {
+  mounted() {
 
   }
 }

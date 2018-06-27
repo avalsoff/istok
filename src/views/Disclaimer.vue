@@ -39,10 +39,10 @@ export default {
     disclaimer: state => state.disclaimer
   }),
   methods: {
-    // getDisclamerPart: function (i) {
+    // getDisclamerPart(i) {
     //   return this.$store.state.disclaimer[i];
     // },
-    goToCard: function () {
+    goToCard() {
       this.$router.push('card');
     }
   }

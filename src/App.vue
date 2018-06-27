@@ -53,7 +53,7 @@ body {
 import store from './store';
 
 export default {
-  mounted: function () {
+  mounted() {
     // this.$router.push('login');
     store.dispatch('getDisclaimer');
     store.dispatch('getQuestions');
