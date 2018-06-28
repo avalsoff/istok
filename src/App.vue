@@ -100,7 +100,7 @@ html, body {
 
 export default {
   mounted() {
-    this.$router.push('menu');
+    this.$router.push('login');
 
 
     // store.dispatch('getDisclaimer');

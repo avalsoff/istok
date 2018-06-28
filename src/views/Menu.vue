@@ -89,7 +89,6 @@
 import Header from '../components/Header';
 
 export default {
-  name: 'Menu',
   components: {
     'app-header': Header
   }

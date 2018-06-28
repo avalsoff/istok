@@ -1,241 +1,205 @@
 <template>
-<div class="login">
-  <a @click="goToDisclamer" class="skip">Пропустить</a>
-  <form class="login-form" action="">
-    <div class="field-wrapper">
-      <label for="login">Имя пользователя</label>
-      <input type="text" name="login" id="login">
+  <div class="wrapper">
+    <div class="login">
+      <ul class="login__languages">
+        <li class="login__language">
+          <a class="login__flag login__flag--ru">Русский</a>
+        </li>
+        <li class="login__language">
+          <a class="login__flag  login__flag--en">English</a>
+        </li>
+      </ul>
+      <form class="login__form">
+        <h1 class="login__heading">Вход</h1>
+        <input class="login__input" type="text" name="login" placeholder="Имя пользователя">
+        <input class="login__input" type="text" name="password" placeholder="Пароль">
+        <button class="login__submit" type="submit">Войти</button>
+      </form>
+      <span class="login__or">Или</span>
+      <ul class="login__socials">
+        <li class="login__social">
+          <a class="login__social-icon login__social-icon--vk">VK</a>
+        </li>
+        <li class="login__social">
+          <a class="login__social-icon login__social-icon--google">Google Plus</a>
+        </li>
+        <li class="login__social">
+          <a class="login__social-icon login__social-icon--fb">Facebook</a>
+        </li>
+      </ul>
+      <a class="login__skip">Пропустить этот шаг</a>
     </div>
-    <div class="field-wrapper">
-      <label for="password">Пароль</label>
-      <input type="password" name="password" id="password">
-    </div>
-    <button class="login-btn" type="submit">Войти</button>
-  </form>
-
-  <span class="line">Или</span>
-  <div class="or">
-    <ul class="socials">
-      <li class="social">
-        <a href="#" class="social-link vk">
-          VK
-        </a>
-      </li>
-      <li class="social">
-        <a href="#" class="social-link google">
-          Google
-        </a>
-      </li>
-      <li class="social">
-        <a href="#" class="social-link facebook">
-          Facebook
-        </a>
-      </li>
-    </ul>
   </div>
-  <div class="logo">
-    <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
-  </div>
-</div>
 </template>
 
+<style lang="scss" scoped>
+@import "../scss/mixins";
+
+.wrapper {
+  padding-top: .1px;
+  background-color: #1C236E;
+  background-repeat: no-repeat;
+  background-image: url('../assets/wave-blue.svg'),
+                    url('../assets/istok-white.png');
+  background-position: 0 14%,
+                       50% 3.5%;
+  background-size: contain,
+                   auto;
+}
+
+.login {
+  color: #fff;
+  &__languages {
+    @include list-reboot();
+    margin-top: 183px;
+    text-align: center;
+  }
+
+  &__language {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 12px;
+  }
+
+  &__flag {
+    display: block;
+    font-size: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &--ru {
+      background-image: url('../assets/flag-russia.svg');
+    }
+
+    &--en {
+      background-image: url('../assets/flag-us.svg');
+    }
+  }
+
+  &__heading {
+    text-align: center;
+    font-family: 'Geometria';
+    font-size: 28px;
+    margin-top: 21px;
+    margin-bottom: 30px;
+  }
+
+  &__input {
+    display: block;
+    text-align: center;
+    border-radius: 7px;
+    padding: 10px 10px 10px;
+    border: none;
+    background: rgba($color: #fff, $alpha: .1);
+    color: rgba($color: #fff, $alpha: .3);
+    font-size: 14px;
+    margin: 20px auto 0;
+    width: 200px;
+
+    &::placeholder {
+      color: rgba($color: #fff, $alpha: .3);
+      font-size: 14px;
+    }
+  }
+
+  &__submit {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 0 9px;
+    width: 120px;
+    border-radius: 20px;
+    background: none;
+    border: 1px solid  #fff;
+    color: #fff;
+    font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+  }
+
+  &__or {
+    margin: 25px auto 0;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Geometria', Arial, Helvetica, sans-serif;
+    opacity: .3;
+    font-size: 10px;
+
+    &::before,
+    &::after {
+      position: relative;
+      top: 6px;
+      content: "";
+      flex-grow: 1;
+      background-color: #fff;
+      height: 1px;
+    }
+
+    &::before {
+      margin-right: 10px;
+    }
+    &::after {
+      margin-left: 10px;
+    }
+  }
+
+  &__socials {
+    @include list-reboot();
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  &__social {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+  }
+
+  &__social-icon {
+    display: block;
+    font-size: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    &--vk {
+      background-image: url('../assets/vk.svg');
+    }
+
+    &--google {
+      background-image: url('../assets/google.svg');
+    }
+
+    &--fb {
+      background-image: url('../assets/fb.svg');
+    }
+  }
+
+  &__skip {
+    display: block;
+    margin-top: 7px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
+    opacity: 0.3;
+  }
+}
+
+</style>
+
 <script>
-
 export default {
-  name: 'Login',
-  // data() {
-
-  // },
   methods: {
     goToDisclamer() {
       this.$router.push('disclaimer');
     }
-  },
-  mounted() {
-
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.login {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-  /* vh */
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1000px;
-  /* border: 1px solid #000; */
-  padding: 10px 20px;
-}
-
-.login::after {
-  content: "";
-  top: 55%;
-  position: absolute;
-  width: 2000px;
-  height: 1000px;
-  background-color: #1F236D;
-  transform: rotate(-10deg) translateX(-40%);
-}
-
-.login-form {
-  margin-top: 15%;
-}
-
-.field-wrapper label,
-.field-wrapper input {
-  margin-top: 10px;
-  text-align: center;
-  width: 100%;
-  display: block;
-  font-size: 20px;
-  border-radius: 50px;
-}
-
-.field-wrapper label {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  font-size: 22px;
-}
-
-.field-wrapper input {
-  padding: 10px 10px;
-}
-
-.login-btn {
-  cursor: pointer;
-  margin-top: 25px;
-  width: 100%;  
-  padding: 13px 10px;
-  border-radius: 25px; 
-  background-color: #1F236D;
-  color: #fff;
-  font-size: 20px;
-  border: none;
-}
-
-.line {
-  position: relative;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  text-transform: uppercase;
-  display: block;
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-}
-
-.line::before,
-.line::after {
-  position: relative;
-  top: 8px;
-  content: "";
-  flex-grow: 1;
-  height: 3px;
-  background-color: #1F236D;
-  margin-left: 10px;
-}
-
-.line::before {
-  margin-right: 10px;
-  margin-left: 0;
-}
-
-.or {
-  margin-top: 20px;
-}
-
-.socials {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.social {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 5px;
-}
-
-.social-link {
-  display: block;
-  width: 50px;
-  height: 50px;
-  font-size: 0;
-  border-radius: 50%;
-  background-size: contain;
-}
-
-.social-link.google {  
-  background-image: url("../assets/google-plus.svg");
-}
-
-.social-link.facebook {
-  background-image: url("../assets/facebook.svg");
-}
-
-.social-link.vk {
-  background-image: url("../assets/vk.svg");
-}
-
-.skip {
-  cursor: pointer;
-  position: absolute;
-  text-transform: uppercase;
-  right: 42px;
-}
-
-.skip::after {
-  position: absolute;
-  right: -25px;
-  top: 3px;
-  display: block;
-  content:"";
-  width: 15px;
-  height: 20px;
-  background-image: url("../assets/arrow-right-2.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.logo {
-  overflow: hidden;
-  z-index: 99;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 450px;
-}
-
-.logo-img {
-  width: 100%;
-  height: auto;
-}
-
-@media only screen and (max-width: 500px) {  
-.logo {
-    top: 82%;
-    width: 300px;
-  }
-
-  .login::after {
-    top: 57%;
-  }
-}
-
-@media only screen and (max-width: 380px) {  
-  .logo {
-    top: 88%;
-    width: 210px;
-  }
-
-  .login::after {
-    top: 57%;
-  }
-}
-</style>
