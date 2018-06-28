@@ -1,11 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Disclaimer from './views/Disclaimer.vue'
-import Card from './views/Card.vue'
-import Start from './views/Start.vue'
-import Todo from './views/Todo.vue'
-import Login from './views/Login.vue'
-import Menu from './views/Menu.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Disclaimer from './views/Disclaimer.vue';
+import Card from './views/Card.vue';
+import Start from './views/Start.vue';
+import Todo from './views/Todo.vue';
+import Login from './views/Login.vue';
+import Menu from './views/Menu.vue';
+import Settings from './views/Settings.vue';
 
 Vue.use(Router)
 
@@ -45,6 +46,11 @@ export default new Router({
       path: '/menu',
       name: 'Menu',
       component: Menu
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings
     }
 
   ]

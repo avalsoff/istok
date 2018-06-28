@@ -12,12 +12,12 @@
     position: sticky;
     top: 0;
     background: #1C236E;
-    height: get-vw(44px);
+    height: 44px;
 
     &__heading {
       margin: 0;
-      font-size: get-vw(17px);
-      line-height: get-vw(45px);
+      font-size: 17px;
+      line-height: 45px;
       font-family: 'SF Ultralight';
       color: #fff;
       text-align: center;
@@ -25,10 +25,10 @@
 
     &__menu-btn {
       position: absolute;
-      top: get-vw(15px);
-      left: get-vw(15px);
-      width: get-vw(20px);
-      height: get-vw(14px);
+      top: 15px;
+      left: 15px;
+      width: 20px;
+      height: 14px;
       border: none;
       background: url('../assets/menu.svg');
       background-size: contain;
