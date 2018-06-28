@@ -1,18 +1,14 @@
 <template>
 <section class="todoapp">
 <div class="wrapper">
-  <header class="header">
-    <h1 class="heading">Список задач</h1>
-    <a @click="toCards" class="to-cards"></a>
-    <input class="new-todo"
-      autofocus autocomplete="off"
-      placeholder="Что должно быть сделано?"
-      v-model="newTodo"
-      @keyup.enter="addTodo"
-      @blur="addTodo">
-  </header>
+  <app-header heading="Список задач"></app-header>
+  <input class="new-todo"
+    autofocus autocomplete="off"
+    placeholder="Новая задача"
+    v-model="newTodo"
+    @keyup.enter="addTodo"
+    @blur="addTodo">
   <section class="main" v-show="todos.length" v-cloak>
-    <!-- <input class="toggle-all" type="checkbox" v-model="allDone"> -->
     <ul class="todo-list">
       <li v-for="todo in filteredTodos"
         class="todo"
@@ -37,19 +33,6 @@
       </li>
     </ul>
   </section>
-  <!-- <footer class="footer" v-show="todos.length" v-cloak>
-    <span class="todo-count">
-      <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-    </span>
-    <ul class="filters">
-      <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
-      <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
-      <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
-    </ul>
-    <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
-      Clear completed
-    </button>
-  </footer> -->
 </div>
 
 </section>
@@ -57,6 +40,7 @@
 
 <script>
 import store from '../store';
+import Header from '../components/Header';
 // Full spec-compliant TodoMVC with localStorage persistence
 // and hash-based routing in ~120 effective lines of JavaScript.
 
@@ -79,6 +63,9 @@ var todoStorage = {
 
 export default {
   name: 'Todo',
+  components: {
+    'app-header': Header
+  },
   store,
   data() {
     return {
@@ -216,23 +203,23 @@ var filters = {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.wrapper {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1000px;
-}
-
-.heading {
-  text-align: center;  
-  color: #1F236D;
-}
+<style lang="scss" scoped>
 
 .new-todo {
-  width: 100%;
-  padding: 17px 10px;
-  font-size: 25px;
+  width: 290px;
+  padding: 9px 10px;
+  font-size: 14px;
+  font-family: "Geometria", Arial, Helvetica, sans-serif;
+  border-radius: 7px;
+  border: none;
+  background-color: #E5E5EE;
+  color: rgba($color: #1C236E, $alpha: .3);
+  margin: 25px 15px;
+  text-align: center;
+  
+  &::placeholder {
+    color: rgba($color: #1C236E, $alpha: .3);
+  }
 }
 
 .todo-list {
@@ -244,6 +231,8 @@ var filters = {
 
 .view {
   position: relative;
+  padding: 3px 0;
+  display: flex;
 }
 
 .toggle-checkbox {
@@ -251,8 +240,8 @@ var filters = {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border: 2px solid #1F236D;
   border-radius: 50%;
   margin: auto 0;
@@ -316,8 +305,6 @@ var filters = {
 }
 
 .view {
-  padding: 3px 0;
-  display: flex;
 }
 
 .checkbox-label {
@@ -369,11 +356,6 @@ var filters = {
   height: 40px;
   background-image: url("../assets/points.svg");
   background-size: contain;
-}
-
-.header {
-  padding-top: .1px;
-
 }
 
 </style>
