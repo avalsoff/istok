@@ -5,6 +5,7 @@ import Card from './views/Card.vue'
 import Start from './views/Start.vue'
 import Todo from './views/Todo.vue'
 import Login from './views/Login.vue'
+import Menu from './views/Menu.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/menu',
+      name: 'Menu',
+      component: Menu
     }
 
   ]

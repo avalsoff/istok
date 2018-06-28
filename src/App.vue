@@ -6,12 +6,12 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
+
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .17s ease;
 }
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
 }
 
@@ -27,42 +27,90 @@ html {
   box-sizing: inherit;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('./assets/fonts/Geometria.woff'),
+       url('./assets/fonts/Geometria.eot'),
+       url('./assets/fonts/Geometria.ttf');
+}
+
+@font-face {
+  font-family: 'Geometria Light';
+  src: url('./assets/fonts/Geometria-Light.woff'),
+       url('./assets/fonts/Geometria-Light.eot'),
+       url('./assets/fonts/Geometria-Light.ttf');
 }
 
 @font-face {
   font-family: 'Geometria Bold';
-  src: url('./assets/fonts/Geometria-Bold.otf'),
-       url('./assets/fonts/Geometria-Bold.woff');
+  src: url('./assets/fonts/Geometria-Bold.woff'),
+       url('./assets/fonts/Geometria-Bold.eot'),
+       url('./assets/fonts/Geometria-Bold.ttf');
 }
+
 @font-face {
-  font-family: 'Geometria Light';
-  src: url('./assets/fonts/Geometria-Light.otf'),
-       url('./assets/fonts/Geometria-Light.woff');
+  font-family: 'Geometria Extrabold';
+  src: url('./assets/fonts/Geometria-ExtraBold.woff'),
+       url('./assets/fonts/Geometria-ExtraBold.eot'),
+       url('./assets/fonts/Geometria-ExtraBold.ttf');
 }
+
+@font-face {
+  font-family: 'Geometria Heavy';
+  src: url('./assets/fonts/Geometria-Heavy.woff'),
+       url('./assets/fonts/Geometria-Heavy.eot'),
+       url('./assets/fonts/Geometria-Heavy.ttf');
+}
+
+@font-face {
+  font-family: 'Geometria Medium';
+  src: url('./assets/fonts/Geometria-Medium.woff'),
+       url('./assets/fonts/Geometria-Medium.eot'),
+       url('./assets/fonts/Geometria-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'SF Ultralight';
+  src: url('./assets/fonts/SFUIDisplay-Ultralight.woff');
+       /* url('./assets/fonts/Geometria-Light.eot'),
+       url('./assets/fonts/Geometria-Light.ttf'); */
+}
+
 #app {
-  font-family: 'Geometria Bold', Helvetica, Arial, sans-serif;
+  // font-family: 'Geometria', Helvetica, Arial, sans-serif;
+  font-family: serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+
+.wrapper {
+  min-height: 100vh;
 }
 </style>
 
 <script>
-import store from './store';
+// import store from './store';
 
 export default {
   mounted() {
-    // this.$router.push('login');
-    store.dispatch('getDisclaimer');
-    store.dispatch('getQuestions');
-    store.dispatch('getLanguages');
-    if (localStorage.getItem('Lan-gua-ge')) {
-      this.$router.push('disclaimer');
-    } else {
-      this.$router.push('start');
-    }
+    this.$router.push('menu');
+
+
+    // store.dispatch('getDisclaimer');
+    // store.dispatch('getQuestions');
+    // store.dispatch('getLanguages');
+    // if (localStorage.getItem('Lan-gua-ge')) {
+    //   this.$router.push('disclaimer');
+    // } else {
+    //   this.$router.push('start');
+    // }
   }
 }
 </script>
