@@ -92,6 +92,7 @@ html, body {
 
 .wrapper {
   min-height: 100vh;
+  padding: .1px 0;
 }
 </style>
 
