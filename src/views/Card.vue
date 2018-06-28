@@ -1,51 +1,59 @@
 <template>
   <v-touch 
-    @swipeleft="setNextQuestion"
-    @swiperight="setPrevQuestion"
+    @swipeleft="nextCard"
+    @swiperight="prevCard"
     :swipe-options="{direction: 'horizontal'}">
-    <div class="card">
-      <a @click="toTodos" class="to-todos"></a>
-      <!-- <a @click="reload" class="reload"></a> -->
-      <a @click="showMenu = !showMenu" class="reload"></a>
-      <div class="question-wrapper">
-        
-        <transition name="fade">
-          <div v-if="!showAddMoreView" class="question">
+    <div class="wrapper">
+      <app-header heading="Карточки"></app-header>
+      <main class="cards">
+        <transition name="fade" mode="out-in">
+          <section 
+            class="cards__card"
+            v-if="!showAddMoreView">
+            <small class="cards__count">Вопрос {{ state.currentHistoryIndex + 1 }} из {{ state.maxQuestions }}</small>
+            <h2 class="cards__caption">Карточка</h2>
             <transition v-bind:name="slideDirection" mode="out-in">
-              <div class="data-wrapper" v-bind:key="state.currentHistoryIndex">
-                <span class="bullets">
-                  &bull; &bull; &bull;
-                </span>
-                  {{ currentQuestion }} 
-                <span class="edit-wrapper">
-                  <label 
+              <div 
+                class="cards__data"
+                v-bind:key="state.currentHistoryIndex">
+                <p class="cards__question"> {{ currentQuestion }}</p>
+                <div class="cards__answer answer">
+                  <label
+                    class="answer__view"
+                    v-bind:class="{ 
+                      'answer__view--editing' : editingAnswer, 'answer__view--answered' : isAnswered 
+                    }"
                     @click="editAnswer" 
-                    @tap="editAnswer" 
-                    v-bind:class="{ 'label-edit' : isAnswered, 'not-answered' : !isAnswered }">
+                    @tap="editAnswer">
                     {{ currentAnswer }}
                   </label>
                   <input
-                    class="edit" 
+                    class="answer__edit" 
                     type="text"
-                    ref="input" 
-                    v-show="editingAnswer" 
+                    ref="input"
+                    v-show="editingAnswer"
                     @blur="doneEditAnswer"
                     @keyup.enter="doneEditAnswer"
                     v-model.lazy="currentAnswer">
-                </span>
+                </div>
               </div>
             </transition>
-          </div>
-          <p v-if="showAddMoreView" class="question">Вопросы закончились. Добавить еще 5 вопросов?
-            <button @click="increaseMaxQuestions" class="toggle-answer">
+          </section>
+          <div 
+            class="cards__add-more"
+            v-if="showAddMoreView">
+            <small class="cards__count">Вопросов нет</small>
+            <h2 class="cards__caption">Упс...</h2>
+            <p class="cards__message">У вас закончились карточки, вы хотите добавить еще несколько вопросов?</p>
+            <button 
+            class="cards__add-btn"
+            @click="increaseMaxQuestions">
               Добавить
             </button>
-          </p>
+            <img class="cards__wave-img" src="../assets/wave-blue.svg" alt="Волна">
+          </div>
         </transition>
-      </div>
-      <div class="logo">
-        <img class="logo-img" src="../assets/logo.png" alt="Тренинг центр - Исток">
-      </div>
+      </main>
     </div>
   </v-touch>
 </template>
@@ -54,6 +62,7 @@
 import Vue from 'vue';
 import VueTouch from 'vue-touch';
 import { mapState } from 'vuex';
+import Header from '../components/Header';
 
 Vue.use(VueTouch);
 
@@ -70,6 +79,9 @@ var stateStorage = {
 
 export default {
   name: 'Card',
+  components: {
+    'app-header': Header
+  },
   data() {
     return {
       answer: null,
@@ -110,12 +122,12 @@ export default {
         this.setAnswer();
       }
     },
-    setNextQuestion() {
+    nextCard() {
       this.slideDirection = 'slide-left';
       this.currentQuestion = this.getNextQuestion();
       this.setAnswer();
     },
-    setPrevQuestion() {
+    prevCard() {
       this.slideDirection = 'slide-right';
       this.currentQuestion = this.getPrevQuestion();
       this.setAnswer();
@@ -208,7 +220,7 @@ export default {
       }
       this.state.maxQuestions += 5;
       this.showAddMoreView = false;
-      this.setNextQuestion();
+      this.nextCard();
     },
     setIsAnswered() {
       if (this.currentAnswer == 'Ответить') {
@@ -219,17 +231,15 @@ export default {
     }
   },
   created() {
-      this.setInit();
+    this.setInit();
   }
-  // beforeDestroy() {
-  //   this.state.currentHistoryIndex = 0;
-  //   this.$store.commit('clearHistory');
-  // }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+@import "../scss/mixins";
+
 .slide-left-enter-active, .slide-left-leave-active,
 .slide-right-enter-active, .slide-right-leave-active {
   transition: transform .15s;
@@ -247,201 +257,119 @@ export default {
   transform: translateX(100%);
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .4s;
+  transition: opacity .17s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
 
-.bullets {
-  display: block;
-  line-height: 70px;
-  font-size: 75px;
-  font-family: Arial;
-  text-align: center;
+.wrapper {
+  padding-top: .1px;
+  background-color: #FBFBFC;
+  background-repeat: no-repeat;
+  background-image: url('../assets/istok-blue.png');
+  background-position: 50% 96%;
+  background-size: auto;
+  font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
-.card {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
-  /* vh */
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1000px;
-  /* border: 1px solid #000; */
+.cards {
+  &__count {
+    display: block;
+    font-size: 12px;
+    opacity: .3;
+    margin-top: 32px;
+    margin-left: 49px;
+  }
+
+  &__caption {
+    font-size: 28px;
+    margin-top: 0;
+    margin-left: 49px;
+  }
+
+  &__data {
+    background-color: #fff;
+    margin: 0 auto;
+    width: 270px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 15px;
+    padding: 60px 25px 25px;
+    background-image: url("../assets/wave-blue.svg");
+    background-position: 60% -30%;
+    background-size: 110%;
+    background-repeat: no-repeat;
+  }
+
+  &__question {
+    font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  &__message {
+    width: 210px;
+    margin-left: 49px;
+    margin-top: 40px;
+    font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
+  }
+
+  &__add-btn {
+    display: inline-block;
+    vertical-align: top;
+    background: #F17E00;
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 13px 7px;
+    margin-top: 10px;
+    margin-left: 49px;
+    max-width: 220px;
+    overflow: hidden;
+    font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
+  }
+
+  &__wave-img {
+    margin-top: 15px;
+    transform: rotateX(180deg);
+  }
 }
 
-.card::after {
-  content: "";
-  top: 70%;
-  position: absolute;
-  width: 2000px;
-  height: 1000px;
-  background-color: #1F236D;
-  transform: rotate(-10deg) translateX(-20%);
-}
-
-.question-wrapper {
-  position: relative;
-  height: 78vh;
-  /* vh */
-}
-
-.question {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 0;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: 54px;
-  line-height: 88px;
-  font-weight: bold;
-  width: 100%;
-  max-width: 800px;
-  padding: 0 50px;
-  text-align: center;
-  color: #1F236D;
-  /* border: 1px solid #000; */
-}
-
-.logo {
-  overflow: hidden;
-  z-index: 99;
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 450px;
-}
-
-.logo-img {
-  width: 100%;
-  height: auto;
-}
-
-.to-todos {
-  z-index: 99;
-  position: absolute;
-  top: 17px;
-  right: 16px;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-image: url("../assets/list.svg");
-  background-size: contain;
-}
-
-.reload {
-  z-index: 99;
-  position: absolute;
-  top: 17px;
-  left: 16px;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-image: url("../assets/settings.svg");
-  background-size: contain;
-
-}
-
-.not-answered {
-  position: relative;
-  transform: translateX(-50%);
-  font-size: 18px;
-  border: none;
-  background: none;
-  background: #1F236D;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 15px;
-}
-
-.toggle-answer {
+.answer {
   position: relative;
   display: block;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  background: none;
-  background: #1F236D;
-  color: white;
-  padding: 10px 15px;
-  margin: 20px 0;
-  border-radius: 15px;
-  font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
-}
+  &__view {
+    display: inline-block;
+    vertical-align: top;
+    background: #1C236E;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 13px 7px;
+    margin-top: 24px;
+    max-width: 220px;
+    overflow: hidden;
 
-.edit-wrapper {
-  margin-top: 10px;
-  position: relative;
-  display: block;
-  width: 100%;
-}
+    &--answered {
+      border-radius: 10px;
+      background-color: #E5E5EE;
+      color: #1C236E;
+    }
 
-.edit {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* border-top: 1px solid #000; */
-  padding: 8px 10px 6px 10px;
-  font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.label-edit {
-  /* border: 1px solid #000; */
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  display: block;
-  width: 100%;
-  font-size: 20px;
-  line-height: 35px;
-  /* word-break: break-all; */
-}
-
-@media only screen and (max-width: 700px) {
-  .card::after {
-    top: 60%;
+    &--editing {
+      height: 28px;
+    }
   }
 
-  .question {
-    font-size: 30px;
-    line-height: 43px;
-  }
-
-  .bullets {
-    font-size: 45px;
-    line-height: 50px;
-  }
-
-  .logo {
-    width: 300px;
+  &__edit {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 100%;
+    padding: 6px 13px 7px;
   }
 }
 
-@media only screen and (max-width: 410px) {
-  .card::after {
-    top: 55%;
-  }
-  .question {
-    font-size: 30px;
-    line-height: 40px;
-    padding: 0 25px;
-  }
-  .bullets {
-    font-size: 35px;
-    line-height: 35px;
-  }
-  .logo {
-    width: 260px;
-  }
-}
 </style>
