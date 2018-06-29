@@ -296,8 +296,8 @@ var filters = {
   position: absolute;
   top: get-vw(8px);
   right: 0;
-  width: get-vw(266px);
-  padding: get-vw(7px) get-vw(10px);
+  width: get-vw(259px);
+  padding: get-vw(7px) get-vw(10px) get-vw(7px) get-vw(2px);
   font-size: get-vw(14px);
   font-family: "Geometria", Arial, Helvetica, sans-serif;
 }
@@ -335,12 +335,13 @@ var filters = {
   height: 100%;
   border: none;
   background-color: #fff;
-  background-size: auto;
+  background-size: 60%;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
 .edit-btn {
+  background-size: 70%;
   right: get-vw(29px);
   background-image: url("../assets/pencil.svg");
 }

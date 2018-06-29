@@ -23,8 +23,9 @@
         </yandex-map>
       </div>
       <a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
+      <br>
       <a  class="about__email" href="mailto:info@tc-i.ru">info@tc-i.ru</a>
-      <p class="about__text" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p>
+      <!-- <p class="about__text" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p> -->
     </main>
   </div>
 </template>
@@ -73,17 +74,36 @@
 
   &__tel,
   &__email {
+    position: relative;
     margin-top: get-vw(25px);
     text-decoration: none;
-    display: block;
+    display: inline-block;
     color: #1C236E;
     font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
     line-height: normal;
     font-size: get-vw(14px);
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0px;
+      left: -25px;
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-size: contain;          
+      background-image: url("../assets/telephone.svg");  
+    }
   }
 
   &__email {
     margin-top: get-vw(15px);
+
+    &::before {
+      background-image: url("../assets/mail.svg");
+      top: 1px;
+      left: -27px;         
+    }
   }
 }
 </style>

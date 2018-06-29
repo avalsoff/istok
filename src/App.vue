@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <transition name="component-fade" mode="out-in">
-      <router-view/>
-    </transition>
+      <!-- <transition name="component-fade" mode="out-in"> -->
+        <router-view/>
+      <!-- </transition> -->
   </div>
 </template>
 
@@ -100,6 +100,19 @@ html, body {
 import store from './store';
 
 export default {
+  data() {
+    return {
+      transitionDirection: 1,
+    }
+  },
+  methods: {
+    swipeLeft() {
+
+    },
+    swipeRight() {
+
+    }
+  },
   mounted() {
     store.dispatch('getDisclaimer');
     store.dispatch('getQuestions');

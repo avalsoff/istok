@@ -316,14 +316,13 @@ export default {
     display: block;
     background: #f17e00;
     border: none;
-    padding: get-vw(6px) get-vw(13px) get-vw(7px);
+    padding: get-vw(6px) get-vw(13px) get-vw(6px);
     font-size: get-vw(12px);
     margin-left: get-vw(49px);
     margin-top: get-vw(10px);
     color: white;
     border-radius: get-vw(100px);
-    appearance: none;
-    font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
+    font-family: "Geometria Extrabold", Arial, Helvetica, sans-serif;
   }
 
   &__wave-img {
@@ -358,12 +357,13 @@ export default {
     // color: white;
     // border-radius: get-vw(100px);
     // appearance: none;
-    // font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
+    font-family: "Geometria Heavy", Arial, Helvetica, sans-serif;
 
     &--answered {
       border-radius: get-vw(10px);
       background-color: #E5E5EE;
       color: #1C236E;
+      font-family: "Geometria", Arial, Helvetica, sans-serif;
     }
 
     &--editing {
@@ -373,10 +373,11 @@ export default {
 
   &__edit {
     position: absolute;
-    top: get-vw(22px);
+    top: get-vw(24px);
     left: 0;
     width: 100%;
     padding: get-vw(6px) get-vw(13px) get-vw(7px);
+    font-size: get-vw(12px);
   }
 }
 
