@@ -4,10 +4,23 @@
     <main class="about">
       <small class="about__caption">Тренинги для бизнеса</small>
       <h2 class="about__heading">Наша история</h2>
-      <p class="about__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p>
+      <p class="about__text">Тренинг-центр «Исток» находится в городе Хабаровск. 
+Мы работаем на территории всего Дальнего Востока и за его пределами. 
+Клиентами коучинга, менторинга могут стать жители любой точки мира, достаточно иметь доступ к Skype.</p>
       <img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'>
       <div  class="about__map">
-        <!-- Map -->
+        <yandex-map 
+          :coords="[48.475367, 135.086793]"
+          :scroll-zoom="false"
+          :controls='["smallMapDefaultSet"]'
+          zoom="14"
+          style="width: 100%; height: 100%;"
+        ><ymap-marker
+            markerId="1"
+            marker-type="placemark"
+            :coords="[48.475367, 135.086793]"
+          ></ymap-marker>
+        </yandex-map>
       </div>
       <a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
       <a  class="about__email" href="mailto:info@tc-i.ru">info@tc-i.ru</a>
@@ -17,6 +30,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../scss/mixins";
+
 .wrapper {
   font-family: "Geometria", Arial, Helvetica, sans-serif;
   text-align: center;
@@ -25,60 +40,63 @@
 .about {
   &__caption {
     display: block;
-    margin-top: 30px;
-    font-size: 12px;
+    margin-top: get-vw(30px);
+    font-size: get-vw(12px);
     color: #000000;
     opacity: 0.3;
   }
 
   &__heading {
     font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
-    font-size: 28px;
+    font-size: get-vw(28px);
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: get-vw(15px);
   }
 
   &__text {
-    font-size: 14px;
-    padding: 0 35px;
+    font-size: get-vw(14px);
+    padding: 0 get-vw(35px);
     margin-bottom: 0;
+    text-align: left;
   }
 
   &__logo {
     display: inline-block;
     vertical-align: top;
-    margin-top: 5px;
+    margin-top: get-vw(5px);
   }
 
   &__map {
-    width: 320px;
-    height: 180px;
-    background-color: #ccc;
+    width: get-vw(320px);
+    height: get-vw(180px);
   }
 
   &__tel,
   &__email {
-    margin-top: 25px;
+    margin-top: get-vw(25px);
     text-decoration: none;
     display: block;
     color: #1C236E;
     font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
     line-height: normal;
-    font-size: 14px;
+    font-size: get-vw(14px);
   }
 
   &__email {
-    margin-top: 15px;
+    margin-top: get-vw(15px);
   }
 }
 </style>
 
 <script>
 import Header from '../components/Header';
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 
 export default {
   components: {
-    'app-header': Header
+    'app-header': Header,
+    yandexMap,
+    ymapMarker
   }
 }
 </script>

@@ -49,11 +49,11 @@ export default {
 @import "../scss/mixins";
 
 .wrapper {
-  font-size: 14px;
+  font-size: get-vw(14px);
   font-family: "Geometria", Arial, Helvetica, sans-serif;
   color: #fff;
   background-color: #EA7D00;
-  padding: 30px 35px;
+  padding: get-vw(30px) get-vw(35px);
   background-repeat: no-repeat;
   background-image: url('../assets/istok-white.png');
   background-position: 50% 94%;
@@ -65,30 +65,30 @@ export default {
   }
 
   &__text-wrapper {
-    margin-top: 20px;
+    margin-top: get-vw(20px);
   }
 
   &__text {
     font-family: "Geometria Light", Arial, Helvetica, sans-serif;
-    line-height: 21px;
-    text-indent: -4px;
+    line-height: get-vw(21px);
+    text-indent: get-vw(-4px);
   }
 
   &__go-to-cards {
     position: relative;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: get-vw(5px);
     color: #fff;
     text-decoration: none;
     font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
     
     &::after {
       position: absolute;
-      top: -2px;
-      right: -32px;
+      top: get-vw(-2px);
+      right: get-vw(-32px);
       content: "";
-      width: 24px;
-      height: 24px;
+      width: get-vw(24px);
+      height: get-vw(24px);
       background-color: #fff;
       border-radius: 50%;
       background-image: url("../assets/arrow-right.svg");

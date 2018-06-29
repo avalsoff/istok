@@ -1,7 +1,7 @@
-" 10px" -> " get-vh(10px)"
+" get-vw(10px)" -> " get-vh(10px)"
  (-?\d+px)
  get-vw($1)
 
-" get-vh(10px)" -> " 10px"
+" get-vh(10px)" -> " get-vw(10px)"
  get-vw\((-?\d+px)\)
  $1

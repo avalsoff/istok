@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="header__heading"> {{ heading }} </h1>
-    <router-link to="/menu" tag="button" class="header__menu-btn"></router-link>
+    <button @click="go" class="header__menu-btn"></button>
   </header>
 </template>
 
@@ -13,12 +13,12 @@
     top: 0;
     z-index: 110;
     background: #1C236E;
-    height: 44px;
+    height: get-vw(44px);
 
     &__heading {
       margin: 0;
-      font-size: 17px;
-      line-height: 45px;
+      font-size: get-vw(17px);
+      line-height: get-vw(45px);
       font-family: 'SF Ultralight';
       color: #fff;
       text-align: center;
@@ -26,10 +26,10 @@
 
     &__menu-btn {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      width: 20px;
-      height: 14px;
+      top: get-vw(15px);
+      left: get-vw(15px);
+      width: get-vw(20px);
+      height: get-vw(14px);
       border: none;
       background: url('../assets/menu.svg');
       background-size: contain;
@@ -45,7 +45,16 @@
 
 <script>
 export default {
-  props: ['heading'],
+  props: ['heading', 'back'],
+  methods: {
+    go() {
+      if (this.back) {
+        this.$router.go(-1);
+      } else {
+        this.$router.push('menu');
+      }
+    }
+  }
 }
 
 </script>

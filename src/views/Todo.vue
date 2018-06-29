@@ -204,36 +204,45 @@ var filters = {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import "../scss/mixins";
 
 .new-todo {
-  width: 290px;
-  padding: 9px 10px;
-  font-size: 14px;
+  width: get-vw(290px);
+  padding: get-vw(9px) get-vw(10px);
+  font-size: get-vw(14px);
   font-family: "Geometria", Arial, Helvetica, sans-serif;
-  border-radius: 7px;
+  border-radius: get-vw(7px);
   border: none;
   background-color: #E5E5EE;
   color: rgba($color: #1C236E, $alpha: .3);
-  margin: 25px 15px 2px;
+  margin: get-vw(25px) get-vw(15px) get-vw(2px);
   text-align: center;
+  border: 1px solid transparent;
   
   &::placeholder {
     color: rgba($color: #1C236E, $alpha: .3);
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid  #1C236E;
+    background-color: #fff;
+    color: #000;
   }
 }
 
 .todo-list {
   list-style-type: none;
   margin: 0;
-  margin-top: 10px;
-  padding: 0 15px;
+  margin-top: get-vw(10px);
+  padding: 0 get-vw(15px);
 }
 
 .view {
   position: relative;
-  padding: 10px 0;
+  padding: get-vw(10px) 0;
   display: flex;
-  border-bottom: 1px solid rgba(#000, .05);
+  border-bottom: get-vw(1px) solid rgba(#000, .05);
 }
 
 .toggle-checkbox {
@@ -241,9 +250,9 @@ var filters = {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 25px;
-  height: 25px;
-  border: 1px solid #1F236D;
+  width: get-vw(25px);
+  height: get-vw(25px);
+  border: get-vw(1px) solid #1F236D;
   border-radius: 50%;
   margin: auto 0;
 }
@@ -262,11 +271,11 @@ var filters = {
 .toggle:checked + .toggle-checkbox::after {
   content: "";
   position: absolute;
-  top: 11px;
-  left: 7px;
-  width: 12px;
-  height: 2px;
-  border-radius: 100px;
+  top: get-vw(11px);
+  left: get-vw(7px);
+  width: get-vw(12px);
+  height: get-vw(2px);
+  border-radius: get-vw(100px);
   background-color: #fff;
   transform: rotate(-45deg);
 }
@@ -274,22 +283,22 @@ var filters = {
 .toggle:checked + .toggle-checkbox::before {  
   content: "";
   position: absolute;
-  top: 13px;
-  left: 4px;
-  width: 7px;
-  height: 2px;
-  border-radius: 100px;
+  top: get-vw(13px);
+  left: get-vw(4px);
+  width: get-vw(7px);
+  height: get-vw(2px);
+  border-radius: get-vw(100px);
   background-color: #fff;
   transform: rotate(45deg);
 }
 
 .edit {
   position: absolute;
-  top: 8px;
+  top: get-vw(8px);
   right: 0;
-  width: 266px;
-  padding: 7px 10px;
-  font-size: 14px;
+  width: get-vw(266px);
+  padding: get-vw(7px) get-vw(10px);
+  font-size: get-vw(14px);
   font-family: "Geometria", Arial, Helvetica, sans-serif;
 }
 
@@ -298,17 +307,21 @@ var filters = {
   margin: 0;
   display: block;
   width: 100%;
-  padding: 7px 10px;
-  font-size: 14px;
+  padding: get-vw(7px) get-vw(10px);
+  font-size: get-vw(14px);
   flex-grow: 1;
 }
 
 .todo {
   position: relative;
+
+  &:last-child .view {
+    border: none;
+  }
 }
 
 .checkbox-label {
-  width: 28px;
+  width: get-vw(28px);
 }
 
 .edit-btn,
@@ -318,7 +331,7 @@ var filters = {
   top: 50%;
   transform: translateY(-50%);
   right: 0;
-  width: 30px;
+  width: get-vw(30px);
   height: 100%;
   border: none;
   background-color: #fff;
@@ -328,7 +341,7 @@ var filters = {
 }
 
 .edit-btn {
-  right: 29px;
+  right: get-vw(29px);
   background-image: url("../assets/pencil.svg");
 }
 
@@ -338,7 +351,7 @@ var filters = {
 
 .editing .label-edit {
   overflow: hidden;
-  height: 32px;
+  height: get-vw(32px);
 }
 
 .completed .label-edit {

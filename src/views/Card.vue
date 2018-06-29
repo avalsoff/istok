@@ -209,10 +209,6 @@ export default {
     toTodos() {
       this.$router.push('todo');
     },
-    reload() {
-      localStorage.clear();
-      location.reload();
-    },
     increaseMaxQuestions() {
       if (this.state.maxQuestions == Math.floor(this.questions.length / 5) * 5) {
         // console.log("Cant't add more questions!");
@@ -271,31 +267,31 @@ export default {
   background-position: 50% 96%;
   background-size: auto;
   font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: get-vw(14px);
 }
 
 .cards {
   &__count {
     display: block;
-    font-size: 12px;
+    font-size: get-vw(12px);
     opacity: .3;
-    margin-top: 32px;
-    margin-left: 49px;
+    margin-top: get-vw(32px);
+    margin-left: get-vw(49px);
   }
 
   &__caption {
-    font-size: 28px;
+    font-size: get-vw(28px);
     margin-top: 0;
-    margin-left: 49px;
+    margin-left: get-vw(49px);
   }
 
   &__data {
     background-color: #fff;
     margin: 0 auto;
-    width: 270px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
-    border-radius: 15px;
-    padding: 60px 25px 25px;
+    width: get-vw(270px);
+    box-shadow: get-vw(0px) get-vw(10px) get-vw(20px) rgba(0, 0, 0, 0.06);
+    border-radius: get-vw(15px);
+    padding: get-vw(60px) get-vw(25px) get-vw(25px);
     background-image: url("../assets/wave-blue.svg");
     background-position: 60% -30%;
     background-size: 110%;
@@ -304,36 +300,36 @@ export default {
 
   &__question {
     font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: get-vw(14px);
     margin-bottom: 0;
   }
 
   &__message {
-    width: 210px;
-    margin-left: 49px;
-    margin-top: 40px;
+    width: get-vw(210px);
+    margin-left: get-vw(49px);
+    margin-top: get-vw(40px);
     font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
   }
 
   &__add-btn {
-    display: inline-block;
-    vertical-align: top;
-    background: #F17E00;
+    appearance: none;
+    display: block;
+    background: #f17e00;
     border: none;
-    border-radius: 15px;
-    color: #fff;
-    font-size: 12px;
-    padding: 6px 13px 7px;
-    margin-top: 10px;
-    margin-left: 49px;
-    max-width: 220px;
-    overflow: hidden;
+    padding: get-vw(6px) get-vw(13px) get-vw(7px);
+    font-size: get-vw(12px);
+    margin-left: get-vw(49px);
+    margin-top: get-vw(10px);
+    color: white;
+    border-radius: get-vw(100px);
+    appearance: none;
     font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
   }
 
   &__wave-img {
-    margin-top: 15px;
+    margin-top: get-vw(15px);
     transform: rotateX(180deg);
+    width: 100%;
   }
 }
 
@@ -344,31 +340,43 @@ export default {
     display: inline-block;
     vertical-align: top;
     background: #1C236E;
-    border-radius: 15px;
+    border-radius: get-vw(15px);
     color: #fff;
-    font-size: 12px;
-    padding: 6px 13px 7px;
-    margin-top: 24px;
-    max-width: 220px;
+    font-size: get-vw(12px);
+    padding: get-vw(6px) get-vw(13px) get-vw(7px);
+    margin-top: get-vw(24px);
+    max-width: get-vw(220px);
     overflow: hidden;
+    //   appearance: none;
+    // display: block;
+    // background: #f17e00;
+    // border: none;
+    // padding: get-vw(6px) get-vw(13px) get-vw(7px);
+    // font-size: get-vw(12px);
+    // margin-left: get-vw(49px);
+    // margin-top: get-vw(10px);
+    // color: white;
+    // border-radius: get-vw(100px);
+    // appearance: none;
+    // font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
 
     &--answered {
-      border-radius: 10px;
+      border-radius: get-vw(10px);
       background-color: #E5E5EE;
       color: #1C236E;
     }
 
     &--editing {
-      height: 28px;
+      height: get-vw(28px);
     }
   }
 
   &__edit {
     position: absolute;
-    top: 22px;
+    top: get-vw(22px);
     left: 0;
     width: 100%;
-    padding: 6px 13px 7px;
+    padding: get-vw(6px) get-vw(13px) get-vw(7px);
   }
 }
 

@@ -97,21 +97,18 @@ html, body {
 </style>
 
 <script>
-// import store from './store';
+import store from './store';
 
 export default {
   mounted() {
-    this.$router.push('settings');
-
-
-    // store.dispatch('getDisclaimer');
-    // store.dispatch('getQuestions');
-    // store.dispatch('getLanguages');
-    // if (localStorage.getItem('Lan-gua-ge')) {
-    //   this.$router.push('disclaimer');
-    // } else {
-    //   this.$router.push('start');
-    // }
+    store.dispatch('getDisclaimer');
+    store.dispatch('getQuestions');
+    store.dispatch('getLanguages');
+    if (localStorage.getItem('Lan-gua-ge')) {
+      this.$router.push('disclaimer');
+    } else {
+      this.$router.push('login');
+    }
   }
 }
 </script>

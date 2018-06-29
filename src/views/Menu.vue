@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <app-header heading="Меню"></app-header>
+    <app-header heading="Меню" back="true"></app-header>
     <main class="menu">
       <ul class="menu__items">
         <router-link tag="li" to="/card" class="menu__item menu__item--cards">
@@ -40,21 +40,21 @@
 
   &__items {
     @include list-reboot();
-    margin-left: 88px;
-    margin-top: 144px;
+    margin-left: get-vw(88px);
+    margin-top: get-vw(144px);
   }
 
   &__item {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: get-vw(30px);
 
     &::before {
       position: absolute;
-      top: 2px;
-      left: -29px;
+      top: get-vw(2px);
+      left: get-vw(-29px);
       content: "";
-      width: 14px;
-      height: 14px;
+      width: get-vw(14px);
+      height: get-vw(14px);
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -77,7 +77,7 @@
   }
 
   &__link {
-    font-size: 14px;
+    font-size: get-vw(14px);
     font-family: 'Geometria Medium';
     color: #fff;
     text-decoration: none;
