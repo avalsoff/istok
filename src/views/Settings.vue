@@ -38,25 +38,25 @@
   background-position: 50% 96%;
   background-size: auto;
   font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
-  font-size: get-vw(14px);
+  font-size: 14px;
 }
 
 .settings {
   @include list-reboot();  
   background-color: #fff;
-  border-top: get-vw(1px) solid rgba($color: #000, $alpha: .05);
-  border-bottom: get-vw(1px) solid rgba($color: #000, $alpha: .05);
+  border-top: 1px solid rgba($color: #000, $alpha: .05);
+  border-bottom: 1px solid rgba($color: #000, $alpha: .05);
 
   &__heading {
     opacity: 0.3;
-    font-size: get-vw(14px);
+    font-size: 14px;
     font-family: 'Geometria', Arial, Helvetica, sans-serif;
-    margin: get-vw(20px) get-vw(15px) get-vw(10px);
+    margin: 20px 15px 10px;
   }
 
   &__item {
     display: block;
-    margin: 0 get-vw(15px);
+    margin: 0 15px;
 
     &:last-child .settings__toggle {
       border-bottom: none;
@@ -64,17 +64,17 @@
   }
 
   &__toggle {
-    padding: get-vw(4px) 0;
+    padding: 4px 0;
     display: flex;
     align-items: center;
-    border-bottom: get-vw(1px) solid rgba($color: #000, $alpha: .05);
+    border-bottom: 1px solid rgba($color: #000, $alpha: .05);
   }
 
   &__set {
     display: block;
     width: 100%;
     text-align: left;
-    padding: get-vw(13px) get-vw(15px) get-vw(14px);
+    padding: 13px 15px 14px;
     border: none;
     background-color: #fff;
     font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
@@ -88,10 +88,10 @@
   .settings {
     &__item {
       margin: 0;
-      margin-top: get-vw(25px);
+      margin-top: 25px;
       background-color: #fff;    
-      border-bottom: get-vw(1px) solid rgba($color: #000, $alpha: .05);
-      border-top: get-vw(1px) solid rgba($color: #000, $alpha: .05);
+      border-bottom: 1px solid rgba($color: #000, $alpha: .05);
+      border-top: 1px solid rgba($color: #000, $alpha: .05);
     }
 
     &__set {
@@ -114,31 +114,31 @@ input[type="checkbox"] {
   outline: none;
   appearance: none;
   background-color: darken($white, 2%);
-  border: get-vw(1px) solid $grey;
-  border-radius: get-vw(26px);
-  box-shadow: inset 0 0 0 get-vw(1px) $grey;
+  border: 1px solid $grey;
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 1px $grey;
   cursor: pointer;
-  height: get-vw(28px);
+  height: 28px;
   position: relative;
   transition: border .25s .15s,
               box-shadow .25s .3s,
               padding .25s;
-  width: get-vw(44px);
+  width: 44px;
   vertical-align: top;
   
   &:after {
     background-color: $white;
-    border: get-vw(1px) solid $grey;
-    border-radius: get-vw(24px);
-    box-shadow: inset 0 get-vw(-3px) get-vw(3px) hsla(0,0%,0%,.025),
-                0 get-vw(1px) get-vw(4px) hsla(0,0%,0%,.15),
-                0 get-vw(4px) get-vw(4px) hsla(0,0%,0%,.1);
+    border: 1px solid $grey;
+    border-radius: 24px;
+    box-shadow: inset 0 -3px 3px hsla(0,0%,0%,.025),
+                0 1px 4px hsla(0,0%,0%,.15),
+                0 4px 4px hsla(0,0%,0%,.1);
     content: '';
     display: block;
-    height: get-vw(24px);
+    height: 24px;
     left: 0;
     position: absolute;
-    right: get-vw(16px);
+    right: 16px;
     top: 0;
     transition: border .25s .15s,
                 left .25s .1s,
@@ -146,15 +146,15 @@ input[type="checkbox"] {
   }
   &:checked {
     border-color: $green;
-    box-shadow: inset 0 0 0 get-vw(13px) $green;
-    padding-left: get-vw(18px);
+    box-shadow: inset 0 0 0 13px $green;
+    padding-left: 18px;
     transition: border .25s,
                 box-shadow .25s,
                 padding .25s .15s;
   
     &:after {
       border-color: $green;
-      left: get-vw(16px);
+      left: 16px;
       right: 0;
       transition: border .25s,
                   left .15s .25s,

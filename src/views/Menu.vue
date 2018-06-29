@@ -40,21 +40,21 @@
 
   &__items {
     @include list-reboot();
-    margin-left: get-vw(88px);
-    margin-top: get-vw(144px);
+    margin-left: 88px;
+    margin-top: 144px;
   }
 
   &__item {
     position: relative;
-    margin-bottom: get-vw(30px);
+    margin-bottom: 30px;
 
     &::before {
       position: absolute;
-      top: get-vw(2px);
-      left: get-vw(-29px);
+      top: 2px;
+      left: -29px;
       content: "";
-      width: get-vw(14px);
-      height: get-vw(14px);
+      width: 14px;
+      height: 14px;
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -77,7 +77,7 @@
   }
 
   &__link {
-    font-size: get-vw(14px);
+    font-size: 14px;
     font-family: 'Geometria Medium';
     color: #fff;
     text-decoration: none;

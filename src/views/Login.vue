@@ -51,21 +51,21 @@
   color: #fff;
   &__languages {
     @include list-reboot();
-    margin-top: get-vw(183px);
+    margin-top: 183px;
     text-align: center;
   }
 
   &__language {
     display: inline-block;
     vertical-align: top;
-    margin: 0 get-vw(12px);
+    margin: 0 12px;
   }
 
   &__flag {
     display: block;
     font-size: 0;
-    width: get-vw(28px);
-    height: get-vw(28px);
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -82,87 +82,87 @@
   &__heading {
     text-align: center;
     font-family: 'Geometria';
-    font-size: get-vw(28px);
-    margin-top: get-vw(21px);
-    margin-bottom: get-vw(30px);
+    font-size: 28px;
+    margin-top: 21px;
+    margin-bottom: 30px;
   }
 
   &__input {
     display: block;
     text-align: center;
-    border-radius: get-vw(7px);
-    padding: get-vw(10px) get-vw(10px) get-vw(10px);
+    border-radius: 7px;
+    padding: 10px 10px 10px;
     border: none;
     background: rgba($color: #fff, $alpha: .1);
     color: rgba($color: #fff, $alpha: .3);
-    font-size: get-vw(14px);
-    margin: get-vw(20px) auto 0;
-    width: get-vw(200px);
+    font-size: 14px;
+    margin: 20px auto 0;
+    width: 200px;
 
     &::placeholder {
       color: rgba($color: #fff, $alpha: .3);
-      font-size: get-vw(14px);
+      font-size: 14px;
     }
   }
 
   &__submit {
     display: block;
-    margin: get-vw(20px) auto 0;
-    padding: get-vw(10px) 0 get-vw(9px);
-    width: get-vw(120px);
-    border-radius: get-vw(20px);
+    margin: 20px auto 0;
+    padding: 10px 0 9px;
+    width: 120px;
+    border-radius: 20px;
     background: none;
-    border: get-vw(1px) solid  #fff;
+    border: 1px solid  #fff;
     color: #fff;
     font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
-    font-size: get-vw(12px);
+    font-size: 12px;
   }
 
   &__or {
-    margin: get-vw(25px) auto 0;
-    width: get-vw(200px);
+    margin: 25px auto 0;
+    width: 200px;
     display: flex;
     justify-content: center;
     text-transform: uppercase;
     font-family: 'Geometria', Arial, Helvetica, sans-serif;
     opacity: .3;
-    font-size: get-vw(10px);
+    font-size: 10px;
 
     &::before,
     &::after {
       position: relative;
-      top: get-vw(6px);
+      top: 6px;
       content: "";
       flex-grow: 1;
       background-color: #fff;
-      height: get-vw(1px);
+      height: 1px;
     }
 
     &::before {
-      margin-right: get-vw(10px);
+      margin-right: 10px;
     }
     &::after {
-      margin-left: get-vw(10px);
+      margin-left: 10px;
     }
   }
 
   &__socials {
     @include list-reboot();
     text-align: center;
-    margin-top: get-vw(8px);
+    margin-top: 8px;
   }
 
   &__social {
     display: inline-block;
     vertical-align: top;
-    margin: get-vw(5px);
+    margin: 5px;
   }
 
   &__social-icon {
     display: block;
     font-size: 0;
-    width: get-vw(25px);
-    height: get-vw(25px);
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     background-color: #fff;
     background-size: initial;
@@ -171,25 +171,25 @@
 
     &--vk {
       background-image: url('../assets/vk.svg');
-      background-size: get-vw(15px);
+      background-size: 15px;
     }
 
     &--google {
       background-image: url('../assets/google.svg');
-      background-size: get-vw(11px);
+      background-size: 11px;
     }
 
     &--fb {
       background-image: url('../assets/fb.svg');
-      background-size: get-vw(8px);
+      background-size: 8px;
     }
   }
 
   &__skip {
     display: block;
-    margin-top: get-vw(7px);
+    margin-top: 7px;
     text-align: center;
-    font-size: get-vw(10px);
+    font-size: 10px;
     font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
     opacity: 0.3;
   }
