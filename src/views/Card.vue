@@ -42,7 +42,7 @@
           <div 
             class="cards__add-more"
             v-if="showAddMoreView">
-            <small class="cards__count">Вопросов нет</small>
+            <small class="cards__count">Сейчас карточек: {{ state.maxQuestions }}</small>
             <h2 class="cards__caption">Упс...</h2>
             <p class="cards__message">У вас закончились карточки, вы хотите добавить еще несколько вопросов?</p>
             <button 

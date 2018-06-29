@@ -214,7 +214,7 @@ var filters = {
   border: none;
   background-color: #E5E5EE;
   color: rgba($color: #1C236E, $alpha: .3);
-  margin: 25px 15px;
+  margin: 25px 15px 2px;
   text-align: center;
   
   &::placeholder {
@@ -226,13 +226,14 @@ var filters = {
   list-style-type: none;
   margin: 0;
   margin-top: 10px;
-  padding: 0 10px;
+  padding: 0 15px;
 }
 
 .view {
   position: relative;
-  padding: 3px 0;
+  padding: 10px 0;
   display: flex;
+  border-bottom: 1px solid rgba(#000, .05);
 }
 
 .toggle-checkbox {
@@ -240,9 +241,9 @@ var filters = {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border: 2px solid #1F236D;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #1F236D;
   border-radius: 50%;
   margin: auto 0;
 }
@@ -254,49 +255,51 @@ var filters = {
   left: -10000vw;
 }
 
-.toggle:checked + .toggle-checkbox::after,
-.toggle:checked + .toggle-checkbox::before {
+.toggle:checked + .toggle-checkbox {
+  background-color: #1F236D;
+}
+
+.toggle:checked + .toggle-checkbox::after {
   content: "";
   position: absolute;
-  top: 17px;
-  left: 11.4px;
-  width: 21px;
-  height: 3px;
+  top: 11px;
+  left: 7px;
+  width: 12px;
+  height: 2px;
   border-radius: 100px;
-  background-color: #1F236D;
-  transform: rotate(-52deg);
+  background-color: #fff;
+  transform: rotate(-45deg);
 }
 
 .toggle:checked + .toggle-checkbox::before {  
   content: "";
   position: absolute;
-  top: 22px;
-  left: 6px;
-  width: 12px;
-  height: 3px;
+  top: 13px;
+  left: 4px;
+  width: 7px;
+  height: 2px;
   border-radius: 100px;
-  background-color: #1F236D;
-  transform: rotate(52deg);
+  background-color: #fff;
+  transform: rotate(45deg);
 }
 
 .edit {
   position: absolute;
-  top: 0;
-  left: 44px;
-  width: 85%;
-  padding: 8px 10px 6px 10px;
-  font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
+  top: 8px;
+  right: 0;
+  width: 266px;
+  padding: 7px 10px;
+  font-size: 14px;
+  font-family: "Geometria", Arial, Helvetica, sans-serif;
 }
 
 .label-edit {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Geometria", Arial, Helvetica, sans-serif;
   margin: 0;
   display: block;
   width: 100%;
   padding: 7px 10px;
-  font-size: 25px;
-  word-break: break-all;
+  font-size: 14px;
   flex-grow: 1;
 }
 
@@ -304,11 +307,8 @@ var filters = {
   position: relative;
 }
 
-.view {
-}
-
 .checkbox-label {
-  width: 53px;
+  width: 28px;
 }
 
 .edit-btn,
@@ -318,18 +318,17 @@ var filters = {
   top: 50%;
   transform: translateY(-50%);
   right: 0;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #000;
-  border-radius: 50%;  
+  width: 30px;
+  height: 100%;
+  border: none;
   background-color: #fff;
-  background-size: 25px;
+  background-size: auto;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 }
 
 .edit-btn {
-  right: 55px;
+  right: 29px;
   background-image: url("../assets/pencil.svg");
 }
 
@@ -339,23 +338,12 @@ var filters = {
 
 .editing .label-edit {
   overflow: hidden;
-  word-break: keep-all;
+  height: 32px;
 }
 
-.completed .view {
-  opacity: .6;
+.completed .label-edit {
+  opacity: .3;
   text-decoration: line-through;
-}
-
-.to-cards {
-  position: absolute;
-  top: 17px;
-  right: 16px;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-image: url("../assets/points.svg");
-  background-size: contain;
 }
 
 </style>
