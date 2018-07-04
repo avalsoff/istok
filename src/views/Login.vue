@@ -13,7 +13,7 @@
         <h1 class="login__heading">Вход</h1>
         <input class="login__input" type="text" name="login" placeholder="Имя пользователя">
         <input class="login__input" type="text" name="password" placeholder="Пароль">
-        <button class="login__submit" type="submit">Войти</button>
+        <button @click="goToDisclaimer" class="login__submit" type="submit">Войти</button>
       </form>
       <span class="login__or">Или</span>
       <ul class="login__socials">

@@ -25,6 +25,7 @@ html {
 
 *, *::after, *::before {
   box-sizing: inherit;
+  outline: none;
 }
 
 html, body {

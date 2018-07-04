@@ -5,23 +5,23 @@
     <ul class="settings">
       <li class="settings__item">
         <label class="settings__toggle">
-          Местные уведомления
-          <input type="checkbox" name="online">
+          {{isNotifications ? 'Выключить' : 'Включить'}} уведомления
+          <input v-model="isNotifications" type="checkbox" name="online">
         </label>
       </li>
-      <li class="settings__item">
+      <!-- <li class="settings__item">
         <label class="settings__toggle">
           Местные уведомления
           <input type="checkbox" name="online">
         </label>
-      </li>
+      </li> -->
     </ul>
     <ul class="settings settings--danger">
       <li class="settings__item">
-        <button @click="reload" class="settings__set">Cбросить карточки</button>
+        <button @click="reload" class="settings__set">Cбросить всё</button>
       </li>
       <li class="settings__item">
-        <button class="settings__set">Выйти из аккаунта</button>
+        <button @click="reload" class="settings__set">Выйти из аккаунта</button>
       </li>
     </ul>
   </div>
@@ -169,6 +169,31 @@ input[type="checkbox"] {
 import Header from '../components/Header';
 
 export default {
+  data() {
+    return {
+      isNotifications: true
+    }
+  },
+  watch: {
+    isNotifications: {
+      handler(isNotifications) {
+        if (isNotifications) {
+          // cordova.plugins.notification.local.schedule({
+          //   title: 'Тренинг центр "Исток"',
+          //   text: 'Нажмите, чтобы просмотреть карточки',
+          //   trigger: { every: { second: 30 } }
+          // // trigger: { every: { hour: 18, minute: 0 } }
+          // });
+          cordova.plugins.notification.local.schedule({
+            title: 'Тренинг центр "Исток"',
+            trigger: { in: 1, unit: 'second' }
+          });
+        } else {
+          cordova.plugins.notification.local.cancelAll();
+        }
+      }
+    }
+  },
   components: {
     'app-header': Header
   },
