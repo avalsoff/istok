@@ -64,7 +64,9 @@
   &__logo {
     display: inline-block;
     vertical-align: top;
-    margin-top: get-vw(5px);
+    margin-top: get-vw(25px);
+    margin-bottom: get-vw(20px);
+    width: 65%;
   }
 
   &__map {

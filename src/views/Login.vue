@@ -42,9 +42,9 @@
   background-image: url('../assets/wave-blue.svg'),
                     url('../assets/istok-white.png');
   background-position: 0 14%,
-                       50% 3.5%;
+                       50% 6%;
   background-size: contain,
-                   auto;
+                   40%;
 }
 
 .login {

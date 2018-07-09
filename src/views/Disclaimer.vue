@@ -57,6 +57,7 @@ export default {
   background-repeat: no-repeat;
   background-image: url('../assets/istok-white.png');
   background-position: 50% 94%;
+  background-size: 60%;
 }
 
 .disclaimer {

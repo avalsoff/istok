@@ -32,7 +32,7 @@
   background-position: 0 12%,
                        50% 96%;
   background-size: contain,
-                   auto;
+                   60%;
 }
 
 .menu {

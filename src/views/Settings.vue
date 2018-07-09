@@ -36,7 +36,7 @@
   background-repeat: no-repeat;
   background-image: url('../assets/istok-blue.png');
   background-position: 50% 96%;
-  background-size: auto;
+  background-size: 60%;
   font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
   font-size: get-vw(14px);
 }
