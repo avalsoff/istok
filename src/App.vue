@@ -106,21 +106,19 @@ export default {
       transitionDirection: 1,
     }
   },
-  methods: {
-    swipeLeft() {
-
-    },
-    swipeRight() {
-
-    }
-  },
   mounted() {
-    store.dispatch('getDisclaimer');
-    store.dispatch('getQuestions');
-    store.dispatch('getLanguages');
-    if (localStorage.getItem('Lan-gua-ge')) {
+    let lang = localStorage.getItem('Lan-gua-ge');
+    if (lang) {
+      store.dispatch('getQuestions', lang);
+      store.dispatch('getDisclaimer', lang);
+      store.dispatch('getAbout', lang);
+      store.dispatch('getCard', lang);
+      store.dispatch('getMenu', lang);
+      store.dispatch('getSettings', lang);
+      store.dispatch('getTodoText', lang);
       this.$router.push('disclaimer');
     } else {
+      store.dispatch('getLogin', 'ru');
       this.$router.push('login');
     }
   }

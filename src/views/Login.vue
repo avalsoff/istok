@@ -3,10 +3,10 @@
     <div class="login">
       <ul class="login__languages">
         <li class="login__language">
-          <a class="login__flag login__flag--ru">Русский</a>
+          <a @click="changeLanguage('ru')" class="login__flag login__flag--active login__flag--ru">Русский</a>
         </li>
         <li class="login__language">
-          <a class="login__flag  login__flag--en">English</a>
+          <a  @click="changeLanguage('en')" class="login__flag  login__flag--en">English</a>
         </li>
       </ul>
       <form class="login__form">
@@ -214,8 +214,20 @@ export default {
   ]),
   methods: {
     goToDisclaimer() {
-      localStorage.setItem('Lan-gua-ge', "ru");
+      lang = localStorage.getItem('Lan-gua-ge');
+      if (!lang) this.changeLanguage('ru');
       this.$router.push('disclaimer');
+    },
+    changeLanguage(lang) {
+      localStorage.setItem('Lan-gua-ge', lang);
+      this.$store.dispatch('getLogin', lang);
+      this.$store.dispatch('getQuestions', lang);
+      this.$store.dispatch('getDisclaimer', lang);
+      this.$store.dispatch('getAbout', lang);
+      this.$store.dispatch('getCard', lang);
+      this.$store.dispatch('getMenu', lang);
+      this.$store.dispatch('getSettings', lang);
+      this.$store.dispatch('getTodoText', lang);
     }
   }
 }
