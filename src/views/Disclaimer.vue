@@ -21,7 +21,7 @@
           {{ disclaimer[4] }}        
         </p>
       </div>
-      <router-link class="disclaimer__go-to-cards" tag="a" to="/card">Далее</router-link>
+      <router-link class="disclaimer__go-to-cards" tag="a" to="/card">{{ disclaimer[5] }}</router-link>
     </div>
   </div>
 </v-touch>
@@ -34,9 +34,9 @@ import { mapState } from 'vuex';
 export default {
   name: 'Disclaimer',
   store,
-  computed: mapState({
-    disclaimer: state => state.disclaimer
-  }),
+  computed: mapState([
+    'disclaimer'
+  ]),
   methods: {
     goToCard() {
       this.$router.push('card');

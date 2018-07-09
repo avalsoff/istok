@@ -10,12 +10,12 @@
         </li>
       </ul>
       <form class="login__form">
-        <h1 class="login__heading">Вход</h1>
-        <input class="login__input" type="text" name="login" placeholder="Имя пользователя">
-        <input class="login__input" type="text" name="password" placeholder="Пароль">
-        <button @click="goToDisclaimer" class="login__submit" type="submit">Войти</button>
+        <h1 class="login__heading">{{ login[0] }}</h1>
+        <input class="login__input" type="text" name="login" :placeholder="login[1]">
+        <input class="login__input" type="text" name="password" :placeholder="login[2]">
+        <button @click="goToDisclaimer" class="login__submit" type="submit">{{ login[3] }}</button>
       </form>
-      <span class="login__or">Или</span>
+      <span class="login__or">{{ login[4] }}</span>
       <ul class="login__socials">
         <li class="login__social">
           <a class="login__social-icon login__social-icon--vk">VK</a>
@@ -27,7 +27,7 @@
           <a class="login__social-icon login__social-icon--fb">Facebook</a>
         </li>
       </ul>
-      <a @click="goToDisclaimer" class="login__skip">Пропустить этот шаг</a>
+      <a @click="goToDisclaimer" class="login__skip">{{ login[5] }}</a>
     </div>
   </div>
 </template>
@@ -206,7 +206,12 @@
 </style>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
+  computed: mapState([
+    'login'
+  ]),
   methods: {
     goToDisclaimer() {
       localStorage.setItem('Lan-gua-ge', "ru");

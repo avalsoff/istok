@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <app-header heading="Настройки"></app-header>
-    <h2 class="settings__heading">Основные</h2>
+    <h2 class="settings__heading">{{ settings[0]}}</h2>
     <ul class="settings">
       <li class="settings__item">
         <label class="settings__toggle">
-          {{isNotifications ? 'Выключить' : 'Включить'}} уведомления
+          {{ isNotifications ? settings[1] : settings[2] }} {{ settings[3] }}
           <input v-model="isNotifications" type="checkbox" name="online">
         </label>
       </li>
@@ -18,10 +18,10 @@
     </ul>
     <ul class="settings settings--danger">
       <li class="settings__item">
-        <button @click="reload" class="settings__set">Cбросить всё</button>
+        <button @click="reload" class="settings__set">{{ settings[4] }}</button>
       </li>
       <li class="settings__item">
-        <button @click="reload" class="settings__set">Выйти из аккаунта</button>
+        <button @click="reload" class="settings__set">{{ settings[5] }}</button>
       </li>
     </ul>
   </div>
@@ -167,8 +167,12 @@ input[type="checkbox"] {
 
 <script>
 import Header from '../components/Header';
+import { mapState } from 'vuex';
 
 export default {
+  computed: mapState([
+    'settings'
+  ]),
   data() {
     return {
       isNotifications: true

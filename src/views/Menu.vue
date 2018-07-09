@@ -4,16 +4,16 @@
     <main class="menu">
       <ul class="menu__items">
         <router-link tag="li" to="/card" class="menu__item menu__item--cards">
-          <a class="menu__link">Карточки</a>
+          <a class="menu__link">{{ menu[0] }}</a>
         </router-link>
         <router-link tag="li" to="/about" class="menu__item menu__item--company">
-          <a class="menu__link">О компании</a>
+          <a class="menu__link">{{ menu[1] }}</a>
         </router-link>
         <router-link tag="li" to="/todo" class="menu__item menu__item--todos">
-          <a class="menu__link">Список задач</a>
+          <a class="menu__link">{{ menu[2] }}</a>
         </router-link>
         <router-link tag="li" to="/settings" class="menu__item menu__item--settings">
-          <a class="menu__link">Настройки</a>
+          <a class="menu__link">{{ menu[3] }}</a>
         </router-link>
       </ul>
     </main>
@@ -87,8 +87,12 @@
 
 <script>
 import Header from '../components/Header';
+import { mapState } from 'vuex';
 
 export default {
+  computed: mapState([
+    'menu'
+  ]),
   components: {
     'app-header': Header
   }

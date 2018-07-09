@@ -10,8 +10,8 @@
           <section 
             class="cards__card"
             v-if="!showAddMoreView">
-            <small class="cards__count">Вопрос {{ state.currentHistoryIndex + 1 }} из {{ state.maxQuestions }}</small>
-            <h2 class="cards__caption">Карточка</h2>
+            <small class="cards__count">{{ card[0] }} {{ state.currentHistoryIndex + 1 }} {{ card[1] }} {{ state.maxQuestions }}</small>
+            <h2 class="cards__caption">{{ card[2] }}</h2>
             <transition v-bind:name="slideDirection" mode="out-in">
               <div 
                 class="cards__data"
@@ -42,13 +42,13 @@
           <div 
             class="cards__add-more"
             v-if="showAddMoreView">
-            <small class="cards__count">Сейчас карточек: {{ state.maxQuestions }}</small>
-            <h2 class="cards__caption">Упс...</h2>
-            <p class="cards__message">У вас закончились карточки, вы хотите добавить еще несколько вопросов?</p>
+            <small class="cards__count">{{ card[3] }} {{ state.maxQuestions }}</small>
+            <h2 class="cards__caption">{{ card[4] }}</h2>
+            <p class="cards__message">{{ card[5] }}</p>
             <button 
             class="cards__add-btn"
             @click="increaseMaxQuestions">
-              Добавить
+              {{ card[6] }}
             </button>
             <img class="cards__wave-img" src="../assets/wave-blue.svg" alt="Волна">
           </div>
@@ -107,6 +107,7 @@ export default {
   },
   computed: mapState([
     'questions',
+    'card',
   ]),
   methods: {
     setInit() {      

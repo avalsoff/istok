@@ -2,11 +2,9 @@
   <div class="wrapper">
     <app-header heading="О компании"></app-header>
     <main class="about">
-      <small class="about__caption">Тренинги для бизнеса</small>
-      <h2 class="about__heading">Наша история</h2>
-      <p class="about__text">Тренинг-центр «Исток» находится в городе Хабаровск. 
-Мы работаем на территории всего Дальнего Востока и за его пределами. 
-Клиентами коучинга, менторинга могут стать жители любой точки мира, достаточно иметь доступ к Skype.</p>
+      <small class="about__caption">{{ about[0] }}</small>
+      <h2 class="about__heading">{{ about[1] }}</h2>
+      <p class="about__text">{{ about[2] }}</p>
       <img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'>
       <div  class="about__map">
         <yandex-map 
@@ -113,8 +111,12 @@
 <script>
 import Header from '../components/Header';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import { mapState } from 'vuex';
 
 export default {
+  computed: mapState([
+    'about'
+  ]),
   components: {
     'app-header': Header,
     yandexMap,

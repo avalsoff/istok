@@ -41,6 +41,8 @@
 <script>
 import store from '../store';
 import Header from '../components/Header';
+import { mapState } from 'vuex';
+
 // Full spec-compliant TodoMVC with localStorage persistence
 // and hash-based routing in ~120 effective lines of JavaScript.
 
@@ -90,6 +92,10 @@ export default {
   // computed properties
   // http://vuejs.org/guide/computed.html
   computed: {
+    todoText: mapState({
+      todoText: state => state.todoText
+    }),
+
     filteredTodos() {
       return filters[this.visibility](this.todos)
     },
