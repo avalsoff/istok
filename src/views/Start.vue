@@ -58,7 +58,7 @@ export default {
 .greet {
   margin-top: 5%;
   text-align: center;
-  font-size: 50px;
+  font-size: get-vw(50px);
   color: #1F236D;
 }
 
@@ -66,7 +66,7 @@ export default {
   margin: 0;
   margin-left: auto;
   margin-right: auto;
-  max-width: 700px;
+  max-width: get-vw(700px);
   padding: 0;
   list-style-type: none;
   text-align: center;
@@ -81,18 +81,18 @@ export default {
   display: block;
   text-decoration: none;
   width: 100%;
-  padding: 20px;
-  margin-top: 8px;
+  padding: get-vw(20px);
+  margin-top: get-vw(8px);
   color: #fff;
   border: none;
-  font-size: 25px;
+  font-size: get-vw(25px);
   font-weight: bold;
   background-color: #1F236D;
 }
 
 .choose {
   text-align: center;
-  font-size: 28px;
+  font-size: get-vw(28px);
   color: #1F236D;
 }
 
@@ -103,16 +103,16 @@ export default {
   /* vh */
   margin-left: auto;
   margin-right: auto;
-  max-width: 1000px;
-  /* border: 1px solid #000; */
+  max-width: get-vw(1000px);
+  /* border: get-vw(1px) solid #000; */
 }
 
 .start::after {
   content: "";
   top: 55%;
   position: absolute;
-  width: 2000px;
-  height: 1000px;
+  width: get-vw(2000px);
+  height: get-vw(1000px);
   background-color: #1F236D;
   transform: rotate(-10deg) translateX(-40%);
 }
@@ -124,7 +124,7 @@ export default {
   top: 80%;
   left: 50%;
   transform: translateX(-50%);
-  width: 450px;
+  width: get-vw(450px);
 }
 
 .logo-img {
@@ -132,30 +132,30 @@ export default {
   height: auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: get-vw(768px)) {
   .start::after {
     top: 65%;
   }
 
   .logo {
     top: 84%;
-    width: 350px;
+    width: get-vw(350px);
   }
 }
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: get-vw(460px)) {
   .greet {
     margin-top: 10%;
-    font-size: 35px;
+    font-size: get-vw(35px);
   }
 
   .choose {
-    font-size: 20px;
+    font-size: get-vw(20px);
   }
 
   .language-btn {
-    padding: 10px;
-    margin-top: 4px;
+    padding: get-vw(10px);
+    margin-top: get-vw(4px);
   }
 
   .start::after {
@@ -164,7 +164,7 @@ export default {
 
   .logo {
     top: 85%;
-    width: 220px;
+    width: get-vw(220px);
   }
 }
 </style>

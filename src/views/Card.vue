@@ -295,7 +295,7 @@ export default {
     border-radius: get-vw(15px);
     padding: get-vw(60px) get-vw(25px) get-vw(25px);
     background-image: url("../assets/wave-blue.svg");
-    background-position: 60% -40px;
+    background-position: 60% get-vw(-40px);
     background-size: 110%;
     background-repeat: no-repeat;
   }

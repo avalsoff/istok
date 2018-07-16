@@ -119,11 +119,11 @@
     font-size: get-vw(14px);
     margin: get-vw(20px) auto 0;
     width: get-vw(200px);
-    border: 1px solid transparent;
+    border: get-vw(1px) solid transparent;
 
     &:focus {
       outline: none;
-      border: 1px solid  #1C236E;
+      border: get-vw(1px) solid  #1C236E;
       background-color: #fff;
       color: #000;
     }

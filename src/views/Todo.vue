@@ -221,7 +221,7 @@ var filters = {
   color: rgba($color: #1C236E, $alpha: .3);
   margin: get-vw(25px) get-vw(15px) get-vw(2px);
   text-align: center;
-  border: 1px solid transparent;
+  border: get-vw(1px) solid transparent;
   
   &::placeholder {
     color: rgba($color: #1C236E, $alpha: .3);
@@ -229,7 +229,7 @@ var filters = {
 
   &:focus {
     outline: none;
-    border: 1px solid  #1C236E;
+    border: get-vw(1px) solid  #1C236E;
     background-color: #fff;
     color: #000;
   }

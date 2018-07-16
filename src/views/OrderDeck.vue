@@ -31,28 +31,28 @@
 
 .order-deck {
   &__image {
-    width: 185px;
-    height: 185px;
+    width: get-vw(185px);
+    height: get-vw(185px);
     background-color: #fff;
     border-radius: 50%;
     margin: 0 auto;
     background-image: url('../assets/cards-mock.jpg');
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: 100%;
     background-position: 50% 0; 
-    border: 5px solid #ea7d00;
-    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
-    margin-top: 22px;
+    border: get-vw(5px) solid #ea7d00;
+    box-shadow: get-vw(0px) get-vw(20px) get-vw(30px) rgba(0, 0, 0, 0.15);
+    margin-top: get-vw(22px);
   }
 
   &__form {
-    margin-top: 40px;
+    margin-top: get-vw(40px);
   }
 
   &__input {
     display: block;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: get-vw(20px);
     text-align: center;
     border-radius: get-vw(7px);
     padding: get-vw(10px) get-vw(10px) get-vw(10px);
@@ -62,13 +62,13 @@
     font-size: get-vw(14px);
     margin: get-vw(20px) auto 0;
     width: get-vw(200px);
-    border: 1px solid transparent;    
+    border: get-vw(1px) solid transparent;    
     font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
     
 
     &:focus {
       outline: none;
-      border: 1px solid  #1C236E;
+      border: get-vw(1px) solid  #1C236E;
       background-color: #fff;
       color: #000;
     }
@@ -86,42 +86,43 @@
   &__submit {
     display: block;
     margin: 0 auto;
-    margin-top: 20px;
-    border-radius: 20px;
+    margin-top: get-vw(20px);
+    border-radius: get-vw(20px);
     color: #fff;
     border: none;
     background-color: #1E226D;
-    font-size: 12px;
-    padding: 11px 12px;
-    width: 120px;
+    font-size: get-vw(12px);
+    padding: get-vw(11px) get-vw(12px);
+    width: get-vw(120px);
     font-family: 'Geometria Bold', Arial, Helvetica, sans-serif;
   }
 
   &__wave-img {
+    z-index: -1;
     position: absolute;
     bottom: 0;
     left: 0;
     background-image: url('../assets/wave-blue.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: 0 -30px;
+    background-position: 0 get-vw(-30px);
     width: 100%;
-    height: 100px;
+    height: get-vw(100px);
     transform: rotateX(-180deg);
   }
 
   &__succes {
     text-align: center;
-    padding: 35px;
+    padding: get-vw(35px);
   }
 
   &__back {
     position: relative;
     appearance: none;
-    margin-top: 20px;
+    margin-top: get-vw(20px);
     border: none;
     background: 0;
-    font-size: 14px;
+    font-size: get-vw(14px);
     color: #1C236E;
     font-family: 'Geometria Bold', Arial, Helvetica, sans-serif;
 

@@ -104,10 +104,10 @@
     &::before {
       position: absolute;
       content: "";
-      top: 0px;
-      left: -25px;
-      width: 20px;
-      height: 20px;
+      top: get-vw(0px);
+      left: get-vw(-25px);
+      width: get-vw(20px);
+      height: get-vw(20px);
       background-repeat: no-repeat;
       background-size: contain;          
       background-image: url("../assets/chain.svg");  
@@ -119,8 +119,8 @@
 
     &::before {
       background-image: url("../assets/mail.svg");
-      top: 1px;
-      left: -27px;         
+      top: get-vw(1px);
+      left: get-vw(-27px);         
     }
   }
 
@@ -135,7 +135,7 @@
 
 .services {
   &__heading {
-    font-size: 18px;
+    font-size: get-vw(18px);
     font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
   }
 
@@ -150,15 +150,15 @@
     position: relative;
     text-decoration: none;
     color: #1C236E;
-    font-size: 14px;
+    font-size: get-vw(14px);
     &::before {
       position: absolute;
       content: "";
-      width: 6px;
-      height: 6px;
+      width: get-vw(6px);
+      height: get-vw(6px);
       background-color: #EA7D00;
-      top: 6px;
-      left: -12px;
+      top: get-vw(6px);
+      left: get-vw(-12px);
       border-radius: 50%;
     }
 

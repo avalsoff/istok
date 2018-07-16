@@ -89,9 +89,9 @@ export default {
 
   &__photo {
     margin: 0 auto;
-    width: 115px;
+    width: get-vw(115px);
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: get-vw(3px) solid #fff;
     overflow: hidden;
 
     img {
@@ -103,20 +103,21 @@ export default {
 
   &__name {
     display: block;
-    margin-top: 10px;
+    margin-top: get-vw(10px);
     position: relative;
-    left: -4px;    
+    left: get-vw(-4px);    
   }
 
   &__name-sign {
-    margin-top: 3px;
+    margin-top: get-vw(3px);
     font-family: "Geometria Light", Arial, Helvetica, sans-serif;
   }
 
   &__go-to-cards {
     position: relative;
+    left: get-vw(-20px);
     display: block;
-    width: 50px;
+    width: get-vw(50px);
     margin: 0 auto;
     margin-top: get-vw(25px);
     color: #fff;
