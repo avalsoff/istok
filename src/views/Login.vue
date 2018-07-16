@@ -3,17 +3,31 @@
     <div class="login">
       <ul class="login__languages">
         <li class="login__language">
-          <a @click="changeLanguage('ru')" class="login__flag login__flag--active login__flag--ru">Русский</a>
+          <a 
+            @click="changeLanguage('ru')" 
+            class="login__flag login__flag--ru"
+            :class="{'login__flag--active' : currentLanguage == 'ru'}"
+          >Русский</a>
         </li>
         <li class="login__language">
-          <a  @click="changeLanguage('en')" class="login__flag  login__flag--en">English</a>
+          <a  
+            @click="changeLanguage('en')" 
+            class="login__flag  login__flag--en"
+            :class="{'login__flag--active' : currentLanguage == 'en'}"
+          >English</a>
         </li>
       </ul>
-      <form class="login__form">
+      <form v-if="!register" class="login__form">
         <h1 class="login__heading">{{ login[0] }}</h1>
         <input class="login__input" type="text" name="login" :placeholder="login[1]">
         <input class="login__input" type="text" name="password" :placeholder="login[2]">
         <button @click="goToDisclaimer" class="login__submit" type="submit">{{ login[3] }}</button>
+      </form>
+      <form v-if="register" class="login__form">
+        <h1 class="login__heading">{{ login[6] }}</h1>
+        <input class="login__input" type="text" name="login" :placeholder="login[1]">
+        <input class="login__input" type="text" name="password" :placeholder="login[2]">
+        <button @click="goToDisclaimer" class="login__submit" type="submit">{{ login[7] }}</button>
       </form>
       <span class="login__or">{{ login[4] }}</span>
       <ul class="login__socials">
@@ -27,7 +41,7 @@
           <a class="login__social-icon login__social-icon--fb">Facebook</a>
         </li>
       </ul>
-      <a @click="goToDisclaimer" class="login__skip">{{ login[5] }}</a>
+      <a @click="register = !register" class="login__toggle-login">{{ register ? login[0] : login[6] }}</a>
     </div>
   </div>
 </template>
@@ -69,6 +83,7 @@
     border-radius: 50%;
     background-size: contain;
     background-repeat: no-repeat;
+    opacity: .45;
 
     &--ru {
       background-image: url('../assets/flag-russia.svg');
@@ -77,6 +92,12 @@
     &--en {
       background-image: url('../assets/flag-us.svg');
     }
+
+    &--active {
+      opacity: 1;
+    }
+
+
   }
 
   &__heading {
@@ -116,8 +137,7 @@
   &__submit {
     display: block;
     margin: get-vw(20px) auto 0;
-    padding: get-vw(10px) 0 get-vw(9px);
-    width: get-vw(120px);
+    padding: get-vw(10px) get-vw(42px) get-vw(9px);
     border-radius: get-vw(20px);
     background: none;
     border: get-vw(1px) solid  #fff;
@@ -193,7 +213,7 @@
     }
   }
 
-  &__skip {
+  &__toggle-login {
     display: block;
     margin-top: get-vw(7px);
     text-align: center;
@@ -214,12 +234,13 @@ export default {
   ]),
   methods: {
     goToDisclaimer() {
-      lang = localStorage.getItem('Lan-gua-ge');
+      let lang = localStorage.getItem('Lan-gua-ge');
       if (!lang) this.changeLanguage('ru');
       this.$router.push('disclaimer');
     },
     changeLanguage(lang) {
       localStorage.setItem('Lan-gua-ge', lang);
+      this.currentLanguage = lang;
       this.$store.dispatch('getLogin', lang);
       this.$store.dispatch('getQuestions', lang);
       this.$store.dispatch('getDisclaimer', lang);
@@ -228,6 +249,12 @@ export default {
       this.$store.dispatch('getMenu', lang);
       this.$store.dispatch('getSettings', lang);
       this.$store.dispatch('getTodoText', lang);
+    }
+  },
+  data() {
+    return {
+      currentLanguage: localStorage.getItem('Lan-gua-ge') || 'ru',
+      register: false
     }
   }
 }

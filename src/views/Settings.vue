@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <app-header heading="Настройки"></app-header>
+    <app-header :heading="settings[7]"></app-header>
     <h2 class="settings__heading">{{ settings[0]}}</h2>
     <ul class="settings">
       <li class="settings__item">
@@ -9,6 +9,11 @@
           <input v-model="isNotifications" type="checkbox" name="online">
         </label>
       </li>
+      <!-- <li class="settings__item">
+        <button type="button" class="settings__button">
+            {{ settings[6] }}
+        </button>
+      </li> -->
       <!-- <li class="settings__item">
         <label class="settings__toggle">
           Местные уведомления
@@ -36,7 +41,7 @@
   background-repeat: no-repeat;
   background-image: url('../assets/istok-blue.png');
   background-position: 50% 96%;
-  background-size: 60%;
+  background-size: 30%;
   font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
   font-size: get-vw(14px);
 }
@@ -79,6 +84,14 @@
     background-color: #fff;
     font-size: get-vw(14px);
     font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
+  }
+
+  &__button {
+    padding: get-vw(12px) 0;
+    border: none;
+    background: 0;
+    font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
+    font-size: get-vw(14px);
   }
 }
 

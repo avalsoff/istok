@@ -11,6 +11,24 @@ export default {
   todos(state, todos) {
     state.todos = todos;
   },
+  about(state, about) {
+    state.about = about;
+  },
+  card(state, card) {
+    state.card = card;
+  },
+  menu(state, menu) {
+    state.menu = menu;
+  },
+  settings(state, settings) {
+    state.settings = settings;
+  },
+  login(state, login) {
+    state.login = login;
+  },
+  todoText(state, todoText) {
+    state.todoText = todoText;
+  },
   pushHistory(state, item) {
     state.history.push(item);
   },

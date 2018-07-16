@@ -1,10 +1,10 @@
 <template>
 <section class="todoapp">
 <div class="wrapper">
-  <app-header heading="Список задач"></app-header>
+  <app-header :heading="todoText[1]"></app-header>
   <input class="new-todo"
     autofocus autocomplete="off"
-    placeholder="Новая задача"
+    :placeholder="todoText[0]"
     v-model="newTodo"
     @keyup.enter="addTodo"
     @blur="addTodo">
@@ -92,9 +92,7 @@ export default {
   // computed properties
   // http://vuejs.org/guide/computed.html
   computed: {
-    todoText: mapState({
-      todoText: state => state.todoText
-    }),
+    ...mapState(['todoText']),
 
     filteredTodos() {
       return filters[this.visibility](this.todos)

@@ -8,6 +8,7 @@ import Login from './views/Login.vue';
 import Menu from './views/Menu.vue';
 import Settings from './views/Settings.vue';
 import About from './views/About.vue';
+import OrderDeck from './views/OrderDeck.vue';
 
 Vue.use(Router)
 
@@ -56,7 +57,12 @@ export default new Router({
     {
       path: '/about',
       name: 'About',
-      component: About
+      component: About    
+    },
+    {
+      path: '/orderdeck',
+      name: 'OrderDeck',
+      component: OrderDeck
     }
 
   ]

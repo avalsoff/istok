@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <app-header heading="Меню" back="true"></app-header>
+    <app-header :heading="menu[4]" back="true"></app-header>
     <main class="menu">
       <ul class="menu__items">
         <router-link tag="li" to="/card" class="menu__item menu__item--cards">
@@ -12,9 +12,12 @@
         <router-link tag="li" to="/todo" class="menu__item menu__item--todos">
           <a class="menu__link">{{ menu[2] }}</a>
         </router-link>
+        <router-link tag="li" to="/orderdeck" class="menu__item menu__item--deck">
+          <a class="menu__link">{{ menu[5] }}</a>
+        </router-link>
         <router-link tag="li" to="/settings" class="menu__item menu__item--settings">
           <a class="menu__link">{{ menu[3] }}</a>
-        </router-link>
+        </router-link>     
       </ul>
     </main>
   </div>
@@ -32,7 +35,7 @@
   background-position: 0 12%,
                        50% 96%;
   background-size: contain,
-                   60%;
+                   30%;
 }
 
 .menu {
@@ -73,6 +76,10 @@
 
     &--settings::before {
       background-image: url('../assets/settings.svg');
+    }
+
+    &--deck::before {
+      background-image: url('../assets/deck.svg');
     }
   }
 

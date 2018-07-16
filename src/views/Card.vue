@@ -4,14 +4,15 @@
     @swiperight="prevCard"
     :swipe-options="{direction: 'horizontal'}">
     <div class="wrapper">
-      <app-header heading="Карточки"></app-header>
+      <app-header :heading="card[7]"></app-header>
       <main class="cards">
         <transition name="fade" mode="out-in">
           <section 
             class="cards__card"
             v-if="!showAddMoreView">
             <small class="cards__count">{{ card[0] }} {{ state.currentHistoryIndex + 1 }} {{ card[1] }} {{ state.maxQuestions }}</small>
-            <h2 class="cards__caption">{{ card[2] }}</h2>
+            <!-- <h2 class="cards__caption">{{ card[2] }}</h2> -->
+            <h2 class="cards__caption">  </h2>
             <transition v-bind:name="slideDirection" mode="out-in">
               <div 
                 class="cards__data"
@@ -138,7 +139,7 @@ export default {
       this.setIsAnswered();
     },
     getAnswer() {
-      return (this.state.answers[this.state.currentHistoryIndex] || 'Ответить');
+      return (this.state.answers[this.state.currentHistoryIndex] || this.card[8]);
       // return (this.state.answers[this.state.currentHistoryIndex] || 'К');
     },
     doneEditAnswer() {
@@ -220,7 +221,7 @@ export default {
       this.nextCard();
     },
     setIsAnswered() {
-      if (this.currentAnswer == 'Ответить') {
+      if (this.currentAnswer == this.card[8]) {
         this.isAnswered = false;
       } else {
         this.isAnswered = true;
@@ -266,7 +267,7 @@ export default {
   background-repeat: no-repeat;
   background-image: url('../assets/istok-blue.png');
   background-position: 50% 96%;
-  background-size: 60%;
+  background-size: 30%;
   font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
   font-size: get-vw(14px);
 }
@@ -294,7 +295,7 @@ export default {
     border-radius: get-vw(15px);
     padding: get-vw(60px) get-vw(25px) get-vw(25px);
     background-image: url("../assets/wave-blue.svg");
-    background-position: 60% -30%;
+    background-position: 60% -40px;
     background-size: 110%;
     background-repeat: no-repeat;
   }
@@ -347,6 +348,7 @@ export default {
     margin-top: get-vw(24px);
     max-width: get-vw(220px);
     overflow: hidden;
+    word-wrap: break-word;
     //   appearance: none;
     // display: block;
     // background: #f17e00;
