@@ -12,9 +12,9 @@
         <router-link tag="li" to="/todo" class="menu__item menu__item--todos">
           <a class="menu__link">{{ menu[2] }}</a>
         </router-link>
-        <router-link tag="li" to="/orderdeck" class="menu__item menu__item--deck">
-          <a class="menu__link">{{ menu[5] }}</a>
-        </router-link>
+        <!--<router-link tag="li" to="/orderdeck" class="menu__item menu__item&#45;&#45;deck">-->
+          <!--<a class="menu__link">{{ menu[5] }}</a>-->
+        <!--</router-link>-->
         <router-link tag="li" to="/settings" class="menu__item menu__item--settings">
           <a class="menu__link">{{ menu[3] }}</a>
         </router-link>     

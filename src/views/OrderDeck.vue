@@ -1,19 +1,39 @@
 <template>
   <div class="wrapper">
-    <app-header heading="Заказать колоду" back="true"></app-header>
+    <app-header :heading="orderDeck.heading" back="true"></app-header>
     <main class="order-deck">
       <div class="order-deck__image">
       </div>
       <form v-if="!success" class="order-deck__form" action="">
-        <input class="order-deck__input" type="text" name="Name" id="name" placeholder="Имя">
-        <input class="order-deck__input" type="tel" name="Tel" id="tel" placeholder="Телефон">
-        <button @click="success=true" class="order-deck__submit" type="button">Заказать</button>
+        <input 
+          class="order-deck__input" 
+          type="text" 
+          name="Name" 
+          id="name" 
+          :placeholder="orderDeck.name"
+        >
+        <input 
+          class="order-deck__input" 
+          type="tel" 
+          name="Tel" 
+          id="tel" 
+          :placeholder="orderDeck.phone"
+        >
+        <button 
+          @click="success=true" 
+          class="order-deck__submit" 
+          type="button"
+        >
+          {{ orderDeck.order }}
+        </button>
       </form>
       <div v-if="success" class="order-deck__succes">
         <p class="order-deck__succes-text">
-          Вы успешно оформили заказ на колоду карт с вопросами. В ближайшее время с вами свяжется наш менеджер.
+          {{ orderDeck.successText }}
         </p>
-        <button @click="success=false" class="order-deck__back" type="button">Назад</button>
+        <button @click="success=false" class="order-deck__back" type="button">
+          {{ orderDeck.backButton }}
+        </button>
       </div>
       <div class="order-deck__wave-img">
       </div>
@@ -27,6 +47,7 @@
 
 .wrapper {
   font-family: 'Geometria', Arial, Helvetica, sans-serif;
+  font-size: get-vw(14px);
 }
 
 .order-deck {
@@ -146,9 +167,12 @@
 
 <script>
 import Header from '../components/Header';
-// import { mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
+  computed: mapState([
+    'orderDeck'
+  ]),
   data() {
     return {
       success: false

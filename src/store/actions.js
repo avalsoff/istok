@@ -72,4 +72,12 @@ export default {
     let todoText = require(`../res/${lang}.js`).default.todoText;
     commit('todoText', todoText);
   },
+
+  async getOrderDeck({ commit }, lang) {
+    // const url = `http://localhost:3000/todoText`;
+    // const url = `http://www.blabla.com/api.php?language=${lang}`;
+    // const response = await axios.get(url);
+    let orderDeck = require(`../res/${lang}.js`).default.orderDeck;
+    commit('orderDeck', orderDeck);
+  },
 }

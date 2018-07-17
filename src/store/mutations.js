@@ -34,5 +34,8 @@ export default {
   },
   clearHistory(state) {
     state.history = [];
+  },
+  orderDeck(state, orderDeck) {
+    state.orderDeck = orderDeck;
   }
 }

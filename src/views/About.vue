@@ -1,23 +1,28 @@
 <template>
   <div class="wrapper">
-    <app-header :heading="about[3]"></app-header>
+    <app-header :heading="about.heading"></app-header>
     <main class="about">
-      <small class="about__caption">{{ about[0] }}</small>
-      <h2 class="about__heading">{{ about[1] }}</h2>
-      <p class="about__text">{{ about[2] }}</p>
+      <small class="about__caption">{{ about.business }}</small>
+      <h2 class="about__heading">{{ about.history }}</h2>
+      <p class="about__text">{{ about.about }}</p>
       <div class="about__services services">
         <h2 class="services__heading">
-          Услуги компании:
+          {{ about.services }}
         </h2>
         <ul class="services__list">
           <li class="services__item">
-            <a href="#" class="services__link">Тренинг</a>
+            <a href="#" class="services__link">
+              {{ about.training }}</a>
           </li>
           <li class="services__item">
-            <a href="#" class="services__link">Коучинг</a>
+            <a href="#" class="services__link">
+              {{ about.coaching }}
+            </a>
           </li>
           <li class="services__item">
-            <a href="#" class="services__link">Фасилитация</a>
+            <a href="#" class="services__link">
+              {{ about.facilitation }}
+            </a>
           </li>
         </ul>
       </div>

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Disclaimer from './views/Disclaimer.vue';
 import Card from './views/Card.vue';
-// import Start from './views/Start.vue';
 import Todo from './views/Todo.vue';
 import Login from './views/Login.vue';
 import Menu from './views/Menu.vue';
@@ -10,7 +9,7 @@ import Settings from './views/Settings.vue';
 import About from './views/About.vue';
 import OrderDeck from './views/OrderDeck.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
