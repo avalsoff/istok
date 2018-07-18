@@ -10,8 +10,8 @@
 					<section
 						class="cards__card"
 						v-if="!showAddMoreView">
-						<small class="cards__count">{{ card.question }} {{ state.currentHistoryIndex + 1 }} {{ card.of
-							}} {{ state.maxQuestions }}
+						<small class="cards__count">
+							{{ card.question }} {{ state.currentHistoryIndex + 1 }} {{ card.of }} {{ state.maxQuestions }}
 						</small>
 						<!-- <h2 class="cards__caption">{{ card.card }}</h2> -->
 						<h2 class="cards__caption"></h2>
@@ -24,10 +24,12 @@
 									<label
 										class="answer__view"
 										v-bind:class="{
-                      'answer__view--editing' : editingAnswer, 'answer__view--answered' : isAnswered 
-                    }"
+											'answer__view--editing' : editingAnswer,
+											'answer__view--answered' : isAnswered
+										}"
 										@click="editAnswer"
-										@tap="editAnswer">
+										@tap="editAnswer"
+									>
 										{{ currentAnswer }}
 									</label>
 									<input
@@ -37,7 +39,8 @@
 										v-show="editingAnswer"
 										@blur="doneEditAnswer"
 										@keyup.enter="doneEditAnswer"
-										v-model.lazy="currentAnswer">
+										v-model.lazy="currentAnswer"
+									>
 								</div>
 							</div>
 						</transition>
@@ -50,7 +53,8 @@
 						<p class="cards__message">{{ card.over }}</p>
 						<button
 							class="cards__add-btn"
-							@click="increaseMaxQuestions">
+							@click="increaseMaxQuestions"
+						>
 							{{ card.add }}
 						</button>
 						<img class="cards__wave-img" src="../assets/wave-blue.svg" alt="Волна">
@@ -106,7 +110,7 @@
 					// console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
 					stateStorage.save(state);
 					this.updateSettings();
-					this.$store.dispatch('getSettingsData');
+					// this.$store.dispatch('getSettingsData');
 				},
 				deep: true
 			}
@@ -118,7 +122,7 @@
 		]),
 		methods: {
 			setInit() {
-				Object.assign(this.state, this.settingsData);
+				this.state = this.settingsData;
 				if (this.state.history.length == 0) {
 					let max = this.questions.length - 1;
 					let randomQuestionIndex = this.getRandomInt(0, max);
@@ -234,18 +238,23 @@
 			},
 			async updateSettings() {
 				const settingsUrl = 'https://istok.hiddenpool.tech/update-settings';
-				const settingsData = Object.assign(this.settingsData, {settings: this.state });
+				let currentSettingsData = {settings: this.state};
 				const requestConfig = {
 					params: {
 						authKey: localStorage.getItem('Istok-Auth-Key')
 					}
 				};
-				const response = await this.$http.post(settingsUrl, settingsData, requestConfig);
-				console.log(response);
+				this.$http.post(settingsUrl, currentSettingsData, requestConfig);
 			}
 		},
 		created() {
 			this.setInit();
+		},
+		beforeDestroy() {
+			this.updateSettings();
+		},
+		destroyed() {
+			this.$store.dispatch('getSettingsData');
 		}
 	}
 </script>

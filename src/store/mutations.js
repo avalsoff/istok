@@ -39,8 +39,6 @@ export default {
 		state.orderDeck = orderDeck;
 	},
 	settingsData(state, settingsData) {
-		console.log('Before commiting: ' + settingsData);
 		state.settingsData = settingsData;
-		console.log('After commiting state: ' + state.settingsData);
 	}
 }

@@ -2,14 +2,6 @@
 import Vue from 'vue';
 
 export default {
-	// async getLanguages({ commit }) {
-	//   // const url = `http://localhost:3000/languages`;
-	//   const url = `http://www.blabla.com/api.php`;
-	//   const response = await axios.get(url);
-	//   let languages = response.data;
-	//   commit('languages', languages);
-	// },
-	
 	async getQuestions({commit}, lang) {
 		// const url = `http://localhost:3000/questions`;
 		// const url = `http://www.blabla.com/api.php?language=${lang}`;
@@ -89,9 +81,23 @@ export default {
 			}
 		});
 		let settingsData = response.data.body.settings;
-		settingsData.currentHistoryIndex = Number(settingsData.currentHistoryIndex);
-		settingsData.maxQuestions = Number(settingsData.maxQuestions);
-		settingsData.history = settingsData.history.map(item => Number(item));
+		settingsData.currentHistoryIndex = settingsData.currentHistoryIndex ?
+			Number(settingsData.currentHistoryIndex) : 0;
+		settingsData.maxQuestions = settingsData.maxQuestions ?
+			Number(settingsData.maxQuestions) : 5;
+		settingsData.history = settingsData.history ?
+			settingsData.history.map(item => Number(item)) : [];
+		settingsData.todos = settingsData.todos ?
+			settingsData.todos.map(todo => {
+				let boolCompleted = (todo.completed == 'true');
+				let idNumber = Number(todo.id);
+				let titleString = String(todo.title);
+				return {
+					completed: boolCompleted,
+					id: idNumber,
+					title: titleString
+				};
+			}) : [];
 		let trashWords = ['undefined', 'Ответить', 'Answer', 'null'];
 		settingsData.answers = settingsData.answers ?
 			settingsData.answers.map(answer => trashWords.includes(answer) ? '' : answer) : [];
