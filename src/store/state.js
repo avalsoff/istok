@@ -1,15 +1,20 @@
 export default {
-  languages: [],
-  questions: [],
-  disclaimer: [],
-  about: [],
-  card: [],
-  login: [],
-  menu: [],
-  settings: [],
-  todoText: [],
-  todos: [],
-  history: [],
-  orderDeck: {}
-
+	languages: [],
+	questions: [],
+	disclaimer: [],
+	about: [],
+	card: [],
+	login: [],
+	menu: [],
+	settings: [],
+	todoText: [],
+	todos: [],
+	history: [],
+	orderDeck: {},
+	settingsData: {
+		currentHistoryIndex: 0,
+		history: [],
+		maxQuestions: 5,
+		answers: [],
+	},
 }

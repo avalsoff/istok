@@ -73,26 +73,12 @@
 	var emptyState = '{"history":[],"answers":[],"currentHistoryIndex":0,"maxQuestions":5}';
 	var stateStorage = {
 		fetch() {
-			var serverState = getServerState();
-			var localStateOrEmptyState = JSON.parse(localStorage.getItem(STORAGE_KEY) || emptyState);
-			var state = serverState || localStateOrEmptyState;
+			var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || emptyState);
 			return state;
 		},
 		save(state) {
 			localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 		}
-	};
-	
-	var getServerState = function () {
-		var serverState;
-		Vue.http.get('https://istok.hiddenpool.tech/get-user', {
-			params: {
-				authKey: localStorage.getItem('Istok-Auth-Key')
-			}
-		}).then(function(response) {
-			serverState = response.body.body.settings;
-		});
-		return serverState;
 	};
 	
 	export default {
@@ -102,10 +88,10 @@
 		},
 		data() {
 			return {
-				answer: null,
+				answer: "",
 				state: stateStorage.fetch(),
 				currentQuestion: 'Loading...',
-				currentAnswer: 'Кликните, чтобы ответить',
+				currentAnswer: 'Loading...',
 				showAnswer: false,
 				editingAnswer: false,
 				showAddMoreView: false,
@@ -120,6 +106,7 @@
 					// console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
 					stateStorage.save(state);
 					this.updateSettings();
+					this.$store.dispatch('getSettingsData');
 				},
 				deep: true
 			}
@@ -127,9 +114,11 @@
 		computed: mapState([
 			'questions',
 			'card',
+			'settingsData'
 		]),
 		methods: {
 			setInit() {
+				Object.assign(this.state, this.settingsData);
 				if (this.state.history.length == 0) {
 					let max = this.questions.length - 1;
 					let randomQuestionIndex = this.getRandomInt(0, max);
@@ -168,8 +157,6 @@
 			editAnswer() {
 				this.editingAnswer = true;
 				this.$nextTick(() => {
-					
-					
 					this.$refs.input.focus();
 					this.$refs.input.value = '';
 				});
@@ -247,7 +234,7 @@
 			},
 			async updateSettings() {
 				const settingsUrl = 'https://istok.hiddenpool.tech/update-settings';
-				const settingsData = { settings: this.state };
+				const settingsData = Object.assign(this.settingsData, {settings: this.state });
 				const requestConfig = {
 					params: {
 						authKey: localStorage.getItem('Istok-Auth-Key')

@@ -268,8 +268,9 @@
 				};
 				const response = await this.$http.post(loginUrl, loginData);
 				if (!response.data.body.error) {
-					const authKey = response.data.body.authkey;
+					const authKey = response.data.body.authKey;
 					localStorage.setItem('Istok-Auth-Key', authKey);
+					this.$store.dispatch('getSettingsData');
 					this.goToDisclaimer();
 				} else {
 					// todo: Make error view
@@ -285,7 +286,7 @@
 				};
 				const response = await this.$http.post(regUrl, regData);
 				if (!response.data.body.error) {
-					const authKey = response.data.body.authkey;
+					const authKey = response.data.body.authKey;
 					localStorage.setItem('Istok-Auth-Key', authKey);
 					this.goToDisclaimer();
 				} else {
