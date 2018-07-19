@@ -20,29 +20,29 @@
 			<form v-if="!register" class="login__form">
 				<h1 class="login__heading">{{ login[0] }}</h1>
 				<input v-model="currentLogin" class="login__input" type="text" name="login" :placeholder="login[1]">
-				<input v-model="currentPassword" class="login__input" type="text" name="password" :placeholder="login[2]">
+				<input v-model="currentPassword" class="login__input" type="password" name="password" :placeholder="login[2]">
 				<button @click="signIn()" class="login__submit" type="button">{{ login[3] }}</button>
 			</form>
 			<form v-if="register" class="login__form">
 				<h1 class="login__heading">{{ login[6] }}</h1>
 				<input v-model="currentLogin" class="login__input" type="text" name="login" :placeholder="login[1]">
-				<input v-model="currentPassword" class="login__input" type="text" name="password" :placeholder="login[2]">
-				<input v-model="currentPassConfirmation" class="login__input" type="text" name="password" :placeholder="login[8]">
+				<input v-model="currentPassword" class="login__input" type="password" name="password" :placeholder="login[2]">
+				<input v-model="currentPassConfirmation" class="login__input" type="password" name="password" :placeholder="login[8]">
 				<button @click="signUp()" class="login__submit" type="button">{{ login[7] }}</button>
 			</form>
 			<span class="login__or">{{ login[4] }}</span>
-			<ul class="login__socials">
-				<li class="login__social">
-					<a class="login__social-icon login__social-icon--vk">VK</a>
-				</li>
-				<li class="login__social">
-					<a class="login__social-icon login__social-icon--google">Google Plus</a>
-				</li>
-				<li class="login__social">
-					<a class="login__social-icon login__social-icon--fb">Facebook</a>
-				</li>
-			</ul>
-			<a @click="register = !register" class="login__toggle-login">{{ register ? login[0] : login[6] }}</a>
+			<!--<ul class="login__socials">-->
+				<!--<li class="login__social">-->
+					<!--<a class="login__social-icon login__social-icon&#45;&#45;vk">VK</a>-->
+				<!--</li>-->
+				<!--<li class="login__social">-->
+					<!--<a class="login__social-icon login__social-icon&#45;&#45;google">Google Plus</a>-->
+				<!--</li>-->
+				<!--<li class="login__social">-->
+					<!--<a class="login__social-icon login__social-icon&#45;&#45;fb">Facebook</a>-->
+				<!--</li>-->
+			<!--</ul>-->
+			<button @click="register = !register" class="login__toggle">{{ register ? login[0] : login[6] }}</button>
 		</div>
 	</div>
 </template>
@@ -213,13 +213,15 @@
 			}
 		}
 		
-		&__toggle-login {
+		&__toggle {
 			display: block;
-			margin-top: get-vw(7px);
-			text-align: center;
-			font-size: get-vw(10px);
+			margin: get-vw(13px) auto;
+			background: none;
+			/*border: get-vw(1px) solid #fff;*/
+			border: none;
+			color: #fff;
 			font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
-			opacity: 0.3;
+			font-size: get-vw(12px);
 		}
 	}
 
@@ -274,7 +276,7 @@
 					this.goToDisclaimer();
 				} else {
 					// todo: Make error view
-					console.log(response.data.body.error);
+					alert(JSON.stringify(response));
 				}
 			},
 			async signUp() {
@@ -291,7 +293,7 @@
 					this.goToDisclaimer();
 				} else {
 					// todo: Make error view
-					console.log(response.data.body.error);
+					alert(JSON.stringify(response));
 				}
 			}
 		},

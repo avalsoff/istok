@@ -23,7 +23,7 @@
 		</ul>
 		<ul class="settings settings--danger">
 			<li class="settings__item">
-				<button @click="reload" class="settings__set">{{ settings[4] }}</button>
+				<button @click="reset" class="settings__set">{{ settings[4] }}</button>
 			</li>
 			<li class="settings__item">
 				<button @click="logOut" class="settings__set">{{ settings[5] }}</button>
@@ -198,7 +198,7 @@
 						// });
 						cordova.plugins.notification.local.schedule({
 							title: 'Тренинг центр "Исток"',
-							trigger: {in: 1, unit: 'second'}
+							trigger: { every: { hour: 18, minute: 0 } }
 						});
 					} else {
 						cordova.plugins.notification.local.cancelAll();
@@ -210,17 +210,29 @@
 			'app-header': Header
 		},
 		methods: {
-			goToDisclamer() {
-				this.$router.push('disclaimer');
-			},
-			reload() {
+			reset() {
+				const authKey = localStorage.getItem('Istok-Auth-Key');
+				const lang = localStorage.getItem('Lan-gua-ge');
 				localStorage.clear();
+				localStorage.setItem('Istok-Auth-Key', authKey)
+				localStorage.setItem('Lan-gua-ge', lang);
+				this.resetSettings();
 				location.reload();
 			},
 			logOut() {
 				localStorage.setItem('Istok-Auth-Key', '');
 				localStorage.setItem('q-history', '');
 				location.reload();
+			},
+			async resetSettings() {
+				const settingsUrl = 'https://istok.hiddenpool.tech/update-settings';
+				let currentSettingsData = {settings: {}};
+				const requestConfig = {
+					params: {
+						authKey: localStorage.getItem('Istok-Auth-Key')
+					}
+				};
+				this.$http.post(settingsUrl, currentSettingsData, requestConfig);
 			}
 		},
 	}
