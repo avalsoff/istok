@@ -29,7 +29,7 @@
 
 .wrapper {
   background-color: #1C236E;
-  background-image: url('../assets/wave-blue.svg'),
+  background-image: url('../assets/wave-blue.png'),
                     url('../assets/istok-white.png');
   background-repeat: no-repeat;
   background-position: 0 12%,

@@ -54,7 +54,7 @@
 		padding-top: .1px;
 		background-color: #1C236E;
 		background-repeat: no-repeat;
-		background-image: url('../assets/wave-blue.svg'),
+		background-image: url('../assets/wave-blue.png'),
 		url('../assets/istok-white.png');
 		background-position: 0 14%,
 		50% 6%;
@@ -215,7 +215,7 @@
 		
 		&__toggle {
 			display: block;
-			margin: get-vw(13px) auto;
+			margin: get-vw(18px) auto get-vw(13px);
 			background: none;
 			/*border: get-vw(1px) solid #fff;*/
 			border: none;
@@ -276,7 +276,7 @@
 					this.goToDisclaimer();
 				} else {
 					// todo: Make error view
-					alert(JSON.stringify(response));
+					alert('Error: ' + response.data.body.error);
 				}
 			},
 			async signUp() {
@@ -293,7 +293,7 @@
 					this.goToDisclaimer();
 				} else {
 					// todo: Make error view
-					alert(JSON.stringify(response));
+					alert('Error: ' + response.data.body.error);
 				}
 			}
 		},

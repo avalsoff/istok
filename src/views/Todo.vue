@@ -299,26 +299,34 @@
 	.toggle:checked + .toggle-checkbox::after {
 		content: "";
 		position: absolute;
-		top: get-vw(11px);
-		left: get-vw(7px);
-		width: get-vw(12px);
-		height: get-vw(2px);
-		border-radius: get-vw(100px);
-		background-color: #fff;
-		transform: rotate(-45deg);
+		left: get-vw(-1px);
+		top: get-vw(0px);
+		width: get-vw(25px);
+		height: get-vw(25px);
+		/*top: get-vw(11px);*/
+		/*left: get-vw(7px);*/
+		/*width: get-vw(12px);*/
+		/*height: get-vw(2px);*/
+		/*border-radius: get-vw(100px);*/
+		/*background-color: #fff;*/
+		/*transform: rotate(-45deg);*/
+		background-image: url('../assets/check.svg');
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: 65%;
 	}
 	
-	.toggle:checked + .toggle-checkbox::before {
-		content: "";
-		position: absolute;
-		top: get-vw(13px);
-		left: get-vw(4px);
-		width: get-vw(7px);
-		height: get-vw(2px);
-		border-radius: get-vw(100px);
-		background-color: #fff;
-		transform: rotate(45deg);
-	}
+	/*.toggle:checked + .toggle-checkbox::before {*/
+		/*content: "";*/
+		/*position: absolute;*/
+		/*top: get-vw(13px);*/
+		/*left: get-vw(4px);*/
+		/*width: get-vw(7px);*/
+		/*height: get-vw(2px);*/
+		/*border-radius: get-vw(100px);*/
+		/*background-color: #fff;*/
+		/*transform: rotate(45deg);*/
+	/*}*/
 	
 	.edit {
 		position: absolute;

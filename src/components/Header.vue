@@ -69,9 +69,9 @@
 			},
 			share() {
 				var options = {
-					message: 'Поделить себя с приложением', // not supported on some apps (Facebook, Instagram)
-					subject: 'the subject', // fi. for email
-					url: 'https://avalsoff.github.io/istok-demo',
+					message: 'Тренинг центр "Исток"', // not supported on some apps (Facebook, Instagram)
+					subject: 'Приглашение', // fi. for email
+					url: 'http://www.tc-i.ru/',
 					chooserTitle: 'Выберите приложение', // Android only, you can override the default share sheet title,
 				};
 				

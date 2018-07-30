@@ -197,8 +197,8 @@
 						// // trigger: { every: { hour: 18, minute: 0 } }
 						// });
 						cordova.plugins.notification.local.schedule({
-							title: 'Тренинг центр "Исток"',
-							trigger: { every: { hour: 18, minute: 0 } }
+							title: 'Тренинг-центр "Исток". Напоминание',
+							trigger: { every: { hour: 20, minute: 0 } }
 						});
 					} else {
 						cordova.plugins.notification.local.cancelAll();

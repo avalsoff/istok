@@ -123,7 +123,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background-image: url('../assets/wave-blue.svg');
+    background-image: url('../assets/wave-blue.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 0 get-vw(-30px);

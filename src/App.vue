@@ -37,51 +37,51 @@
 	
 	@font-face {
 		font-family: 'Geometria';
-		src: url('./assets/fonts/Geometria.woff'),
-		url('./assets/fonts/Geometria.eot'),
-		url('./assets/fonts/Geometria.ttf');
+		src: url('./assets/fonts/Geometria.woff2');
+		// url('./assets/fonts/Geometria.eot'),
+		// url('./assets/fonts/Geometria.ttf');
 	}
 	
 	@font-face {
 		font-family: 'Geometria Light';
-		src: url('./assets/fonts/Geometria-Light.woff'),
-		url('./assets/fonts/Geometria-Light.eot'),
-		url('./assets/fonts/Geometria-Light.ttf');
+		src: url('./assets/fonts/Geometria-Light.woff2');
+		// url('./assets/fonts/Geometria-Light.eot'),
+		// url('./assets/fonts/Geometria-Light.ttf');
 	}
 	
 	@font-face {
 		font-family: 'Geometria Bold';
-		src: url('./assets/fonts/Geometria-Bold.woff'),
-		url('./assets/fonts/Geometria-Bold.eot'),
-		url('./assets/fonts/Geometria-Bold.ttf');
+		src: url('./assets/fonts/Geometria-Bold.woff2');
+		// url('./assets/fonts/Geometria-Bold.eot'),
+		// url('./assets/fonts/Geometria-Bold.ttf');
 	}
 	
 	@font-face {
 		font-family: 'Geometria Extrabold';
-		src: url('./assets/fonts/Geometria-ExtraBold.woff'),
-		url('./assets/fonts/Geometria-ExtraBold.eot'),
-		url('./assets/fonts/Geometria-ExtraBold.ttf');
+		src: url('./assets/fonts/Geometria-ExtraBold.woff2');
+		// url('./assets/fonts/Geometria-ExtraBold.eot'),
+		// url('./assets/fonts/Geometria-ExtraBold.ttf');
 	}
 	
 	@font-face {
 		font-family: 'Geometria Heavy';
-		src: url('./assets/fonts/Geometria-Heavy.woff'),
-		url('./assets/fonts/Geometria-Heavy.eot'),
-		url('./assets/fonts/Geometria-Heavy.ttf');
+		src: url('./assets/fonts/Geometria-Heavy.woff2');
+		// url('./assets/fonts/Geometria-Heavy.eot'),
+		// url('./assets/fonts/Geometria-Heavy.ttf');
 	}
 	
 	@font-face {
 		font-family: 'Geometria Medium';
-		src: url('./assets/fonts/Geometria-Medium.woff'),
-		url('./assets/fonts/Geometria-Medium.eot'),
-		url('./assets/fonts/Geometria-Medium.ttf');
+		src: url('./assets/fonts/Geometria-Medium.woff2');
+		// url('./assets/fonts/Geometria-Medium.eot'),
+		// url('./assets/fonts/Geometria-Medium.ttf');
 	}
 	
 	@font-face {
 		font-family: 'SF Ultralight';
 		src: url('./assets/fonts/SFUIDisplay-Ultralight.woff');
-		/* url('./assets/fonts/Geometria-Light.eot'),
-		url('./assets/fonts/Geometria-Light.ttf'); */
+		// /* url('./assets/fonts/Geometria-Light.eot'),
+		// url('./assets/fonts/Geometria-Light.ttf'); */
 	}
 	
 	#app {

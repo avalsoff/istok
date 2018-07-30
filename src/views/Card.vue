@@ -11,7 +11,8 @@
 						class="cards__card"
 						v-if="!showAddMoreView">
 						<small class="cards__count">
-							{{ card.question }} {{ state.currentHistoryIndex + 1 }} {{ card.of }} {{ state.maxQuestions }}
+							{{ card.question }} {{ state.currentHistoryIndex + 1 }} {{ card.of }} {{ state.maxQuestions
+							}}
 						</small>
 						<!-- <h2 class="cards__caption">{{ card.card }}</h2> -->
 						<h2 class="cards__caption"></h2>
@@ -57,7 +58,7 @@
 						>
 							{{ card.add }}
 						</button>
-						<img class="cards__wave-img" src="../assets/wave-blue.svg" alt="Волна">
+						<img class="cards__wave-img" src="../assets/wave-blue.png" alt="Волна">
 					</div>
 				</transition>
 			</main>
@@ -301,6 +302,10 @@
 		background-size: 30%;
 		font-family: 'Geometria Medium', Arial, Helvetica, sans-serif;
 		font-size: get-vw(14px);
+		
+		@media only screen and (max-height: get-vw(450px)) {
+			background-image: none;
+		}
 	}
 	
 	.cards {
@@ -325,7 +330,7 @@
 			box-shadow: get-vw(0px) get-vw(10px) get-vw(20px) rgba(0, 0, 0, 0.06);
 			border-radius: get-vw(15px);
 			padding: get-vw(60px) get-vw(25px) get-vw(25px);
-			background-image: url("../assets/wave-blue.svg");
+			background-image: url("../assets/wave-blue.png");
 			background-position: 60% get-vw(-40px);
 			background-size: 110%;
 			background-repeat: no-repeat;
@@ -397,7 +402,7 @@
 				border-radius: get-vw(10px);
 				background-color: #E5E5EE;
 				color: #1C236E;
-				font-family: "Geometria", Arial, Helvetica, sans-serif;
+				font-family: Arial, Helvetica, sans-serif;
 			}
 			
 			&--editing {
@@ -414,5 +419,4 @@
 			font-size: get-vw(12px);
 		}
 	}
-
 </style>
