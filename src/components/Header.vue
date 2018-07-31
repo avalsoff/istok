@@ -71,7 +71,7 @@
 				var options = {
 					message: 'Тренинг центр "Исток"', // not supported on some apps (Facebook, Instagram)
 					subject: 'Приглашение', // fi. for email
-					url: 'http://www.tc-i.ru/',
+					url: 'https://play.google.com/store/apps/details?id=tech.hiddenpool.istok',
 					chooserTitle: 'Выберите приложение', // Android only, you can override the default share sheet title,
 				};
 				
