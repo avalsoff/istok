@@ -12,7 +12,7 @@ export default {
 	about: {
 		business: "Business trainings",
 		history: "Our history",
-		about: "The training center «Istok» is located in the city of Khabarovsk. We work in the entire Far East and beyond. Сoaching and mentoring clients can become residents of all the world, it is enough to have access to Skype.",
+		about: "International coaching center ISTOK is one of the leading providers of coaching services in Russia. We teach coaching in open and corporate formats, we offer individual and team coaching services according to international standards for clients anywhere in the world. The team of the center is professional ICF coaches, experienced business coaches, mentors and supervisors.",
 		heading: "About company",
 		services: "Company Services",
 		training: "Training",
@@ -32,7 +32,7 @@ export default {
 	},
 	login: [
 		"Sign in",
-		"Login",
+		"E-mail",
 		"Password",
 		"Sign in",
 		"Or",
