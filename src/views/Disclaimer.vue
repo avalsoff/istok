@@ -94,6 +94,10 @@
 			border-radius: 50%;
 			border: get-vw(3px) solid #fff;
 			overflow: hidden;
+
+			@media (min-width: 800px) {
+				display: none;
+			}
 			
 			img {
 				display: block;

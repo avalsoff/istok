@@ -60,6 +60,10 @@
 		50% 6%;
 		background-size: contain,
 		40%;
+
+		@media (min-width: 800px) {
+			background-image: none;
+		}
 	}
 	
 	.login {
@@ -68,6 +72,10 @@
 			@include list-reboot();
 			margin-top: get-vw(120px);
 			text-align: center;
+
+			@media (min-width: 800px) {
+				margin-top: get-vw(10px);
+			}
 		}
 		
 		&__language {
