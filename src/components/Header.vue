@@ -14,12 +14,13 @@
 		top: 0;
 		z-index: 110;
 		background: #1C236E;
-		height: get-vw(44px);
+		height: calc(13.75vw + 20px);
 		
 		&__heading {
 			margin: 0;
+			padding-top: 20px;
 			font-size: get-vw(17px);
-			line-height: get-vw(45px);
+			line-height: calc(13.75vw);
 			font-family: 'SF Ultralight';
 			color: #fff;
 			text-align: center;
@@ -27,7 +28,7 @@
 		
 		&__menu-btn {
 			position: absolute;
-			top: get-vw(15px);
+			top: calc(4.6875vw + 20px);
 			left: get-vw(15px);
 			width: get-vw(20px);
 			height: get-vw(14px);
@@ -39,7 +40,7 @@
 		
 		&__share-btn {
 			position: absolute;
-			top: get-vw(14px);
+			top: calc(4.375vw + 20px);
 			right: get-vw(12px);
 			width: get-vw(20px);
 			height: get-vw(18px);

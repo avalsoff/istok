@@ -51,13 +51,13 @@
 	@import "../scss/mixins";
 	
 	.wrapper {
-		padding-top: .1px;
+		padding-top: 20px;
 		background-color: #1C236E;
 		background-repeat: no-repeat;
 		background-image: url('../assets/wave-blue.png'),
 		url('../assets/istok-white.png');
 		background-position: 0 14%,
-		50% 6%;
+		50% 9%;
 		background-size: contain,
 		40%;
 
