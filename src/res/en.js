@@ -15,9 +15,9 @@ export default {
 		about: "International coaching center ISTOK is one of the leading providers of coaching services in Russia. We teach coaching in open and corporate formats, we offer individual and team coaching services according to international standards for clients anywhere in the world. The team of the center is professional ICF coaches, experienced business coaches, mentors and supervisors.",
 		heading: "About company",
 		services: "Company Services",
-		training: "Training",
-		coaching: "Coaching",
-		facilitation: "Facilitation"
+		training: "Coaching training",
+		coaching: "Individual and team coaching",
+		facilitation: "Advanced training for coaches"
 	},
 	card: {
 		question: "Question",

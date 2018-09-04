@@ -42,11 +42,11 @@
 					></ymap-marker>
 				</yandex-map>
 			</div>
-			<a class="about__link" href="http://www.tc-i.ru">www.tc-i.ru</a>
-			<br>
-			<a class="about__email" href="mailto:info@tc-i.ru">info@tc-i.ru</a>
+			<a class="about__link" href="http://www.coachistok.ru">www.coachistok.ru</a>
 			<br>
 			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
+			<br>
+			<a class="about__email" href="mailto:info@tc-i.ru">info@tc-i.ru</a>
 			<!-- <p class="about__text" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p> -->
 		</main>
 	</div>
@@ -148,6 +148,10 @@
 		
 		&__list {
 			@include list-reboot;
+      text-align: left;
+			width: 260px;
+			margin-left: auto;
+			margin-right: auto;
 		}
 		
 		&__item {

@@ -95,7 +95,7 @@
 			border: get-vw(3px) solid #fff;
 			overflow: hidden;
 
-			@media (min-width: 800px) {
+			@media (min-width: 700px) {
 				display: none;
 			}
 			
