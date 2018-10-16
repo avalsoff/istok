@@ -4,7 +4,7 @@
 		<main class="about">
 			<small class="about__caption">{{ about.business }}</small>
 			<h2 class="about__heading">{{ about.history }}</h2>
-			<p class="about__text">{{ about.about }}</p>
+			<!-- <p class="about__text">{{ about.about }}</p> -->
 			<div class="about__services services">
 				<h2 class="services__heading">
 					{{ about.services }}
@@ -46,7 +46,7 @@
 			<br>
 			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
 			<br>
-			<a class="about__email" href="mailto:info@tc-i.ru">info@tc-i.ru</a>
+			<a class="about__email" href="mailto:info@coachistok.ru">info@coachistok.ru</a>
 			<!-- <p class="about__text" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p> -->
 		</main>
 	</div>
@@ -73,7 +73,8 @@
 			font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
 			font-size: get-vw(28px);
 			margin-top: 0;
-			margin-bottom: get-vw(15px);
+			margin-bottom: get-vw(15px);			
+			padding: 0 get-vw(15px);
 		}
 		
 		&__text {

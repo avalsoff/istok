@@ -27,7 +27,7 @@ export default {
 		oops: "Oops...",
 		over: "You run out of cards, do you want to add a few more questions?",
 		add: "Add",
-		heading: "Cards",
+		heading: "50 questions",
 		answer: "Answer"
 	},
 	login: [
@@ -42,8 +42,8 @@ export default {
 		"Password Confirmation"
 	],
 	menu: [
-		"Cards",
-		"About company",
+		"50 questions",
+		"About",
 		"Tasks list",
 		"Settings",
 		"Menu",

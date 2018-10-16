@@ -70,9 +70,9 @@
 			},
 			share() {
 				var options = {
-					message: 'Тренинг центр "Исток"', // not supported on some apps (Facebook, Instagram)
+					message: 'Международный центр коучинга ISTOK.\n Google Play: https://play.google.com/store/apps/details?id=tech.hiddenpool.istok\n Apple Store: https://itunes.apple.com/us/app/50-%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2-%D0%B4%D0%BE%D1%81%D1%82%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D1%86%D0%B5%D0%BB%D0%B8/id1432291526?ls=1&mt=8', // not supported on some apps (Facebook, Instagram)
 					subject: 'Приглашение', // fi. for email
-					url: 'https://play.google.com/store/apps/details?id=tech.hiddenpool.istok',
+					url: '',
 					chooserTitle: 'Выберите приложение', // Android only, you can override the default share sheet title,
 				};
 				
