@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<app-header :heading="about.heading"></app-header>
 		<main class="about">
-			<small class="about__caption">{{ about.business }}</small>
+			<!-- <small class="about__caption">{{ about.business }}</small> -->
 			<h2 class="about__heading">{{ about.history }}</h2>
 			<!-- <p class="about__text">{{ about.about }}</p> -->
 			<div class="about__services services">
@@ -26,6 +26,11 @@
 					</li>
 				</ul>
 			</div>
+			<a class="about__link" href="http://www.coachistok.ru">www.coachistok.ru</a>
+			<br>
+			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
+			<br>
+			<a class="about__email" href="mailto:info@coachistok.ru">info@coachistok.ru</a>
 			<img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'>
 			<div class="about__map">
 				<yandex-map
@@ -42,11 +47,6 @@
 					></ymap-marker>
 				</yandex-map>
 			</div>
-			<a class="about__link" href="http://www.coachistok.ru">www.coachistok.ru</a>
-			<br>
-			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
-			<br>
-			<a class="about__email" href="mailto:info@coachistok.ru">info@coachistok.ru</a>
 			<!-- <p class="about__text" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos aliquam optio quibusdam sapiente fuga, officiis quidem quam saepe debitis.</p> -->
 		</main>
 	</div>
@@ -73,7 +73,8 @@
 			font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
 			font-size: get-vw(28px);
 			margin-top: 0;
-			margin-bottom: get-vw(15px);			
+			margin-bottom: get-vw(15px);
+			margin-top: get-vw(20px);		
 			padding: 0 get-vw(15px);
 		}
 		
@@ -85,7 +86,8 @@
 		}
 		
 		&__logo {
-			display: inline-block;
+			display: block;
+			margin: 0 auto;
 			vertical-align: top;
 			margin-top: get-vw(25px);
 			margin-bottom: get-vw(20px);
