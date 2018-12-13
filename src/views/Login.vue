@@ -19,13 +19,13 @@
 			</ul>
 			<form v-if="!register" class="login__form">
 				<h1 class="login__heading">{{ login[0] }}</h1>
-				<input v-model="currentLogin" class="login__input" type="text" name="login" :placeholder="login[1]">
+				<input v-model="currentLogin" class="login__input" type="email" name="login" :placeholder="login[1]">
 				<input v-model="currentPassword" class="login__input" type="password" name="password" :placeholder="login[2]">
 				<button @click="signIn()" class="login__submit" type="button">{{ login[3] }}</button>
 			</form>
 			<form v-if="register" class="login__form">
 				<h1 class="login__heading">{{ login[6] }}</h1>
-				<input v-model="currentLogin" class="login__input" type="text" name="login" :placeholder="login[1]">
+				<input v-model="currentLogin" class="login__input" type="email" name="login" :placeholder="login[1]">
 				<input v-model="currentPassword" class="login__input" type="password" name="password" :placeholder="login[2]">
 				<input v-model="currentPassConfirmation" class="login__input" type="password" name="password" :placeholder="login[8]">
 				<button @click="signUp()" class="login__submit" type="button">{{ login[7] }}</button>
@@ -52,7 +52,7 @@
 	
 	.wrapper {
 		padding-top: 20px;
-		background-color: #1C236E;
+		background-color: #00bec1;
 		background-repeat: no-repeat;
 		background-image: url('../assets/wave-blue.png'),
 		url('../assets/istok-white.png');
@@ -122,8 +122,8 @@
 			border-radius: get-vw(7px);
 			padding: get-vw(10px) get-vw(10px) get-vw(10px);
 			border: none;
-			background: rgba($color: #fff, $alpha: .1);
-			color: rgba($color: #fff, $alpha: .3);
+			background: rgba($color: #fff, $alpha: .27);
+			color: rgba($color: #fff, $alpha: .8);
 			font-size: get-vw(14px);
 			margin: get-vw(20px) auto 0;
 			width: get-vw(200px);
@@ -131,13 +131,13 @@
 			
 			&:focus {
 				outline: none;
-				border: get-vw(1px) solid #1C236E;
-				background-color: #fff;
+				border: get-vw(1px) solid #00bec1;
+				background: rgba($color: #fff, $alpha: .6);
 				color: #000;
 			}
 			
 			&::placeholder {
-				color: rgba($color: #fff, $alpha: .3);
+				color: rgba($color: #fff, $alpha: .9);
 				font-size: get-vw(14px);
 			}
 		}

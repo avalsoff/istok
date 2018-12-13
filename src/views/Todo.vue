@@ -241,19 +241,19 @@
 		font-family: "Geometria", Arial, Helvetica, sans-serif;
 		border-radius: get-vw(7px);
 		border: none;
-		background-color: #E5E5EE;
-		color: rgba($color: #1C236E, $alpha: .3);
+		background-color: rgba(#E5E5EE, .3);
+		color:  #00bec1;
 		margin: get-vw(25px) get-vw(15px) get-vw(2px);
 		text-align: center;
 		border: get-vw(1px) solid transparent;
 		
 		&::placeholder {
-			color: rgba($color: #1C236E, $alpha: .3);
+			color: #00bec1;
 		}
 		
 		&:focus {
 			outline: none;
-			border: get-vw(1px) solid #1C236E;
+			border: get-vw(1px) solid #00bec1;
 			background-color: #fff;
 			color: #000;
 		}
@@ -280,7 +280,7 @@
 		transform: translateY(-50%);
 		width: get-vw(25px);
 		height: get-vw(25px);
-		border: get-vw(1px) solid #1F236D;
+		border: get-vw(1px) solid #00bec1;
 		border-radius: 50%;
 		margin: auto 0;
 	}
@@ -293,7 +293,7 @@
 	}
 	
 	.toggle:checked + .toggle-checkbox {
-		background-color: #1F236D;
+		background-color: #00bec1;
 	}
 	
 	.toggle:checked + .toggle-checkbox::after {

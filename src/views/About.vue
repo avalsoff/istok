@@ -31,7 +31,8 @@
 			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
 			<br>
 			<a class="about__email" href="mailto:info@coachistok.ru">info@coachistok.ru</a>
-			<img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'>
+			<!-- <img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'> -->
+
 			<div class="about__map">
 				<yandex-map
 					:coords="[48.471545, 135.069701]"
@@ -57,7 +58,6 @@
 	
 	.wrapper {
 		font-family: "Geometria", Arial, Helvetica, sans-serif;
-		text-align: center;
 	}
 	
 	.about {
@@ -71,7 +71,8 @@
 		
 		&__heading {
 			font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
-			font-size: get-vw(28px);
+			text-align: center;
+			font-size: get-vw(26px);
 			margin-top: 0;
 			margin-bottom: get-vw(15px);
 			margin-top: get-vw(20px);		
@@ -106,10 +107,11 @@
 			margin-top: get-vw(25px);
 			text-decoration: none;
 			display: inline-block;
-			color: #1C236E;
+			color: darken(#00bec1, 10%);;
 			font-family: "Geometria Medium", Arial, Helvetica, sans-serif;
 			line-height: normal;
 			font-size: get-vw(14px);
+			margin-left: get-vw(45px);
 			
 			&::before {
 				position: absolute;
@@ -126,6 +128,7 @@
 		
 		&__email {
 			margin-top: get-vw(15px);
+			margin-bottom: get-vw(30px);
 			
 			&::before {
 				background-image: url("../assets/mail.svg");
@@ -147,14 +150,16 @@
 		&__heading {
 			font-size: get-vw(18px);
 			font-family: "Geometria Bold", Arial, Helvetica, sans-serif;
+			text-align: left;
+			margin-left: get-vw(18px);
+			margin-bottom: get-vw(5px);
 		}
 		
 		&__list {
 			@include list-reboot;
       text-align: left;
-			width: 260px;
-			margin-left: auto;
-			margin-right: auto;
+			width: get-vw(260px);
+			margin-left: get-vw(30px);
 		}
 		
 		&__item {
@@ -163,7 +168,7 @@
 		&__link {
 			position: relative;
 			text-decoration: none;
-			color: #1C236E;
+			color: darken(#00bec1, 10%);
 			font-size: get-vw(14px);
 			
 			font-family: Arial, Helvetica, sans-serif;

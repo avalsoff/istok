@@ -78,7 +78,7 @@
     border-radius: get-vw(7px);
     padding: get-vw(10px) get-vw(10px) get-vw(10px);
     border: none;
-    background: rgba(#1C236E, .1);
+    background: rgba(#00bec1, .1);
     color: rgba(#000, .3);
     font-size: get-vw(14px);
     margin: get-vw(20px) auto 0;
@@ -89,7 +89,7 @@
 
     &:focus {
       outline: none;
-      border: get-vw(1px) solid  #1C236E;
+      border: get-vw(1px) solid  #00bec1;
       background-color: #fff;
       color: #000;
     }
@@ -144,7 +144,7 @@
     border: none;
     background: 0;
     font-size: get-vw(14px);
-    color: #1C236E;
+    color: #00bec1;
     font-family: 'Geometria Bold', Arial, Helvetica, sans-serif;
 
     &::before {
@@ -154,7 +154,7 @@
       content: "";
       width: get-vw(24px);
       height: get-vw(24px);
-      background-color: #1C236E;
+      background-color: #00bec1;
       border-radius: 50%;
       background-image: url("../assets/deck-arrow-left.svg");
       background-repeat: no-repeat;

@@ -13,7 +13,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 110;
-		background: #1C236E;
+		background: #00bec1;
 		height: calc(13.75vw + 20px);
 		
 		&__heading {

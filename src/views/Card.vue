@@ -352,7 +352,7 @@
 		&__add-btn {
 			appearance: none;
 			display: block;
-			background: #f17e00;
+			background: #4e1284;
 			border: none;
 			padding: get-vw(6px) get-vw(13px) get-vw(6px);
 			font-size: get-vw(12px);
@@ -376,7 +376,7 @@
 		&__view {
 			display: inline-block;
 			vertical-align: top;
-			background: #1C236E;
+			background: #00bec1;
 			border-radius: get-vw(15px);
 			color: #fff;
 			font-size: get-vw(12px);
@@ -385,23 +385,12 @@
 			max-width: get-vw(220px);
 			overflow: hidden;
 			word-wrap: break-word;
-			//   appearance: none;
-			// display: block;
-			// background: #f17e00;
-			// border: none;
-			// padding: get-vw(6px) get-vw(13px) get-vw(7px);
-			// font-size: get-vw(12px);
-			// margin-left: get-vw(49px);
-			// margin-top: get-vw(10px);
-			// color: white;
-			// border-radius: get-vw(100px);
-			// appearance: none;
 			font-family: "Geometria Heavy", Arial, Helvetica, sans-serif;
 			
 			&--answered {
 				border-radius: get-vw(10px);
-				background-color: #E5E5EE;
-				color: #1C236E;
+				background-color: rgba(#E5E5EE, .3);
+				color: darken(#00bec1, 5%);
 				font-family: Arial, Helvetica, sans-serif;
 			}
 			

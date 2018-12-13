@@ -28,7 +28,7 @@
 @import "../scss/mixins";
 
 .wrapper {
-  background-color: #1C236E;
+  background-color: #00bec1;
   background-image: url('../assets/wave-blue.png'),
                     url('../assets/istok-white.png');
   background-repeat: no-repeat;

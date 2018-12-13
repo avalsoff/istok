@@ -59,7 +59,7 @@ export default {
   margin-top: 5%;
   text-align: center;
   font-size: get-vw(50px);
-  color: #1F236D;
+  color: #00bec1;
 }
 
 .languages {
@@ -87,13 +87,13 @@ export default {
   border: none;
   font-size: get-vw(25px);
   font-weight: bold;
-  background-color: #1F236D;
+  background-color: #00bec1;
 }
 
 .choose {
   text-align: center;
   font-size: get-vw(28px);
-  color: #1F236D;
+  color: #00bec1;
 }
 
 .start {
@@ -113,7 +113,7 @@ export default {
   position: absolute;
   width: get-vw(2000px);
   height: get-vw(1000px);
-  background-color: #1F236D;
+  background-color: #00bec1;
   transform: rotate(-10deg) translateX(-40%);
 }
 
