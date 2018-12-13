@@ -10,7 +10,7 @@
 			       @blur="addTodo">
 			<section class="main" v-show="todos.length" v-cloak>
 				<ul class="todo-list">
-					<li v-for="todo in filteredTodos"
+					<li v-for="todo in todos"
 					    class="todo"
 					    :key="todo.id"
 					    :class="{ completed: todo.completed, editing: todo == editedTodo }">
@@ -41,90 +41,41 @@
 <script>
 	import store from '../store';
 	import Header from '../components/Header';
-	import {mapState} from 'vuex';
-	
-	// Full spec-compliant TodoMVC with localStorage persistence
-	// and hash-based routing in ~120 effective lines of JavaScript.
-	
-	
-	// localStorage persistence
-	var STORAGE_KEY = 'todos-vuejs-2.0'
-	var todoStorage = {
-		fetch() {
-			var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-			todos.forEach(function (todo, index) {
-				todo.id = index
-			})
-			todoStorage.uid = todos.length
-			return todos
-		},
-		save(todos) {
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-		}
-	}
-	
+	import { mapState } from 'vuex';
+
 	export default {
 		name: 'Todo',
+
 		components: {
 			'app-header': Header
 		},
-		store,
+
 		data() {
 			return {
-				todos: todoStorage.fetch(),
 				newTodo: '',
 				editedTodo: null,
 				selectedTodo: null,
-				visibility: 'all'
+				visibility: 'all',
+				todos: [],
 			}
 		},
 		
-		// watch todos change for localStorage persistence
 		watch: {
 			todos: {
 				handler(todos) {
-					todoStorage.save(todos);
 					this.updateSettings();
-					// this.$store.dispatch('getSettingsData');
 				},
 				deep: true
 			}
 		},
 		
-		// computed properties
-		// http://vuejs.org/guide/computed.html
 		computed: {
 			...mapState([
 				'todoText',
 				'settingsData'
 			]),
-			
-			filteredTodos() {
-				return filters[this.visibility](this.todos)
-			},
-			remaining() {
-				return filters.active(this.todos).length
-			},
-			allDone: {
-				get() {
-					return this.remaining === 0
-				},
-				set(value) {
-					this.todos.forEach(function (todo) {
-						todo.completed = value
-					})
-				}
-			}
 		},
 		
-		filters: {
-			pluralize(n) {
-				return n === 1 ? 'item' : 'items'
-			}
-		},
-		
-		// methods that implement data logic.
-		// note there's no DOM manipulation here at all.
 		methods: {
 			addTodo() {
 				var value = this.newTodo && this.newTodo.trim()
@@ -132,7 +83,7 @@
 					return
 				}
 				this.todos.unshift({
-					id: todoStorage.uid++,
+					id: this.todos.length + 1,
 					title: value,
 					completed: false
 				});
@@ -171,10 +122,10 @@
 				this.editedTodo = null
 				todo.title = this.beforeEditCache
 			},
+
 			async updateSettings() {
 				const settingsUrl = 'https://istok.hiddenpool.tech/update-settings';
 				const currentSettingsData = { settings: Object.assign(this.settingsData, { todos: this.todos}) };
-				// console.log(currentSettingsData);
 				const requestConfig = {
 					params: {
 						authKey: localStorage.getItem('Istok-Auth-Key')
@@ -184,9 +135,6 @@
 			}
 		},
 		
-		// a custom directive to wait for the DOM to be updated
-		// before focusing on the input field.
-		// http://vuejs.org/guide/custom-directive.html
 		directives: {
 			'todo-focus'(el, binding) {
 				if (binding.value) {
@@ -194,43 +142,22 @@
 				}
 			}
 		},
+
 		created() {
-			// Object.assign(this.todos, this.settingsData.todos);
-			this.todos = this.settingsData.todos;
-			this.todos.unshift({
-				id: -1,
-				title: "Wake up",
-				completed: false
-			});
-			this.todos.shift();
+			this.todos = this.settingsData.todos || [];
 		},
+
 		beforeDestroy() {
 			this.updateSettings();
 		},
+
 		destroyed() {
 			this.$store.dispatch('getSettingsData');
 		}
 	}
-	
-	// visibility filters
-	var filters = {
-		all(todos) {
-			return todos
-		},
-		active(todos) {
-			return todos.filter(function (todo) {
-				return !todo.completed
-			})
-		},
-		completed(todos) {
-			return todos.filter(function (todo) {
-				return todo.completed
-			})
-		}
-	}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style lang="scss" scoped>
 	@import "../scss/mixins";
 	
@@ -303,30 +230,11 @@
 		top: get-vw(0px);
 		width: get-vw(25px);
 		height: get-vw(25px);
-		/*top: get-vw(11px);*/
-		/*left: get-vw(7px);*/
-		/*width: get-vw(12px);*/
-		/*height: get-vw(2px);*/
-		/*border-radius: get-vw(100px);*/
-		/*background-color: #fff;*/
-		/*transform: rotate(-45deg);*/
 		background-image: url('../assets/check.svg');
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		background-size: 65%;
 	}
-	
-	/*.toggle:checked + .toggle-checkbox::before {*/
-		/*content: "";*/
-		/*position: absolute;*/
-		/*top: get-vw(13px);*/
-		/*left: get-vw(4px);*/
-		/*width: get-vw(7px);*/
-		/*height: get-vw(2px);*/
-		/*border-radius: get-vw(100px);*/
-		/*background-color: #fff;*/
-		/*transform: rotate(45deg);*/
-	/*}*/
 	
 	.edit {
 		position: absolute;
