@@ -28,7 +28,7 @@
 			</div>
 			<a class="about__link" href="http://www.coachistok.ru">www.coachistok.ru</a>
 			<br>
-			<a class="about__tel" href="tel:+7421224-31-13">8 (4212) 24-31-13</a>
+			<a class="about__tel" href="tel:+79141593113">+7 (914) 159-31-13</a>
 			<br>
 			<a class="about__email" href="mailto:info@coachistok.ru">info@coachistok.ru</a>
 			<!-- <img class="about__logo" src="../assets/istok-blue.png" alt='Бизнес-тренинги "Исток"'> -->
