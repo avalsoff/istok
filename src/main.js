@@ -7,9 +7,6 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 Vue.http.options.emulateJSON = true;
 Vue.config.productionTip = false;
-Vue.config.errorHandler = function (err, vm, info) {
-	vm.$http.post()
-}
 
 new Vue({
 	store,

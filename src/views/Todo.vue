@@ -57,13 +57,16 @@
 				selectedTodo: null,
 				visibility: 'all',
 				todos: [],
+				isInitialized: false
 			}
 		},
 		
 		watch: {
 			todos: {
 				handler(todos) {
-					this.updateSettings();
+					if (this.isInitialized) {
+						this.updateSettings();
+					}
 				},
 				deep: true
 			}
@@ -145,10 +148,7 @@
 
 		created() {
 			this.todos = this.settingsData.todos || [];
-		},
-
-		beforeDestroy() {
-			this.updateSettings();
+			this.isInitialized = true;
 		},
 
 		destroyed() {

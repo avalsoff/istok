@@ -1,8 +1,6 @@
 <template>
 	<div id="app">
-		<!-- <transition name="component-fade" mode="out-in"> -->
 		<router-view/>
-		<!-- </transition> -->
 	</div>
 </template>
 
@@ -108,27 +106,6 @@
 			}
 		},
 		mounted() {
-			window.onerror = (msg, url, lineNo, columnNo, error) => {
-				var string = msg.toLowerCase();
-				var substring = "script error";
-				var message;
-				if (string.indexOf(substring) > -1) {
-					message = '';
-				} else {
-					message = [
-						'Message: ' + msg,
-						'URL: ' + url,
-						'Line: ' + lineNo,
-						'Column: ' + columnNo,
-						'Error object: ' + JSON.stringify(error)
-					].join(' - ');
-				}
-
-				this.$http.post();
-
-				return false;
-			};
-
 			const lang = localStorage.getItem('Lan-gua-ge');
 			if (lang) {
 				store.dispatch('getQuestions', lang);

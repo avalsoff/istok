@@ -69,22 +69,10 @@
 <script>
 	import Vue from 'vue';
 	import VueTouch from 'vue-touch';
-	import {mapState} from 'vuex';
+	import { mapState } from 'vuex';
 	import Header from '../components/Header';
 	
 	Vue.use(VueTouch);
-	
-	var STORAGE_KEY = 'q-history';
-	var emptyState = '{"history":[],"answers":[],"currentHistoryIndex":0,"maxQuestions":5}';
-	var stateStorage = {
-		fetch() {
-			var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || emptyState);
-			return state;
-		},
-		save(state) {
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-		}
-	};
 	
 	export default {
 		name: 'Card',
@@ -94,7 +82,12 @@
 		data() {
 			return {
 				answer: "",
-				state: stateStorage.fetch(),
+				state: {
+					history: [],
+					answers: [],
+					currentHistoryIndex: 0,
+					maxQuestions: 5
+				},
 				currentQuestion: 'Loading...',
 				currentAnswer: 'Loading...',
 				showAnswer: false,
@@ -103,15 +96,15 @@
 				isAnswered: false,
 				slideDirection: 'slide-left',
 				showMenu: false,
+				isInitialized: false
 			}
 		},
 		watch: {
 			state: {
 				handler(state) {
-					// console.log(state.maxQuestions, state.history, state.currentHistoryIndex, state.answers);
-					stateStorage.save(state);
-					this.updateSettings();
-					// this.$store.dispatch('getSettingsData');
+					if (this.isInitialized) {
+						this.updateSettings();
+					}
 				},
 				deep: true
 			}
@@ -135,6 +128,7 @@
 					this.currentQuestion = this.questions[questionIndex];
 					this.setAnswer();
 				}
+				this.isInitialized = true;
 			},
 			nextCard() {
 				this.slideDirection = 'slide-left';
@@ -152,7 +146,6 @@
 			},
 			getAnswer() {
 				return (this.state.answers[this.state.currentHistoryIndex] || this.card.answer);
-				// return (this.state.answers[this.state.currentHistoryIndex] || 'К');
 			},
 			doneEditAnswer() {
 				this.editingAnswer = false;
@@ -211,11 +204,9 @@
 				}
 			},
 			pushToHistory(index) {
-				// this.$store.commit('pushHistory', index);
 				this.state.history.push(index);
 			},
 			getHistory() {
-				// return this.$store.state.history;
 				return this.state.history;
 			},
 			toTodos() {
@@ -223,7 +214,6 @@
 			},
 			increaseMaxQuestions() {
 				if (this.state.maxQuestions == Math.floor(this.questions.length / 5) * 5) {
-					// console.log("Cant't add more questions!");
 					return;
 				}
 				this.state.maxQuestions += 5;
@@ -250,9 +240,6 @@
 		},
 		created() {
 			this.setInit();
-		},
-		beforeDestroy() {
-			this.updateSettings();
 		},
 		destroyed() {
 			this.$store.dispatch('getSettingsData');

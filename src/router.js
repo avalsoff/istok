@@ -13,11 +13,6 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
     {
       path: '/disclaimer',
       name: 'Disclaimer',
@@ -28,11 +23,6 @@ export default new Router({
       name: 'Card',
       component: Card
     },
-    // {
-    //   path: '/start',
-    //   name: 'Start',
-    //   component: Start
-    // },
     {
       path: '/todo',
       name: 'Todo',
@@ -63,6 +53,5 @@ export default new Router({
       name: 'OrderDeck',
       component: OrderDeck
     }
-
   ]
 })

@@ -49,6 +49,9 @@
 			goToCard() {
 				this.$router.push('card');
 			}
+		},
+		beforeCreate() {
+			this.$store.dispatch('getSettingsData');
 		}
 	}
 </script>
